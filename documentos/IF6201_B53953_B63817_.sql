@@ -1,11 +1,11 @@
 USE [IF6201_B53953_B63817_]
 GO
-/****** Object:  User [userApi]    Script Date: 4/11/2021 23:31:37 ******/
+/****** Object:  User [userApi]    Script Date: 5/11/2021 21:29:23 ******/
 CREATE USER [userApi] FOR LOGIN [userApi] WITH DEFAULT_SCHEMA=[dbo]
 GO
 ALTER ROLE [db_owner] ADD MEMBER [userApi]
 GO
-/****** Object:  Table [dbo].[Avance]    Script Date: 4/11/2021 23:31:37 ******/
+/****** Object:  Table [dbo].[Avance]    Script Date: 5/11/2021 21:29:23 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -23,7 +23,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[BitacoraAuditoria]    Script Date: 4/11/2021 23:31:38 ******/
+/****** Object:  Table [dbo].[BitacoraAuditoria]    Script Date: 5/11/2021 21:29:23 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -41,13 +41,10 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Departamento]    Script Date: 4/11/2021 23:31:38 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
+/****** Object:  Table [dbo].[Departamento]    Script Date: 5/11/2021 21:29:23 ******/
+
 CREATE TABLE [dbo].[Departamento](
-	[idDepartamento] [tinyint] IDENTITY(1,1) NOT NULL,
+	[idDepartamento] [tinyint] NOT NULL,
 	[descripcion] [varchar](50) NULL,
 PRIMARY KEY CLUSTERED 
 (
@@ -55,7 +52,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Foto]    Script Date: 4/11/2021 23:31:38 ******/
+/****** Object:  Table [dbo].[Foto]    Script Date: 5/11/2021 21:29:23 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -69,7 +66,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Funcionario]    Script Date: 4/11/2021 23:31:38 ******/
+/****** Object:  Table [dbo].[Funcionario]    Script Date: 5/11/2021 21:29:23 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -90,13 +87,9 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Sexo]    Script Date: 4/11/2021 23:31:38 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
+/****** Object:  Table [dbo].[Sexo]    Script Date: 5/11/2021 21:29:23 ******/
 CREATE TABLE [dbo].[Sexo](
-	[idSexo] [tinyint] IDENTITY(1,1) NOT NULL,
+	[idSexo] [tinyint]  NOT NULL,
 	[descripcion] [varchar](50) NULL,
 PRIMARY KEY CLUSTERED 
 (
@@ -104,7 +97,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Solicitud]    Script Date: 4/11/2021 23:31:38 ******/
+/****** Object:  Table [dbo].[Solicitud]    Script Date: 5/11/2021 21:29:23 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -124,7 +117,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Transaccion]    Script Date: 4/11/2021 23:31:38 ******/
+/****** Object:  Table [dbo].[Transaccion]    Script Date: 5/11/2021 21:29:23 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -138,21 +131,15 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Trimestre]    Script Date: 4/11/2021 23:31:38 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
+/****** Object:  Table [dbo].[Trimestre]    Script Date: 5/11/2021 21:29:23 ******/
 CREATE TABLE [dbo].[Trimestre](
-	[idTrimestre] [tinyint] IDENTITY(1,1) NOT NULL,
+	[idTrimestre] [tinyint]  NOT NULL,
 	[descripcion] [varchar](50) NULL,
 PRIMARY KEY CLUSTERED 
 (
 	[idTrimestre] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
-GO
-SET IDENTITY_INSERT [dbo].[Departamento] ON 
 GO
 INSERT [dbo].[Departamento] ([idDepartamento], [descripcion]) VALUES (1, N'Gerencia')
 GO
@@ -192,23 +179,19 @@ INSERT [dbo].[Departamento] ([idDepartamento], [descripcion]) VALUES (18, N'Mens
 GO
 INSERT [dbo].[Departamento] ([idDepartamento], [descripcion]) VALUES (19, N'Archivo')
 GO
-SET IDENTITY_INSERT [dbo].[Departamento] OFF
-GO
 SET IDENTITY_INSERT [dbo].[Funcionario] ON 
 GO
 INSERT [dbo].[Funcionario] ([idFuncionario], [nombre], [apellidos], [fechaNacimiento], [idSexo], [loginName], [password], [idFoto], [idDepartamento]) VALUES (1, N'Valeria', N'Leiva Quirós', CAST(N'2001-01-01T00:00:00.000' AS DateTime), 1, N'nada@nada.nada', N'123', NULL, 1)
 GO
 SET IDENTITY_INSERT [dbo].[Funcionario] OFF
 GO
-SET IDENTITY_INSERT [dbo].[Sexo] ON 
-GO
+
 INSERT [dbo].[Sexo] ([idSexo], [descripcion]) VALUES (1, N'Hombre')
 GO
 INSERT [dbo].[Sexo] ([idSexo], [descripcion]) VALUES (2, N'Mujer')
 GO
 INSERT [dbo].[Sexo] ([idSexo], [descripcion]) VALUES (3, N'Otro')
 GO
-SET IDENTITY_INSERT [dbo].[Sexo] OFF
 GO
 SET IDENTITY_INSERT [dbo].[Transaccion] ON 
 GO
@@ -262,8 +245,7 @@ INSERT [dbo].[Transaccion] ([idTransaccion], [descripcion]) VALUES (24, N'Update
 GO
 SET IDENTITY_INSERT [dbo].[Transaccion] OFF
 GO
-SET IDENTITY_INSERT [dbo].[Trimestre] ON 
-GO
+
 INSERT [dbo].[Trimestre] ([idTrimestre], [descripcion]) VALUES (25, N'Enero - Marzo')
 GO
 INSERT [dbo].[Trimestre] ([idTrimestre], [descripcion]) VALUES (26, N'Abril - Junio')
@@ -272,8 +254,7 @@ INSERT [dbo].[Trimestre] ([idTrimestre], [descripcion]) VALUES (27, N'Julio - Se
 GO
 INSERT [dbo].[Trimestre] ([idTrimestre], [descripcion]) VALUES (28, N'Octubre - Diciembre')
 GO
-SET IDENTITY_INSERT [dbo].[Trimestre] OFF
-GO
+
 ALTER TABLE [dbo].[Avance]  WITH CHECK ADD  CONSTRAINT [fk_Solicitud_Avance] FOREIGN KEY([idSolicitud])
 REFERENCES [dbo].[Solicitud] ([idSolicitud])
 GO
@@ -333,29 +314,4 @@ ALTER TABLE [dbo].[Solicitud]  WITH CHECK ADD  CONSTRAINT [fk_UsuarioFinal_Solic
 REFERENCES [dbo].[Funcionario] ([idFuncionario])
 GO
 ALTER TABLE [dbo].[Solicitud] CHECK CONSTRAINT [fk_UsuarioFinal_Solicitud]
-GO
-/****** Object:  StoredProcedure [dbo].[existeUsuario]    Script Date: 4/11/2021 23:31:39 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE PROCEDURE [dbo].[existeUsuario]
-	-- Add the parameters for the stored procedure here
-	@loginName nvarchar(40) = 'nada@nada.nada',
-	@password nvarchar(40) = '123'
-AS
-BEGIN
-	-- SET NOCOUNT ON added to prevent extra result sets from
-	-- interfering with SELECT statements.
-	SET NOCOUNT ON;
-
-
-    -- Insert statements for procedure here
-	SELECT        nombre,apellidos
-	FROM          Funcionario
-	WHERE loginName = @loginName and password = @password
-
-	
-
-END
 GO
