@@ -3,21 +3,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 2rem;
-    color: lightgray;
-  }
-  .text{
-    font-size: 2rem;
-    color: white;
-    
   }
 
   .example-card {
-    background: #002b5c;
+    background: #CEE7FF;
     width: 500px;
     text-align: center;
   }
-
 
   .margin {
     width: 300px;
@@ -25,21 +17,5 @@
   }
 
   body {
-    background: url(src\app\images\login.jpeg) no-repeat center center fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
+    background: url(src\app\images\redes.jpg);
 }
-.button {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1rem;
-  text-align: center;
-  color: white;
-  background: #004a9f;
-  
-}
-
