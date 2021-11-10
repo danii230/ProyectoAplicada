@@ -29,10 +29,8 @@ export class SexoComponent implements OnInit {
   }
 
  public cargarMantenimientos(){
-    this.sexoService.getSexo().subscribe(data =>{
-      console.log(data);
-      this.listSexo = data;
-    })
+    this.listSexo = this.sexoService.getSexo();
+    this.dataSource = new MatTableDataSource(this.listSexo)
   }
 
   ngAfterViewInit() {

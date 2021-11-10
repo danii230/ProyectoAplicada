@@ -1,4 +1,4 @@
 export interface Sexo {
-    idSexo: number,
+    idSexo: string,
     descripcion: string
   }
