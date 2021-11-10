@@ -20,7 +20,10 @@ export class SexoService {
   ];
 
   public getSexo(){
-   return this.listMantenimiento.slice();
+    return this.http.get(endpoint + '/sexo').pipe(
+      map(this.extractData),
+      catchError(this.handleError<any>('getSexo'))
+    );
   }
 
   private handleError<T>(operation = 'operation', result?: T) {
