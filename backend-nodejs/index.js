@@ -1,4 +1,4 @@
-const express = require('express');
+/*const express = require('express');
 const morgan = require("morgan");
 const cors = require("cors");
 
@@ -16,10 +16,12 @@ app.use(express.json());
 app.get("/", (req, res) => {
   res.json({ message: "Inicio del BackEnd" });
 });
-
 app.use(require('./src/routes/Router'));
 
 // Starting the server
 app.listen(app.get('port'), () => {
     console.log(`Server on port ${app.get('port')}`);
 });
+*/
+
+console.log('hello world')

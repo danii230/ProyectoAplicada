@@ -1,0 +1,28 @@
+@api=http://localhost:3000/sexo
+
+GET {{api}}
+
+
+POST {{api}}
+Content-Type: application/json
+
+
+{ "descripcion" : "prueba Valeria"
+
+}
+
+DELETE  {{api}}
+Content-Type: application/json
+
+{"idSexo" : "4"}
+
+
+PUT   {{api}}
+Content-Type: application/json
+
+{"idSexo" : "3",
+"descripcion" : "Otro"
+}
+
+
+GET  {{api}}/3

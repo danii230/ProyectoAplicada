@@ -1,0 +1,68 @@
+const db_conection = require('../../config/db.js');
+
+exports.login = (req, res) => {
+
+    const { loginName } = req.params;
+
+     const { password } = req.params;
+    //console.log('entra');
+
+    //const { loginName, password } = req.body
+    db_conection.sql.connect(db_conection.config, function (err) {
+
+        
+        
+        if (err) {
+            console.log(err);
+        }else{
+                        
+          db_conection.sql.query(
+                
+                "exec [dbo].[existeUsuario] '" + loginName+ "','" + password+"'", function (err, result) {
+                
+                if (err) {
+                    console.log(err);
+                } else {
+                    if (!result.recordset[0]){
+                        res.json('No existe');
+                    }else{
+                      
+                     res.json('Si existe');
+                    }
+                }
+            });
+        }
+  
+    });
+};
+
+
+// // Get
+ exports.getData = (req, res) => {
+
+
+    db_conection.sql.connect(db_conection.config, function (err) {
+
+       if (err) {
+             console.log(err);
+        } else {
+
+            db_conection.sql.query(
+
+                 "SELECT * FROM Funcionario", function (err, result) {
+
+                    if (err) {
+                         console.log(err);
+                     } else {
+                         if (!result.recordset[0]) {
+                             res.json('No existe');
+                         } else {
+
+                            res.json('Si existe');
+                         }
+                     }
+                 });
+         }
+
+     });
+ }

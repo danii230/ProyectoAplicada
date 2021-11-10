@@ -1,4 +1,4 @@
-const db_conection  = require('../config/database.js');
+const db_conection  = require('../../config/db.js');
 
 exports.login = (req, res) => {
 
@@ -14,7 +14,7 @@ exports.login = (req, res) => {
             console.log(err);
         }else{
                         
-            db_conection.sql.query(
+          db_conection.sql.query(
                 
                 "exec [dbo].[existeUsuario] '" + loginName+ "','" + password+"'", function (err, result) {
                 

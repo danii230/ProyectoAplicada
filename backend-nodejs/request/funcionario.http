@@ -1,0 +1,11 @@
+@api=http://localhost:3000/funcionario
+
+
+
+
+GET   {{api}}
+Content-Type: application/json
+
+{"loginName" : "valequi@gestion.org",
+"password" : "123"
+}
