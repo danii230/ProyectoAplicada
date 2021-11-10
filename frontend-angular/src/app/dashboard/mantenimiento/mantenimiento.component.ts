@@ -15,7 +15,7 @@ export class MantenimientoComponent implements OnInit {
 
   listMantenimiento: mantenimientos[] = [];
 
-  displayedColumns: string[] = ['id', 'descripcion', 'acciones'];
+  displayedColumns: string[] = ['idSexo', 'descripcion', 'acciones'];
   dataSource: MatTableDataSource<any>;
 
 
