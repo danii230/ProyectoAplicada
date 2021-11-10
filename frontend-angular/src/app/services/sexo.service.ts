@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { mantenimientos } from '../interfaces/mantenimientos';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { map, catchError, tap } from 'rxjs/operators';
@@ -9,7 +8,7 @@ const endpoint = 'http://localhost:3000';
 @Injectable({
   providedIn: 'root'
 })
-export class MantenimientoService {
+export class SexoService {
 
 
   constructor(private http: HttpClient) { }

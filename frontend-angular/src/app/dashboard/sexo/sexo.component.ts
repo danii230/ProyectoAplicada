@@ -1,19 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import { mantenimientos } from 'src/app/interfaces/mantenimientos';
+import { Sexo } from 'src/app/interfaces/sexo';
 import { MatTableDataSource } from '@angular/material/table';
 import { ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
-import { MantenimientoService } from 'src/app/services/mantenimiento.service';
+import { SexoService } from 'src/app/services/sexo.service';
 
 
 @Component({
-  selector: 'app-mantenimiento',
-  templateUrl: './mantenimiento.component.html',
-  styleUrls: ['./mantenimiento.component.css']
+  selector: 'app-sexo',
+  templateUrl: './sexo.component.html',
+  styleUrls: ['./sexo.component.css']
 })
-export class MantenimientoComponent implements OnInit {
+export class SexoComponent implements OnInit {
 
-  listMantenimiento: mantenimientos[] = [];
+  listSexo: Sexo[] = [];
 
   displayedColumns: string[] = ['idSexo', 'descripcion', 'acciones'];
   dataSource: MatTableDataSource<any>;
@@ -22,16 +22,16 @@ export class MantenimientoComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
 
-  constructor(private mantenimientoService: MantenimientoService) { }
+  constructor(private sexoService: SexoService) { }
 
   ngOnInit(): void {
     this.cargarMantenimientos();
   }
 
  public cargarMantenimientos(){
-    this.mantenimientoService.getSexo().subscribe(data =>{
+    this.sexoService.getSexo().subscribe(data =>{
       console.log(data);
-      this.listMantenimiento = data;
+      this.listSexo = data;
     })
   }
 
