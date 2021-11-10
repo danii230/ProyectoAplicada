@@ -45,7 +45,7 @@ export class LoginComponent implements OnInit {
     
     this.rest.login(this.loginForm.value.loginName, this.loginForm.value.password).subscribe((result) => { 
       if(result == 'Si existe'){
-        this.router.navigate(['/main']);
+        this.router.navigate(['/dashboard']);
       } else {
         this.showMsgError= true;
         this.showMsgRegistration= false;
