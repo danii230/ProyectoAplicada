@@ -1,12 +1,17 @@
 [
     {
-        "nombre": "Dashboard",  
+        "nombre": "Inicio",  
         "redirect": "/dashboard"      
     },
     
     {
-        "nombre": "Mantenimiento",  
-        "redirect": "/dashboard/mantenimiento"
+        "nombre": "Sexo",  
+        "redirect": "/dashboard/sexo"
+    },
+
+    {
+        "nombre": "Reportes",  
+        "redirect": "/dashboard/reportes"
     }
 
 ]

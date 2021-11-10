@@ -28,9 +28,11 @@ export class MantenimientoComponent implements OnInit {
     this.cargarMantenimientos();
   }
 
-  cargarMantenimientos(){
-    this.listMantenimiento = this.mantenimientoService.getMantenimiento();
-    this.dataSource = new MatTableDataSource(this.listMantenimiento);
+ public cargarMantenimientos(){
+    this.mantenimientoService.getSexo().subscribe(data =>{
+      console.log(data);
+      this.listMantenimiento = data;
+    })
   }
 
   ngAfterViewInit() {
@@ -40,13 +42,6 @@ export class MantenimientoComponent implements OnInit {
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
-  }
-
-  eliminarSexo(index: number){
-    console.log(index);
-
-    this.mantenimientoService.eliminarSexo(index);
-    this.cargarMantenimientos();
   }
 
 }

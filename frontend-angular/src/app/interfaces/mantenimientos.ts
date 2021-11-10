@@ -1,4 +1,4 @@
 export interface mantenimientos {
-    id: number,
+    idSexo: number,
     descripcion: string
   }

@@ -3,11 +3,13 @@ import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard.component';
 import { InicioComponent } from './inicio/inicio.component';
 import { MantenimientoComponent } from './mantenimiento/mantenimiento.component';
+import { ReportesComponent } from './reportes/reportes.component';
 
 const routes: Routes = [
   {path: '', component: DashboardComponent,children: [
     { path: '', component: InicioComponent},
-    { path: 'mantenimiento', component: MantenimientoComponent},
+    { path: 'sexo', component: MantenimientoComponent},
+    { path: 'reportes', component: ReportesComponent},
   ]}
 ];
 

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { map, catchError, tap } from 'rxjs/operators';
+import { MantenimientoService } from './services/mantenimiento.service';
 
 const endpoint = 'http://localhost:3000';
 
@@ -35,6 +36,7 @@ export class RestService {
       return of(result as T);
     }
   }
+
 }
 
 
