@@ -8,6 +8,14 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { SexoComponent } from './sexo/sexo.component';
 import { ReportesComponent } from './reportes/reportes.component';
 import { SharedModule } from '../shared/shared.module';
+import { TrimestreComponent } from './trimestre/trimestre.component';
+import { DepartamentoComponent } from './departamento/departamento.component';
+import { FuncionarioComponent } from './funcionario/funcionario.component';
+import { TransaccionComponent } from './transaccion/transaccion.component';
+import { SolicitudComponent } from './solicitud/solicitud.component';
+import { CambiosComponent } from './cambios/cambios.component';
+import { AvancesComponent } from './avances/avances.component';
+import { CrearSexoComponent } from './sexo/crear-sexo/crear-sexo.component';
 
 
 
@@ -21,6 +29,14 @@ import { SharedModule } from '../shared/shared.module';
     NavbarComponent,
     SexoComponent,
     ReportesComponent,
+    TrimestreComponent,
+    DepartamentoComponent,
+    FuncionarioComponent,
+    TransaccionComponent,
+    SolicitudComponent,
+    CambiosComponent,
+    AvancesComponent,
+    CrearSexoComponent,
 
 
   ],

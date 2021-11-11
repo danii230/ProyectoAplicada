@@ -2,35 +2,24 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { map, catchError, tap } from 'rxjs/operators';
-import { Sexo } from '../interfaces/sexo';
-import { Form, FormGroup } from '@angular/forms';
-
+import { Sexo } from 'src/app/interfaces/sexo';
 
 const endpoint = 'http://localhost:3000';
 
 @Injectable({
   providedIn: 'root'
 })
-export class SexoService {
+export class TrimestreService {
 
 
   constructor(private http: HttpClient) { }
 
-  public getSexo(){
-    return this.http.get(endpoint + '/sexo').pipe(
+  public getTrimestre(){
+    return this.http.get(endpoint + '/trimestre').pipe(
       map(this.extractData),
-      catchError(this.handleError<any>('getSexo'))
+      catchError(this.handleError<any>('getTrimestre'))
     );
   }
-  
-
-  public ingresarSexo(sexo: Sexo): Observable<Sexo> {
-    console.log(sexo);
-    const url: string = endpoint + '/sexo';
-    return this.http.post<Sexo>(url, sexo);
-
-  }
-
 
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {

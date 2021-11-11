@@ -16,6 +16,9 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import {MatGridListModule} from '@angular/material/grid-list';
+import { ReactiveFormsModule } from '@angular/forms';
+
 
 
 
@@ -36,7 +39,9 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatTooltipModule,
     MatFormFieldModule,
     MatInputModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatGridListModule,
+    ReactiveFormsModule
 
     
   ],
@@ -55,7 +60,9 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatTooltipModule,
     MatFormFieldModule,
     MatInputModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatGridListModule,
+    ReactiveFormsModule
   ],
   
 })

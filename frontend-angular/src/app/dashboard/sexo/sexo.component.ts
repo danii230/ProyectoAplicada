@@ -28,7 +28,7 @@ export class SexoComponent implements OnInit {
     this.cargarMantenimientos();
   }
 
- public cargarMantenimientos(){
+  public cargarMantenimientos(){
     this.sexoService.getSexo().subscribe(data =>{
     console.log(data);
     this.listSexo = data;
