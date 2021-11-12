@@ -16,7 +16,6 @@ exports.getTrimestre = (req, res) => {
                         console.log(err);
                     } else {
                         if (!result.recordset[0]) {
-                            res.json('No existe');
                         } else {
 
                             res.json(result.recordset);
@@ -50,7 +49,7 @@ exports.ingresarTrimestre = (req, res) => {
 //Delete
 exports.eliminarTrimestre = (req, res) => {
 
-    const { idTrimestre } = req.body
+    const { idTrimestre } = req.params;
 
     db_conection.sql.connect(db_conection.config, function (err) {
 

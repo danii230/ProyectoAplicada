@@ -17,10 +17,9 @@ router.post(
     controller.ingresarTrimestre
 )
 
-router.delete(
-    `/${path}`,
-    controller.eliminarTrimestre
-)
+router.delete('/trimestre/:idTrimestre/', controller.eliminarTrimestre);
+
+
 router.put(
     `/${path}`,
     controller.modificarTrimestre

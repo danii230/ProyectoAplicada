@@ -15,10 +15,8 @@ router.post(
     controller.ingresarFuncionario
 )
 
-router.delete(
-    `/${path}`,
-    controller.eliminarFuncionario
-)
+router.delete('/funcionario/:idFuncionario/', controller.eliminarFuncionario);
+
 router.put(
     `/${path}`,
     controller.modificarFuncionario

@@ -16,7 +16,6 @@ exports.getDepartamento = (req, res) => {
                         console.log(err);
                     } else {
                         if (!result.recordset[0]) {
-                            res.json('No existe');
                         } else {
 
                             res.json(result.recordset);
@@ -50,7 +49,7 @@ exports.ingresarDepartamento = (req, res) => {
 //Delete
 exports.eliminarDepartamento = (req, res) => {
 
-    const { idDepartamento } = req.body
+    const { idDepartamento } = req.params;
 
     db_conection.sql.connect(db_conection.config, function (err) {
 

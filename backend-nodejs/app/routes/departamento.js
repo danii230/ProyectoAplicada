@@ -17,10 +17,8 @@ router.post(
     controller.ingresarDepartamento
 )
 
-router.delete(
-    `/${path}`,
-    controller.eliminarDepartamento
-)
+router.delete('/sexo/:idDepartamento/', controller.eliminarDepartamento);
+
 router.put(
     `/${path}`,
     controller.modificarDepartamento

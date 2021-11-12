@@ -31,10 +31,12 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE PROCEDURE [dbo].[getFuncionario] 
+Alter PROCEDURE [dbo].[getFuncionario] 
 AS
-SELECT fu.idFuncionario, fu.nombre, fu.apellidos, fu.fechaNacimiento, fu.idSexo, fu.loginName, fu.password, fu.idDepartamento
+SELECT fu.idFuncionario, fu.nombre, fu.apellidos, fu.fechaNacimiento, fu.idSexo, fu.loginName, fu.password, nombreDepartamento = de.descripcion
 FROM Funcionario fu
+LEFT JOIN Departamento de
+ON fu.idDepartamento = de.idDepartamento
 GO
 /****** Object:  StoredProcedure [dbo].[getFuncionarioId]    Script Date: 11/11/2021 18:37:47 ******/
 SET ANSI_NULLS ON
@@ -44,7 +46,6 @@ GO
 CREATE PROCEDURE [dbo].[getFuncionarioId] @idFuncionario varchar(50)
 AS
 BEGIN
-
 SELECT fu.idFuncionario, fu.nombre, fu.apellidos, fu.fechaNacimiento, fu.idSexo, fu.loginName, fu.password, fu.idDepartamento, fo.foto
 FROM Funcionario fu
 LEFT JOIN Foto fo

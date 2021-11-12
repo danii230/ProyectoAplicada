@@ -17,10 +17,9 @@ router.post(
     controller.ingresarTransaccion
 )
 
-router.delete(
-    `/${path}`,
-    controller.eliminarTransaccion
-)
+router.delete('/transaccion/:idTransaccion/', controller.eliminarTransaccion);
+
+
 router.put(
     `/${path}`,
     controller.modificarTransaccion
