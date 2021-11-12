@@ -44,5 +44,11 @@ export class TrimestreComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
+  
+  eliminarTrimestre(idTrimestre: any){
+    this.trimestreService.delete(idTrimestre).subscribe(data=>
+    console.log(data));
+  }
+
 
 }

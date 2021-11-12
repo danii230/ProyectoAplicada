@@ -4,6 +4,7 @@ import { ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { TransaccionService } from 'src/app/services/transaccion.service';
 import { Transaccion } from 'src/app/interfaces/transaccion';
+import { isDataSource } from '@angular/cdk/collections';
 
 @Component({
   selector: 'app-transaccion',
@@ -45,4 +46,8 @@ export class TransaccionComponent implements OnInit {
   }
 
 
+  eliminarTransaccion(idTrimestre: any){
+    this.transaccionService.delete(idTrimestre).subscribe(data=>
+    console.log(data));
+  }
 }
