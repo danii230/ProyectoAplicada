@@ -2,8 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { map, catchError, tap } from 'rxjs/operators';
-import { Sexo } from '../interfaces/sexo';
-import { Form, FormGroup } from '@angular/forms';
 
 
 const endpoint = 'http://localhost:3000';
@@ -11,26 +9,17 @@ const endpoint = 'http://localhost:3000';
 @Injectable({
   providedIn: 'root'
 })
-export class SexoService {
+export class FuncionarioService {
 
 
   constructor(private http: HttpClient) { }
 
-
-  public getSexo(){
-    return this.http.get(endpoint + '/sexo').pipe(
+  public getFuncionario(){
+    return this.http.get(endpoint + '/funcionario').pipe(
       map(this.extractData),
-      catchError(this.handleError<any>('getSexo'))
+      catchError(this.handleError<any>('getFuncionario'))
     );
-
-    }
-  public ingresarSexo(sexo: Sexo): Observable<Sexo> {
-    console.log(sexo);
-    const url: string = endpoint + '/sexo';
-    return this.http.post<Sexo>(url, sexo);
-
   }
-
 
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
@@ -47,5 +36,4 @@ export class SexoService {
     return body || {};
 
   }
-
-}
+  }

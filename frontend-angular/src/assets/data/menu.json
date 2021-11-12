@@ -10,6 +10,42 @@
     },
 
     {
+        "nombre": "Trimestre",  
+        "redirect": "/dashboard/trimestre"
+    },
+
+    {
+        "nombre": "Departamento",  
+        "redirect": "/dashboard/departamento"
+    },
+
+    {
+        "nombre": "Funcionario",  
+        "redirect": "/dashboard/funcionario"
+    },
+
+    {
+        "nombre": "Transaccion",  
+        "redirect": "/dashboard/transaccion"
+    },
+
+    {
+        "nombre": "Solicitud",  
+        "redirect": "/dashboard/solicitud"
+    },
+
+    {
+        "nombre": "Cambios",  
+        "redirect": "/dashboard/cambios"
+    },
+
+    {
+        "nombre": "Avances",  
+        "redirect": "/dashboard/avances"
+    },
+
+
+    {
         "nombre": "Reportes",  
         "redirect": "/dashboard/reportes"
     }
