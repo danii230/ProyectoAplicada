@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { map, catchError, tap } from 'rxjs/operators';
+import { Funcionario } from '../interfaces/funcionario';
 
 
 const endpoint = 'http://localhost:3000';
@@ -19,6 +20,12 @@ export class FuncionarioService {
       map(this.extractData),
       catchError(this.handleError<any>('getFuncionario'))
     );
+  }
+
+  public ingresarFuncionario(funcionario:Funcionario): Observable<any> {
+    const url: string = endpoint + '/funcionario';
+    return this.http.post<any>(url,funcionario);
+ 
   }
 
   private handleError<T>(operation = 'operation', result?: T) {

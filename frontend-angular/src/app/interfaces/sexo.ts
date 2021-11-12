@@ -1,4 +1,4 @@
-export interface Sexo {
-    idSexo: number,
-    descripcion: string
-  }
+export class Sexo {
+  idSexo: number;
+ descripcion: string
+}

@@ -16,6 +16,10 @@ import { SolicitudComponent } from './solicitud/solicitud.component';
 import { CambiosComponent } from './cambios/cambios.component';
 import { AvancesComponent } from './avances/avances.component';
 import { CrearSexoComponent } from './sexo/crear-sexo/crear-sexo.component';
+import { CrearTrimestreComponent } from './trimestre/crear-trimestre/crear-trimestre.component';
+import { CrearDepartamentoComponent } from './departamento/crear-departamento/crear-departamento.component';
+import { CrearFuncionarioComponent } from './funcionario/crear-funcionario/crear-funcionario.component';
+import { CrearTransaccionComponent } from './transaccion/crear-transaccion/crear-transaccion.component';
 
 
 
@@ -37,6 +41,10 @@ import { CrearSexoComponent } from './sexo/crear-sexo/crear-sexo.component';
     CambiosComponent,
     AvancesComponent,
     CrearSexoComponent,
+    CrearTrimestreComponent,
+    CrearDepartamentoComponent,
+    CrearFuncionarioComponent,
+    CrearTransaccionComponent,
 
 
   ],
