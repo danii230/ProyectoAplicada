@@ -60,7 +60,7 @@ exports.eliminarFuncionario = (req, res) => {
 
             db_conection.sql.query(
 
-                "exec [dbo].[eliminarFuncionario] '" + id + "'");
+                "exec [dbo].[eliminarFuncionario] '" + idFuncionario + "'");
         }
 
     });

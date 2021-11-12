@@ -37,6 +37,7 @@ SELECT fu.idFuncionario, fu.nombre, fu.apellidos, fu.fechaNacimiento, fu.idSexo,
 FROM Funcionario fu
 LEFT JOIN Departamento de
 ON fu.idDepartamento = de.idDepartamento
+where fu.estado= 1
 GO
 /****** Object:  StoredProcedure [dbo].[getFuncionarioId]    Script Date: 11/11/2021 18:37:47 ******/
 SET ANSI_NULLS ON
