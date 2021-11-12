@@ -17,10 +17,9 @@ router.post(
     controller.ingresarSexo
 )
 
-router.delete(
-    `/${path}`,
-    controller.eliminarSexo
-)
+
+router.delete('/sexo/:idSexo/', controller.eliminarSexo);
+
 router.put(
     `/${path}`,
     controller.modificarSexo
