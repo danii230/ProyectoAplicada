@@ -45,4 +45,11 @@ export class SexoComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
+  eliminarSexo(id: any){
+    let sexo = new Sexo();
+    sexo.idSexo = id;
+    this.sexoService.delete(sexo).subscribe(data=>
+    console.log(data));
+  }
+
 }

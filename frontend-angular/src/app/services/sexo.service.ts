@@ -23,14 +23,17 @@ export class SexoService {
     );
   }
   
-
-  public ingresarSexo(sexo: Sexo): Observable<Sexo> {
-    console.log(sexo);
+  public ingresarSexo(sexo:Sexo): Observable<any> {
     const url: string = endpoint + '/sexo';
-    return this.http.post<Sexo>(url, sexo);
-
+    return this.http.post<any>(url,sexo);
+ 
   }
 
+  public delete(sexo: Sexo): Observable<any>{
+      const url: string = endpoint + '/sexo';
+      return this.http.delete<any>(url + sexo);
+  }
+  
 
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {

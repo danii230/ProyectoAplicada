@@ -1,4 +1,4 @@
-export interface Transaccion {
-    idTransaccion: number,
+export class Transaccion {
+    idTransaccion: number;
     descripcion: string
   }

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { map, catchError, tap } from 'rxjs/operators';
+import { Transaccion } from '../interfaces/transaccion';
 
 
 const endpoint = 'http://localhost:3000';
@@ -19,6 +20,12 @@ export class TransaccionService {
       map(this.extractData),
       catchError(this.handleError<any>('getTransaccion'))
     );
+  }
+
+  public ingresarTransaccion(transaccion:Transaccion): Observable<any> {
+    const url: string = endpoint + '/transaccion';
+    return this.http.post<any>(url,transaccion);
+ 
   }
 
   private handleError<T>(operation = 'operation', result?: T) {

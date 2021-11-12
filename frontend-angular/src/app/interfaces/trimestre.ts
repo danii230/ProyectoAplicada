@@ -1,4 +1,4 @@
-export interface Trimestre {
-    idTrimestre: number,
+export class Trimestre {
+    idTrimestre: number;
     descripcion: string
   }

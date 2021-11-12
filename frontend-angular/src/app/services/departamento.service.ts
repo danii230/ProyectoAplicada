@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { map, catchError, tap } from 'rxjs/operators';
+import { Departamento } from '../interfaces/departamento';
 
 
 const endpoint = 'http://localhost:3000';
@@ -19,6 +20,12 @@ export class DepartamentoService {
       map(this.extractData),
       catchError(this.handleError<any>('getDepartamento'))
     );
+  }
+
+  public ingresarDepartamento(departamento:Departamento): Observable<any> {
+    const url: string = endpoint + '/departamento';
+    return this.http.post<any>(url,departamento);
+ 
   }
 
   private handleError<T>(operation = 'operation', result?: T) {

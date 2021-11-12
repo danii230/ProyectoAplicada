@@ -1,4 +1,4 @@
-export interface Departamento {
-    idDepartamento: number,
+export class Departamento {
+    idDepartamento: number;
     descripcion: string
   }

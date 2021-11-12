@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { map, catchError, tap } from 'rxjs/operators';
 import { Sexo } from 'src/app/interfaces/sexo';
+import { Trimestre } from '../interfaces/trimestre';
 
 const endpoint = 'http://localhost:3000';
 
@@ -19,6 +20,12 @@ export class TrimestreService {
       map(this.extractData),
       catchError(this.handleError<any>('getTrimestre'))
     );
+  }
+
+  public ingresarTrimestre(trimestre:Trimestre): Observable<any> {
+    const url: string = endpoint + '/trimestre';
+    return this.http.post<any>(url,trimestre);
+ 
   }
 
   private handleError<T>(operation = 'operation', result?: T) {

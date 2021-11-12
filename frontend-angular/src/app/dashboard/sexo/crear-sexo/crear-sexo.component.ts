@@ -11,22 +11,21 @@ import { SexoService } from 'src/app/services/sexo.service';
 export class CrearSexoComponent implements OnInit {
 
   form: FormGroup;
-  sexo: Sexo
+  // sexo: Sexo;
   constructor(private fb: FormBuilder, private sexoService: SexoService) {
     this.form = this.fb.group({
-      idSexo: ['', Validators.required],
+      idSexo: [''],
       descripcion: ['', Validators.required]
     })
   }
   ngOnInit(): void {
   }
-
+ 
   agregarSexo() {
-    console.log(this.form.value.descripcion)
-    this.sexo = this.form.value.descripcion
-    console.log(this.sexo)
-    this.sexoService.ingresarSexo(this.sexo).subscribe(data=>
-      console.log(data));
+    let sexo = new Sexo();
+    sexo.descripcion = this.form.value.descripcion;
+    this.sexoService.ingresarSexo(sexo).subscribe(data=>
+    console.log(data));
   }
 
 }
