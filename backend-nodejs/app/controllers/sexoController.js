@@ -1,4 +1,5 @@
 const db_conection = require('../../config/db.js');
+
 // Get
 exports.getSexo = (req, res) => {
 
@@ -18,7 +19,7 @@ exports.getSexo = (req, res) => {
                             res.json('No existe');
                         } else {
 
-                            res.json(result.recordsets);
+                            res.json(result.recordset);
                         }
                     }
                 });
@@ -31,9 +32,6 @@ exports.getSexo = (req, res) => {
 exports.ingresarSexo = (req, res) => {
 
     const { descripcion } = req.body
-
-    console.log(descripcion)
-    res.json('new produtc')
     db_conection.sql.connect(db_conection.config, function (err) {
 
         if (err) {
@@ -42,7 +40,18 @@ exports.ingresarSexo = (req, res) => {
 
             db_conection.sql.query(
 
-                "exec [dbo].[ingresarSexo] '" + descripcion + "'");
+                "exec [dbo].[ingresarSexo] '" + descripcion + "'", function (err, result) {
+                    if (err) {
+                        console.log(err);
+                    } else {
+                        if (!result.recordset[0]) {
+                            res.json('Error');
+                        } else {
+
+                            res.json('Registrado');
+                        }
+                    }
+                });
         }
 
     });
@@ -54,8 +63,6 @@ exports.eliminarSexo = (req, res) => {
 
     const { idSexo } = req.body
 
-    console.log(idSexo)
-    res.json('idSexo')
     db_conection.sql.connect(db_conection.config, function (err) {
 
         if (err) {
@@ -64,7 +71,18 @@ exports.eliminarSexo = (req, res) => {
 
             db_conection.sql.query(
 
-                "exec [dbo].[eliminarSexo] '" + idSexo + "'");
+                "exec [dbo].[eliminarSexo] '" + idSexo + "'", function (err, result) {
+                    if (err) {
+                        console.log(err);
+                    } else {
+                        if (!result.recordset[0]) {
+                            res.json('Error');
+                        } else {
+
+                            res.json('Eliminado');
+                        }
+                    }
+                });
         }
 
     });
@@ -74,9 +92,6 @@ exports.eliminarSexo = (req, res) => {
 exports.modificarSexo = (req, res) => {
 
     const { idSexo, descripcion } = req.body
-
-    console.log(idSexo, descripcion)
-    res.json({ idSexo, descripcion })
     db_conection.sql.connect(db_conection.config, function (err) {
 
         if (err) {
@@ -85,9 +100,19 @@ exports.modificarSexo = (req, res) => {
 
             db_conection.sql.query(
 
-                "exec [dbo].[modificarSexo] '" + idSexo + "','" + descripcion + "'");
-        }
+                "exec [dbo].[modificarSexo] '" + idSexo + "','" + descripcion + "'", function (err, result) {
+                    if (err) {
+                        console.log(err);
+                    } else {
+                        if (!result.recordset[0]) {
+                            res.json('Error');
+                        } else {
 
+                            res.json('Modificado');
+                        }
+                    }
+                });
+        }
     });
 }
 
@@ -111,12 +136,12 @@ exports.getSexoId = (req, res) => {
                             res.json('No existe');
                         } else {
 
-                            res.json(result.recordsets);
+                            res.json(result.recordset);
                         }
                     }
                 });
         }
 
     });
- 
+
 }

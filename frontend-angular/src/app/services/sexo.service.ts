@@ -14,14 +14,18 @@ export class SexoService {
 
   constructor(private http: HttpClient) { }
 
-  listMantenimiento: Sexo[] = [
-    {idSexo: '1', descripcion: 'Hombre'},
+  // listMantenimiento: Sexo[] = [
+  //   {idSexo: '1', descripcion: 'Hombre'},
   
-  ];
+  // ];
 
   public getSexo(){
-   return this.listMantenimiento.slice();
+    return this.http.get(endpoint + '/sexo').pipe(
+      map(this.extractData),
+      catchError(this.handleError<any>('getSexo'))
+    );
   }
+
 
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
