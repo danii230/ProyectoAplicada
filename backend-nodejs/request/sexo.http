@@ -14,13 +14,13 @@ Content-Type: application/json
 DELETE  {{api}}
 Content-Type: application/json
 
-{"idSexo" : "4"}
+{"idSexo" : "5"}
 
 
 PUT   {{api}}
 Content-Type: application/json
 
-{"idSexo" : "3",
+{"idSexo" : "5",
 "descripcion" : "Otro"
 }
 

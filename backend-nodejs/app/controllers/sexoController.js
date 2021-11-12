@@ -40,18 +40,7 @@ exports.ingresarSexo = (req, res) => {
 
             db_conection.sql.query(
 
-                "exec [dbo].[ingresarSexo] '" + descripcion + "'", function (err, result) {
-                    if (err) {
-                        console.log(err);
-                    } else {
-                        if (!result.recordset[0]) {
-                            res.json('Error');
-                        } else {
-
-                            res.json('Registrado');
-                        }
-                    }
-                });
+                "exec [dbo].[ingresarSexo] '" + descripcion + "'");
         }
 
     });
