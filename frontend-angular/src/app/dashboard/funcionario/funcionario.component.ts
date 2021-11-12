@@ -31,11 +31,12 @@ export class FuncionarioComponent implements OnInit {
     console.log(data);
     this.listFuncionario = data;
     this.dataSource = new MatTableDataSource(this.listFuncionario)
+    this.dataSource.paginator = this.paginator;
   })
   }
 
   ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
+   
   }
 
   applyFilter(event: Event) {
@@ -43,7 +44,7 @@ export class FuncionarioComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  eliminarFuncionario(idFuncionario: any){
+  eliminarfuncionario(idFuncionario: any){
     this.funcionarioService.delete(idFuncionario).subscribe(data=>
     console.log(data));
   }

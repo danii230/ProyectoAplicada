@@ -33,11 +33,12 @@ export class TransaccionComponent implements OnInit {
     console.log(data);
     this.listTransaccion = data;
     this.dataSource = new MatTableDataSource(this.listTransaccion)
+    this.dataSource.paginator = this.paginator;
   })
   }
 
   ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
+ 
   }
 
   applyFilter(event: Event) {

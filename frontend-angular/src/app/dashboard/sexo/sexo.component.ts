@@ -33,11 +33,12 @@ export class SexoComponent implements OnInit {
     console.log(data);
     this.listSexo = data;
     this.dataSource = new MatTableDataSource(this.listSexo)
+    this.dataSource.paginator = this.paginator;
   })
   }
 
   ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
+ 
   }
 
   applyFilter(event: Event) {

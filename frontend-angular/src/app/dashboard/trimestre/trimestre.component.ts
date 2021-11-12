@@ -32,11 +32,12 @@ export class TrimestreComponent implements OnInit {
     console.log(data);
     this.listTrimestre = data;
     this.dataSource = new MatTableDataSource(this.listTrimestre)
+    this.dataSource.paginator = this.paginator;
   })
   }
 
   ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
+   
   }
 
   applyFilter(event: Event) {

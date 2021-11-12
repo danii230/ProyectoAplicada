@@ -40,7 +40,7 @@ export class SexoService {
     return this.http.put<Sexo>(url, sexo);
   }
 
-  public encontrarId(id, headers): any {
+  public encontrarId(id): any {
     return this.http.get<any>(endpoint + '/sexo' + id);
   }
 
