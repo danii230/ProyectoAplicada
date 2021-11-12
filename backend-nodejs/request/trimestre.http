@@ -1,4 +1,4 @@
-@api=http://localhost:3000/sexo
+@api=http://localhost:3000/trimestre
 
 GET {{api}}
 
@@ -7,22 +7,22 @@ POST {{api}}
 Content-Type: application/json
 
 
-{ "descripcion" : "prueba Valeria"
+{ "descripcion" : "prueba Valeria 2"
 
 }
 
 DELETE  {{api}}
 Content-Type: application/json
 
-{"idSexo" : "8"}
+{"idTrimestre" : "6"}
 
 
 PUT   {{api}}
 Content-Type: application/json
 
-{"idSexo" : "9",
+{"idTrimestre" : "5",
 "descripcion" : "Otro"
 }
 
 
-GET  {{api}}/9
+GET  {{api}}/5

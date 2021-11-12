@@ -1,4 +1,4 @@
-@api=http://localhost:3000/sexo
+@api=http://localhost:3000/departamento
 
 GET {{api}}
 
@@ -14,13 +14,13 @@ Content-Type: application/json
 DELETE  {{api}}
 Content-Type: application/json
 
-{"idSexo" : "8"}
+{"idDepartamento" : "20"}
 
 
 PUT   {{api}}
 Content-Type: application/json
 
-{"idSexo" : "9",
+{"idDepartamento" : "20",
 "descripcion" : "Otro"
 }
 

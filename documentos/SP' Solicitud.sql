@@ -5,12 +5,12 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE PROCEDURE [dbo].[eliminarTransaccion] @idTransaccion tinyint
+CREATE PROCEDURE [dbo].[eliminarSolicitud] @idSolicitud tinyint
 AS
 BEGIN
-UPDATE Transaccion
+UPDATE Solicitud
 SET estado = 0
-WHERE idTransaccion=@idTransaccion
+WHERE idSolicitud=@idSolicitud
 End
 GO
 /****** Object:  StoredProcedure [dbo].[getTransaccion]    Script Date: 11/11/2021 18:37:47 ******/
@@ -18,11 +18,11 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE PROCEDURE [dbo].[getTransaccion] 
+CREATE PROCEDURE [dbo].[getSolicitud] 
 AS
-Select t.idTransaccion,t.descripcion
-From Transaccion as t
-where t.estado= 1
+SELECT  s.idSolicitud, s.fechaHora, s.idUsuarioAplicativo, s.idResponsableTI, s.fechaInicio, s.fechaFin, s.idResponsableUsuarioFinal
+FROM  Solicitud s, Funcionario usuarioAplicativo,Funcionario responsableTI,Funcionario responsableUsuarioFinal
+where s.estado= 1 and s.idUsuarioAplicativo=usuarioAplicativo.idFuncionario and s.idUsuarioAplicativo=usuarioAplicativo.idFuncionario
 GO
 /****** Object:  StoredProcedure [dbo].[getTransaccionId]    Script Date: 11/11/2021 18:37:47 ******/
 SET ANSI_NULLS ON
@@ -42,13 +42,16 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-Alter PROCEDURE [dbo].[ingresarTransaccion] @description varchar(50)
+CREATE PROCEDURE [dbo].[ingresarTransaccion] @description varchar(50)
 AS
 BEGIN
+DECLARE @contador NVARCHAR(50)
+SET @contador = (SELECT COUNT(idTransaccion)FROM Transaccion)+1;
 INSERT INTO Transaccion
-           (descripcion,estado)
+           (idTransaccion
+           ,descripcion,estado)
      VALUES
-           (@description,1)
+           (@contador,@description,1)
 End
 GO
 /****** Object:  StoredProcedure [dbo].[modificarTransaccion]    Script Date: 11/11/2021 18:37:47 ******/

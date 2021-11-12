@@ -1,7 +1,7 @@
 const db_conection = require('../../config/db.js');
 
 // Get
-exports.getSexo = (req, res) => {
+exports.getTransaccion = (req, res) => {
 
     db_conection.sql.connect(db_conection.config, function (err) {
 
@@ -11,7 +11,7 @@ exports.getSexo = (req, res) => {
 
             db_conection.sql.query(
 
-                "exec [dbo].[getSexo] ", function (err, result) {
+                "exec [dbo].[getTransaccion] ", function (err, result) {
                     if (err) {
                         console.log(err);
                     } else {
@@ -29,7 +29,7 @@ exports.getSexo = (req, res) => {
 }
 
 //Insert
-exports.ingresarSexo = (req, res) => {
+exports.ingresarTransaccion = (req, res) => {
 
     const { descripcion } = req.body
     db_conection.sql.connect(db_conection.config, function (err) {
@@ -40,7 +40,7 @@ exports.ingresarSexo = (req, res) => {
 
             db_conection.sql.query(
 
-                "exec [dbo].[ingresarSexo] '" + descripcion + "'");
+                "exec [dbo].[ingresarTransaccion] '" + descripcion + "'");
         }
 
     });
@@ -48,9 +48,9 @@ exports.ingresarSexo = (req, res) => {
 
 
 //Delete
-exports.eliminarSexo = (req, res) => {
+exports.eliminarTransaccion = (req, res) => {
 
-    const { idSexo } = req.body
+    const { idTransaccion } = req.body
 
     db_conection.sql.connect(db_conection.config, function (err) {
 
@@ -60,16 +60,16 @@ exports.eliminarSexo = (req, res) => {
 
             db_conection.sql.query(
 
-                "exec [dbo].[eliminarSexo] '" + idSexo + "'");
+                "exec [dbo].[eliminarTransaccion] '" + idTransaccion + "'");
         }
 
     });
 }
 
 //Delete
-exports.modificarSexo = (req, res) => {
+exports.modificarTransaccion = (req, res) => {
 
-    const { idSexo, descripcion } = req.body
+    const { idTransaccion, descripcion } = req.body
     db_conection.sql.connect(db_conection.config, function (err) {
 
         if (err) {
@@ -78,13 +78,13 @@ exports.modificarSexo = (req, res) => {
 
             db_conection.sql.query(
 
-                "exec [dbo].[modificarSexo] '" + idSexo + "','" + descripcion + "'");
+                "exec [dbo].[modificarTransaccion] '" + idTransaccion + "','" + descripcion + "'");
         }
     });
 }
 
 // Get
-exports.getSexoId = (req, res) => {
+exports.getTransaccionId = (req, res) => {
     const { id } = req.params;
 
     db_conection.sql.connect(db_conection.config, function (err) {
@@ -95,7 +95,7 @@ exports.getSexoId = (req, res) => {
 
             db_conection.sql.query(
 
-                "exec [dbo].[getSexoId]'" + id + "'", function (err, result) {
+                "exec [dbo].[getTransaccionId]'" + id + "'", function (err, result) {
                     if (err) {
                         console.log(err);
                     } else {

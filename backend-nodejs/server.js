@@ -1,7 +1,7 @@
 const express = require('express')
 const morgan = require("morgan");
 const cors = require("cors");
-require ('dotenv').config
+require('dotenv').config
 
 const app = express()
 
@@ -25,13 +25,19 @@ app.use(express.urlencoded({
 
 const funcionarioRouters = require('./app/routes/funcionario')
 const sexoRouters = require('./app/routes/sexo')
+const trimestreRouters = require('./app/routes/trimestre')
+const departamentoRouters = require('./app/routes/departamento')
+const transaccionRouters = require('./app/routes/transaccion')
 
 app.get("/", (req, res) => {
     res.json({ message: "Inicio del BackEnd" });
-  });
-  app.use(require('./app/routes/login'));
+});
+app.use(require('./app/routes/login'));
 app.use(funcionarioRouters)
 app.use(sexoRouters)
+app.use(trimestreRouters)
+app.use(departamentoRouters)
+app.use(transaccionRouters)
 
 
 

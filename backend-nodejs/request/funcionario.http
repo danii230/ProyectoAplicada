@@ -9,3 +9,45 @@ Content-Type: application/json
 {"loginName" : "valequi@gestion.org",
 "password" : "123"
 }
+
+
+
+GET {{api}}
+
+POST {{api}}
+Content-Type: application/json
+
+
+{ "nombre": "", 
+"apellidos": "", 
+"fechaNacimiento": "", 
+"idSexo": "", 
+"loginName": "", 
+"password": "",  
+"foto": "", 
+"idDepartamento": "", 
+}
+
+DELETE  {{api}}
+Content-Type: application/json
+
+{"idSexo" : "8"}
+
+
+PUT   {{api}}
+Content-Type: application/json
+
+{"idFuncionario" : "9",
+"nombre": "", 
+"apellidos": "", 
+"fechaNacimiento": "", 
+"idSexo": "", 
+"loginName": "", 
+"password": "",  
+"foto": "", 
+"idDepartamento": "",
+}
+
+
+GET  {{api}}/1
+

@@ -7,7 +7,26 @@ const path = 'funcionario'
 
 router.get(
     `/${path}`,
-    controller.getData
+    controller.getFuncionario
+)
+
+router.post(
+    `/${path}`,
+    controller.ingresarFuncionario
+)
+
+router.delete(
+    `/${path}`,
+    controller.eliminarFuncionario
+)
+router.put(
+    `/${path}`,
+    controller.modificarFuncionario
+)
+
+router.get(
+    `/${path}/:id`,
+    controller.getFuncionarioId,
 )
 
 

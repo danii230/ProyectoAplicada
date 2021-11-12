@@ -4,65 +4,149 @@ exports.login = (req, res) => {
 
     const { loginName } = req.params;
 
-     const { password } = req.params;
+    const { password } = req.params;
     //console.log('entra');
 
     //const { loginName, password } = req.body
     db_conection.sql.connect(db_conection.config, function (err) {
 
-        
-        
+
+
         if (err) {
             console.log(err);
-        }else{
-                        
-          db_conection.sql.query(
-                
-                "exec [dbo].[existeUsuario] '" + loginName+ "','" + password+"'", function (err, result) {
-                
-                if (err) {
-                    console.log(err);
-                } else {
-                    if (!result.recordset[0]){
-                        res.json('No existe');
-                    }else{
-                      
-                     res.json('Si existe');
-                    }
-                }
-            });
-        }
-  
-    });
-};
-
-
-// // Get
- exports.getData = (req, res) => {
-
-
-    db_conection.sql.connect(db_conection.config, function (err) {
-
-       if (err) {
-             console.log(err);
         } else {
 
             db_conection.sql.query(
 
-                 "SELECT * FROM Funcionario", function (err, result) {
+                "exec [dbo].[existeUsuario] '" + loginName + "','" + password + "'", function (err, result) {
 
                     if (err) {
-                         console.log(err);
-                     } else {
-                         if (!result.recordset[0]) {
-                             res.json('No existe');
-                         } else {
+                        console.log(err);
+                    } else {
+                        if (!result.recordset[0]) {
+                            res.json('No existe');
+                        } else {
 
                             res.json('Si existe');
-                         }
-                     }
-                 });
-         }
+                        }
+                    }
+                });
+        }
 
-     });
- }
+    });
+};
+
+
+// Get
+exports.getFuncionario = (req, res) => {
+
+    db_conection.sql.connect(db_conection.config, function (err) {
+
+        if (err) {
+            console.log(err);
+        } else {
+
+            db_conection.sql.query(
+
+                "exec [dbo].[getFuncionario] ", function (err, result) {
+                    if (err) {
+                        console.log(err);
+                    } else {
+                        if (!result.recordset[0]) {
+                            res.json('No existe');
+                        } else {
+
+                            res.json(result.recordset);
+                        }
+                    }
+                });
+        }
+
+    });
+}
+
+//Insert
+exports.ingresarFuncionario = (req, res) => {
+
+    const { nombre, apellidos, fechaNacimiento, idSexo, loginName, password, foto, idDepartamento } = req.body
+    db_conection.sql.connect(db_conection.config, function (err) {
+
+        if (err) {
+            console.log(err);
+        } else {
+
+            db_conection.sql.query(
+
+
+                "exec [dbo].[ingresarFuncionario] '" + nombre + "','" + apellidos + "','" + fechaNacimiento + "','" + idSexo + "','" + loginName + "','" + password + "','" + idDepartamento + "','" + foto + "'");
+        }
+
+    });
+}
+
+
+//Delete
+exports.eliminarFuncionario = (req, res) => {
+
+    const { idFuncionario } = req.body
+
+    db_conection.sql.connect(db_conection.config, function (err) {
+
+        if (err) {
+            console.log(err);
+        } else {
+
+            db_conection.sql.query(
+
+                "exec [dbo].[eliminarFuncionario] '" + idFuncionario + "'");
+        }
+
+    });
+}
+
+//Delete
+exports.modificarFuncionario = (req, res) => {
+
+    const { idFuncionario, nombre, apellidos, fechaNacimiento, idSexo, loginName, password, foto, idDepartamento } = req.body
+    db_conection.sql.connect(db_conection.config, function (err) {
+
+        if (err) {
+            console.log(err);
+        } else {
+
+            db_conection.sql.query(
+
+                "exec [dbo].[modificarFuncionario] '" + idFuncionario + nombre + "','" + apellidos + "','" + fechaNacimiento + "','" + idSexo + "','" + loginName + "','" + password + "','" + idDepartamento + "','" + foto + "'");
+        }
+    });
+}
+
+// Get
+exports.getFuncionarioId = (req, res) => {
+    const { id } = req.params;
+
+    db_conection.sql.connect(db_conection.config, function (err) {
+
+        if (err) {
+            console.log(err);
+        } else {
+
+            db_conection.sql.query(
+
+                "exec [dbo].[getFuncionarioId]'" + id + "'", function (err, result) {
+                    if (err) {
+                        console.log(err);
+                    } else {
+                        if (!result.recordset[0]) {
+                            res.json('No existe');
+                        } else {
+
+                            res.json(result.recordset);
+                        }
+                    }
+                });
+        }
+
+    });
+
+}

@@ -5,10 +5,14 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE PROCEDURE [dbo].[eliminarFuncionario] @idFuncionario tinyint
+Alter PROCEDURE [dbo].[eliminarFuncionario] @idFuncionario tinyint
 AS
 BEGIN
-DECLARE @idFoto NVARCHAR(50)
+UPDATE Funcionario
+SET estado = 0
+WHERE idFuncionario=@idFuncionario
+End
+/*DECLARE @idFoto NVARCHAR(50)
 SET @idFoto = (SELECT idFoto  FROM Funcionario where idFuncionario= @idFuncionario);
 
 DELETE FROM [dbo].[Funcionario]
@@ -19,7 +23,8 @@ IF EXISTS (SELECT foto FROM Foto WHERE idFoto = @idFoto)
 BEGIN
    DELETE FROM [dbo].[Foto]
    WHERE idFoto=@idFoto
-END
+END*/
+
 GO
 /****** Object:  StoredProcedure [dbo].[getFuncionario]    Script Date: 11/11/2021 18:37:47 ******/
 SET ANSI_NULLS ON
@@ -28,10 +33,8 @@ SET QUOTED_IDENTIFIER ON
 GO
 CREATE PROCEDURE [dbo].[getFuncionario] 
 AS
-SELECT fu.idFuncionario, fu.nombre, fu.apellidos, fu.fechaNacimiento, fu.idSexo, fu.loginName, fu.password, fu.idDepartamento, fo.foto
+SELECT fu.idFuncionario, fu.nombre, fu.apellidos, fu.fechaNacimiento, fu.idSexo, fu.loginName, fu.password, fu.idDepartamento
 FROM Funcionario fu
-LEFT JOIN Foto fo
-ON fu.idFoto = fo.idFoto;
 GO
 /****** Object:  StoredProcedure [dbo].[getFuncionarioId]    Script Date: 11/11/2021 18:37:47 ******/
 SET ANSI_NULLS ON
@@ -58,14 +61,13 @@ GO
 CREATE PROCEDURE [dbo].[ingresarFuncionario] @nombre varchar(20), @apellidos varchar(20), @fechaNacimiento datetime, @idSexo tinyint, @loginName varchar(20), @password varchar(25), @foto varbinary(max) ,@idDepartamento tinyint
 AS
 BEGIN
-DECLARE @contador NVARCHAR(50)
-SET @contador = (SELECT COUNT(idFuncionario)FROM Funcionario)+1;
-
 INSERT INTO [dbo].[Foto]
            ([foto])
      VALUES
            (@foto)
-SET @contador = (SELECT idFoto TOP 1 * FROM Foto ORDER BY idFoto DESC);
+
+DECLARE @idFotoTemp smallint;
+SET @idFotoTemp = (SELECT idFoto FROM Foto WHERE idFoto=(SELECT max(idFoto) FROM Foto))
 
 INSERT INTO [dbo].[Funcionario]
            ([nombre]
@@ -77,14 +79,14 @@ INSERT INTO [dbo].[Funcionario]
            ,[idFoto]
            ,[idDepartamento])
      VALUES
-           (<nombre, varchar(20),>
-           ,<apellidos, varchar(20),>
-           ,<fechaNacimiento, datetime,>
-           ,<idSexo, tinyint,>
-           ,<loginName, varchar(20),>
-           ,<password, varchar(25),>
-           ,<idFoto, smallint,>
-           ,<idDepartamento, tinyint,>)
+           (@nombre
+           ,@apellidos
+           ,@fechaNacimiento
+           ,@idSexo
+           ,@loginName
+           ,@password
+           ,@idFotoTemp
+           ,@idDepartamento)
 End
 GO
 /****** Object:  StoredProcedure [dbo].[modificarFuncionario]    Script Date: 11/11/2021 18:37:47 ******/
@@ -92,11 +94,25 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE PROCEDURE [dbo].[modificarFuncionario] @idFuncionario tinyint, @descripcion varchar(50)
+CREATE PROCEDURE [dbo].[modificarFuncionario] @idFuncionario smallint, @nombre varchar(20), @apellidos varchar(20), @fechaNacimiento datetime, @idSexo tinyint, @loginName varchar(20), @password varchar(25), @foto varbinary(max) ,@idDepartamento tinyint
 AS
 BEGIN
+DECLARE @idFotoTemp smallint;
+SET @idFotoTemp = (SELECT idFoto FROM Foto WHERE idFoto=@idFuncionario)
+
 UPDATE Funcionario
-SET descripcion = @descripcion
-WHERE idFuncionario=@idFuncionario
+SET		nombre = @nombre,
+        apellidos = @apellidos,
+        fechaNacimiento= @fechaNacimiento,
+        idSexo = @idSexo,
+        loginName = @loginName,
+        password = @password,
+        idDepartamento = @idDepartamento
+WHERE   idFuncionario=@idFuncionario
+
+
+UPDATE  Foto
+SET		foto=@foto
+WHERE   idFoto=@idFotoTemp
 End
 GO
