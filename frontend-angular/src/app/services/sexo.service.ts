@@ -29,11 +29,21 @@ export class SexoService {
  
   }
 
-  public delete(sexo: Sexo): Observable<any>{
-      const url: string = endpoint + '/sexo';
-      return this.http.delete<any>(url + sexo);
+  public delete(idSexo): Observable<any>{
+    const url: string = endpoint + '/sexo/';
+    return this.http.delete<any>(url +idSexo);
+}
+
+
+  public editarSexo(sexo: Sexo, id: number): Observable<Sexo> {
+    const url: string = endpoint + '/sexo' + id;
+    return this.http.put<Sexo>(url, sexo);
   }
-  
+
+  public encontrarId(id, headers): any {
+    return this.http.get<any>(endpoint + '/sexo' + id);
+  }
+
 
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {

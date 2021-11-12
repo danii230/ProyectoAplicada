@@ -20,6 +20,7 @@ import { CrearTrimestreComponent } from './trimestre/crear-trimestre/crear-trime
 import { CrearDepartamentoComponent } from './departamento/crear-departamento/crear-departamento.component';
 import { CrearFuncionarioComponent } from './funcionario/crear-funcionario/crear-funcionario.component';
 import { CrearTransaccionComponent } from './transaccion/crear-transaccion/crear-transaccion.component';
+import { EditarSexoComponent } from './sexo/editar-sexo/editar-sexo.component';
 
 
 
@@ -45,6 +46,7 @@ import { CrearTransaccionComponent } from './transaccion/crear-transaccion/crear
     CrearDepartamentoComponent,
     CrearFuncionarioComponent,
     CrearTransaccionComponent,
+    EditarSexoComponent,
 
 
   ],

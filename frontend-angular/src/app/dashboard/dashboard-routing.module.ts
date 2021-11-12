@@ -12,6 +12,10 @@ import { SolicitudComponent } from './solicitud/solicitud.component';
 import { CambiosComponent } from './cambios/cambios.component';
 import { AvancesComponent } from './avances/avances.component';
 import { CrearSexoComponent } from './sexo/crear-sexo/crear-sexo.component';
+import { CrearTrimestreComponent } from './trimestre/crear-trimestre/crear-trimestre.component';
+import { CrearDepartamentoComponent } from './departamento/crear-departamento/crear-departamento.component';
+import { CrearFuncionarioComponent } from './funcionario/crear-funcionario/crear-funcionario.component';
+import { CrearTransaccionComponent } from './transaccion/crear-transaccion/crear-transaccion.component';
 
 const routes: Routes = [
   {path: '', component: DashboardComponent,children: [
@@ -24,6 +28,10 @@ const routes: Routes = [
     { path: 'transaccion', component: TransaccionComponent },
     { path: 'solicitud', component: SolicitudComponent },
     { path: 'cambios', component: CambiosComponent },
+    { path: 'crear-trimestre', component: CrearTrimestreComponent },
+    { path: 'crear-departamento', component: CrearDepartamentoComponent },
+    { path: 'crear-funcionario', component: CrearFuncionarioComponent },
+    { path: 'crear-transaccion', component: CrearTransaccionComponent },
     { path: 'avances', component: AvancesComponent },
     { path: 'reportes', component: ReportesComponent},
   ]}

@@ -19,7 +19,7 @@ export class FuncionarioComponent implements OnInit {
 
   listFuncionario: Function[] = [];
 
-  displayedColumns: string[] = ['idFuncionario', 'nombre','apellidos', 'fechaNacimiento','sexo','acciones'];
+  displayedColumns: string[] = ['idFuncionario', 'nombre','apellidos', 'loginName','departamento','acciones'];
   dataSource: MatTableDataSource<any>;
 
 
@@ -41,6 +41,11 @@ export class FuncionarioComponent implements OnInit {
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  eliminarFuncionario(idFuncionario: any){
+    this.funcionarioService.delete(idFuncionario).subscribe(data=>
+    console.log(data));
   }
 
 
