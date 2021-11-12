@@ -1,42 +1,5 @@
 const db_conection = require('../../config/db.js');
 
-exports.login = (req, res) => {
-
-    const { loginName } = req.params;
-
-    const { password } = req.params;
-    //console.log('entra');
-
-    //const { loginName, password } = req.body
-    db_conection.sql.connect(db_conection.config, function (err) {
-
-
-
-        if (err) {
-            console.log(err);
-        } else {
-
-            db_conection.sql.query(
-
-                "exec [dbo].[existeUsuario] '" + loginName + "','" + password + "'", function (err, result) {
-
-                    if (err) {
-                        console.log(err);
-                    } else {
-                        if (!result.recordset[0]) {
-                            res.json('No existe');
-                        } else {
-
-                            res.json('Si existe');
-                        }
-                    }
-                });
-        }
-
-    });
-};
-
-
 // Get
 exports.getFuncionario = (req, res) => {
 
@@ -53,7 +16,6 @@ exports.getFuncionario = (req, res) => {
                         console.log(err);
                     } else {
                         if (!result.recordset[0]) {
-                            res.json('No existe');
                         } else {
 
                             res.json(result.recordset);
@@ -88,7 +50,7 @@ exports.ingresarFuncionario = (req, res) => {
 //Delete
 exports.eliminarFuncionario = (req, res) => {
 
-    const { idFuncionario } = req.body
+    const { idFuncionario } = req.params;
 
     db_conection.sql.connect(db_conection.config, function (err) {
 
@@ -98,7 +60,7 @@ exports.eliminarFuncionario = (req, res) => {
 
             db_conection.sql.query(
 
-                "exec [dbo].[eliminarFuncionario] '" + idFuncionario + "'");
+                "exec [dbo].[eliminarFuncionario] '" + id + "'");
         }
 
     });
