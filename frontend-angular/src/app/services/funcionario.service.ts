@@ -28,6 +28,11 @@ export class FuncionarioService {
  
   }
 
+  public delete(idFuncionario): Observable<any>{
+    const url: string = endpoint + '/funcionario/';
+    return this.http.delete<any>(url +idFuncionario);
+}
+
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       console.error(error);

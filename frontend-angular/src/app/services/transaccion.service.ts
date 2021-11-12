@@ -28,6 +28,11 @@ export class TransaccionService {
  
   }
 
+  public delete(idTrimestre): Observable<any>{
+    const url: string = endpoint + '/trimestre/';
+    return this.http.delete<any>(url +idTrimestre);
+}
+
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       console.error(error);

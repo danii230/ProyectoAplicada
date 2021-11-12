@@ -2,7 +2,7 @@
     <mat-toolbar>
       <span>Funcionario</span>
       <div class="example-spacer"></div>
-        <button mat-raised-button color="primary" routerLink="/dashboard/crear-sexo">AGREGAR</button>
+        <button mat-raised-button color="primary" routerLink="/dashboard/crear-funcionario">AGREGAR</button>
     </mat-toolbar>
 
     <mat-form-field appearance="standard">
@@ -33,23 +33,23 @@
             <td mat-cell *matCellDef="let element"> {{element.apellidos}} </td>
         </ng-container>
 
-        <ng-container matColumnDef="fechaNacimiento">
-            <th mat-header-cell *matHeaderCellDef> Fecha de Nacimiento </th>
-            <td mat-cell *matCellDef="let element"> {{element.fechaNacimiento}} </td>
+        <ng-container matColumnDef="loginName">
+            <th mat-header-cell *matHeaderCellDef> Login Name </th>
+            <td mat-cell *matCellDef="let element"> {{element.loginName}} </td>
         </ng-container>
 
-        <ng-container matColumnDef="sexo">
-            <th mat-header-cell *matHeaderCellDef> Sexo </th>
-            <td mat-cell *matCellDef="let element"> {{element.idSexo}} </td>
+        <ng-container matColumnDef="departamento">
+            <th mat-header-cell *matHeaderCellDef> Departamento </th>
+            <td mat-cell *matCellDef="let element"> {{element.idDepartamento}} </td>
         </ng-container>
 
         <ng-container matColumnDef="acciones">
             <th mat-header-cell *matHeaderCellDef> </th>
             <td mat-cell *matCellDef="let element; let i = index">
-                <a class="pointer" style="color:#1f516f" matTooltip="Editar sexo">
+                <a class="pointer" style="color:#1f516f" matTooltip="Editar funionario">
                     <mat-icon>edit</mat-icon>
                 </a>
-                <a class="pointer" (click)="eliminarSexo()" style="color:#e15639" matTooltip="Eliminar sexo">
+                <a class="pointer" (click)="eliminarfuncionario(element.idFuncionario)" style="color:#e15639" matTooltip="Eliminar funcionario">
                     <mat-icon>delete</mat-icon>
                 </a>
             </td>

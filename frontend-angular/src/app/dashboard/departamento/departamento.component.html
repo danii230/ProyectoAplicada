@@ -2,7 +2,7 @@
   <mat-toolbar>
     <span>Departamento</span>
     <div class="example-spacer"></div>
-      <button mat-raised-button color="primary" routerLink="/dashboard/crear-sexo">AGREGAR</button>
+      <button mat-raised-button color="primary" routerLink="/dashboard/crear-departamento">AGREGAR</button>
   </mat-toolbar>
   
     <mat-form-field appearance="standard">
@@ -33,7 +33,7 @@
           <a class="pointer" style="color:#1f516f" matTooltip="Editar sexo">
             <mat-icon>edit</mat-icon>
           </a>
-          <a class= "pointer" (click)="eliminarSexo()" style="color:#e15639" matTooltip="Eliminar sexo">
+          <a class= "pointer" (click)="eliminarDepartamento(element.idDepartamento)" style="color:#e15639" matTooltip="Eliminar sexo">
             <mat-icon>delete</mat-icon>
           </a>
         </td>

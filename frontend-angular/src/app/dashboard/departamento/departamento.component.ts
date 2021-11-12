@@ -44,4 +44,9 @@ export class DepartamentoComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
+  eliminarDepartamento(idDepartamento: any){
+    this.departamentoService.delete(idDepartamento).subscribe(data=>
+    console.log(data));
+  }
+
 }
