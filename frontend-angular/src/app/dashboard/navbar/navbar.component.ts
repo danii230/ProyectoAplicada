@@ -3,7 +3,7 @@ import { Menu } from 'src/app/interfaces/menu';
 import { MenuService } from 'src/app/services/menu.service';
 import { MatFormFieldModule } from '@angular/material/form-field';
 
-interface Food {
+interface Mantenimiento {
   value: string;
   viewValue: string;
   Link: string
@@ -23,10 +23,12 @@ export class NavbarComponent implements OnInit {
     this.cargarMenu();
   }
 
-  foods: Food[] = [
-    {value: 'steak-0', viewValue: 'Sexo', Link: '/dashboard/sexo'},
-    {value: 'pizza-1', viewValue: 'Pizza', Link: '/dashboard/trimestre'},
-    {value: 'tacos-2', viewValue: 'Tacos', Link: '/dashboard/departamento'},
+  mantenimientos: Mantenimiento[] = [
+    {value: '0', viewValue: 'Sexo', Link: '/dashboard/sexo'},
+    {value: '1', viewValue: 'Trimestre', Link: '/dashboard/trimestre'},
+    {value: '2', viewValue: 'Departamento', Link: '/dashboard/departamento'},
+    {value: '3', viewValue: 'Funcionario', Link: '/dashboard/funcionario'},
+    {value: '4', viewValue: 'Transacción', Link: '/dashboard/transaccion'},
   ];
 
   cargarMenu(){

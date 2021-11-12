@@ -3,31 +3,7 @@
         "nombre": "Inicio",  
         "redirect": "/dashboard"      
     },
-    
-    {
-        "nombre": "Sexo",  
-        "redirect": "/dashboard/sexo"
-    },
-
-    {
-        "nombre": "Trimestre",  
-        "redirect": "/dashboard/trimestre"
-    },
-
-    {
-        "nombre": "Departamento",  
-        "redirect": "/dashboard/departamento"
-    },
-
-    {
-        "nombre": "Funcionario",  
-        "redirect": "/dashboard/funcionario"
-    },
-
-    {
-        "nombre": "Transaccion",  
-        "redirect": "/dashboard/transaccion"
-    },
+     
 
     {
         "nombre": "Solicitud",  

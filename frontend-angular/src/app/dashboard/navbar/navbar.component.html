@@ -5,8 +5,8 @@
   <mat-form-field class="tamano" appearance="fill">
     <mat-label>Mantenimiento</mat-label>
     <mat-select>
-      <mat-option *ngFor="let food of foods" [value]="food.value" [routerLink]="food.Link">
-        {{food.viewValue}}
+      <mat-option *ngFor="let mantenimiento of mantenimientos" [value]="mantenimiento.value" [routerLink]="mantenimiento.Link">
+        {{mantenimiento.viewValue}}
       </mat-option>
     </mat-select>
   </mat-form-field>
