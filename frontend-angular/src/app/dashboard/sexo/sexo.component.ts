@@ -4,6 +4,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { SexoService } from 'src/app/services/sexo.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -22,7 +23,8 @@ export class SexoComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
 
-  constructor(private sexoService: SexoService) { }
+  constructor(private sexoService: SexoService,
+    private router: Router) { }
 
   ngOnInit(): void {
     this.cargarMantenimientos();
@@ -49,5 +51,9 @@ export class SexoComponent implements OnInit {
   eliminarSexo(idSexo: any){
     this.sexoService.delete(idSexo).subscribe(data=>
     console.log(data));
+  }
+
+  manageSexo(idSexo: any){
+      this.router.navigate(['dashboard/editar-sexo/' + idSexo]);
   }
 }
