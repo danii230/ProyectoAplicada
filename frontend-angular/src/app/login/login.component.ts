@@ -44,7 +44,8 @@ export class LoginComponent implements OnInit {
     }
     
     this.rest.login(this.loginForm.value.loginName, this.loginForm.value.password).subscribe((result) => { 
-      if(result == 'Si existe'){
+      if(result != 'No existe'){
+        document.cookie = 'idFuncionario ='+ result;
         this.router.navigate(['/dashboard']);
       } else {
         this.showMsgError= true;

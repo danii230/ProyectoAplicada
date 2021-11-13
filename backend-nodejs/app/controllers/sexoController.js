@@ -65,7 +65,7 @@ exports.eliminarSexo = (req, res) => {
     });
 }
 
-//Delete
+//Modificar
 exports.modificarSexo = (req, res) => {
 
     const { idSexo, descripcion } = req.body
