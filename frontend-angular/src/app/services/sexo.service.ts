@@ -17,23 +17,23 @@ export class SexoService {
   constructor(private http: HttpClient) { }
 
 
-  public getSexo(){
+  public getSexo() {
     return this.http.get(endpoint + '/sexo').pipe(
       map(this.extractData),
       catchError(this.handleError<any>('getSexo'))
     );
   }
-  
-  public ingresarSexo(sexo:Sexo): Observable<any> {
+
+  public ingresarSexo(sexo: Sexo): Observable<any> {
     const url: string = endpoint + '/sexo';
-    return this.http.post<any>(url,sexo);
- 
+    return this.http.post<any>(url, sexo);
+
   }
 
-  public delete(idSexo): Observable<any>{
+  public delete(idSexo): Observable<any> {
     const url: string = endpoint + '/sexo/';
-    return this.http.delete<any>(url +idSexo);
-}
+    return this.http.delete<any>(url + idSexo);
+  }
 
 
   public editarSexo(sexo: Sexo): Observable<Sexo> {
@@ -46,7 +46,7 @@ export class SexoService {
       map(this.extractData),
       catchError(this.handleError<any>('encontrarId'))
     );
- 
+
   }
 
 
@@ -60,7 +60,7 @@ export class SexoService {
     }
   }
 
-  private extractData(res: Response){
+  private extractData(res: Response) {
     let body = res;
     return body || {};
 

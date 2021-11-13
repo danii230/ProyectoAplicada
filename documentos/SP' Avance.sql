@@ -14,9 +14,6 @@ WHERE idAvance=@idAvance
 End
 GO
 
-
-
-
 /****** Object:  StoredProcedure [dbo].[getAvance]    Script Date: 11/11/2021 18:37:47 ******/
 SET ANSI_NULLS ON
 GO
@@ -55,27 +52,23 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-Alter PROCEDURE [dbo].[ingresarAvance] @fechaHora datetime, @idUsuarioAplicativo smallint, @idResponsableTI smallint, @fechaInicio datetime, @fechaFin datetime, @idResponsableUsuarioFinal smallint, @documentoActaConstitutiva varbinary(max)
+Create PROCEDURE [dbo].[ingresarAvance] @idTrimestre tinyint, @documento varbinary, @fechaHora datetime, @idUsuarioAplicativo smallint, @idSolicitud smallint
 AS
 BEGIN
 INSERT INTO [dbo].[Avance]
-           ([fechaHora]
+           ([idTrimestre]
+           ,[documento]
+           ,[fechaHora]
            ,[idUsuarioAplicativo]
-           ,[idResponsableTI]
-           ,[fechaInicio]
-           ,[fechaFin]
-           ,[idResponsableUsuarioFinal]
-           ,[documentoActaConstitutiva]
+           ,[idSolicitud]
            ,[estado])
      VALUES
-           (GETDATE()
-            ,@idUsuarioAplicativo
-			,@idResponsableTI
-			,@fechaInicio
-			,@fechaFin
-			,@idResponsableUsuarioFinal
-			,@documentoActaConstitutiva
-			,1)
+           (@idTrimestre
+           ,@documento
+           ,@fechaHora
+           ,@idUsuarioAplicativo
+           ,@idSolicitud
+           ,1)
 End
 GO
 
@@ -84,15 +77,15 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE PROCEDURE [dbo].[modificarAvance] @idAvance tinyint, @fechaHora datetime, @idUsuarioAplicativo smallint, @idResponsableTI smallint, @fechaInicio datetime, @fechaFin datetime, @idResponsableUsuarioFinal smallint, @documentoActaConstitutiva varbinary(max)
+CREATE PROCEDURE [dbo].[modificarAvance] @idAvance tinyint, @idTrimestre tinyint, @documento varbinary, @fechaHora datetime, @idUsuarioAplicativo smallint, @idSolicitud smallint
 AS
 BEGIN
 UPDATE Avance
-SET         idResponsableTI=@idResponsableTI
-			,fechaInicio=@fechaInicio
-			,fechaFin=@fechaFin
-			,idResponsableUsuarioFinal=@idResponsableUsuarioFinal
-			,documentoActaConstitutiva= @documentoActaConstitutiva
+SET         idTrimestre=@idTrimestre
+           ,documento= @documento
+           ,fechaHora= @fechaHora
+           ,idUsuarioAplicativo= @idUsuarioAplicativo
+           ,idSolicitud= @idSolicitud
 WHERE idAvance=@idAvance
 End
 GO
