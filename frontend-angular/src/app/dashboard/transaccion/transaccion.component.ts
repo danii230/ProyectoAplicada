@@ -5,6 +5,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { TransaccionService } from 'src/app/services/transaccion.service';
 import { Transaccion } from 'src/app/interfaces/transaccion';
 import { isDataSource } from '@angular/cdk/collections';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-transaccion',
@@ -13,7 +14,7 @@ import { isDataSource } from '@angular/cdk/collections';
 })
 export class TransaccionComponent implements OnInit {
 
-  constructor(private transaccionService: TransaccionService) { }
+  constructor(private transaccionService: TransaccionService, private router: Router) { }
 
   ngOnInit(): void {
     this.cargarTransaccion();
@@ -50,5 +51,10 @@ export class TransaccionComponent implements OnInit {
   eliminarTransaccion(idTrimestre: any){
     this.transaccionService.delete(idTrimestre).subscribe(data=>
     console.log(data));
+  }
+
+  manageTransaccion(idTransaccion: number){
+    console.log(idTransaccion);
+      this.router.navigate(['/dashboard/editar-transaccion/' + idTransaccion]);
   }
 }

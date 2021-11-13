@@ -1,0 +1,26 @@
+<div class="container">
+    <mat-toolbar>
+        <span>Editar Sexo</span>
+    </mat-toolbar>
+
+    <mat-card style="margin-top: 10px;">
+        <form [formGroup]="form" (ngSubmit)="modificarTrimestre()">
+            <mat-grid-list cols="4" rowHeight="70px">
+                <mat-grid-tile [colspan]="1" [rowspan]="1">
+                    <mat-form-field clas="ancho">
+                        <mat-label>Descripción</mat-label>
+                        <input matInput autocomplete="off" formControlName="descripcion" [value]="descripcion">
+                      </mat-form-field>
+                </mat-grid-tile>
+                <mat-grid-tile [colspan]="3" [rowspan]="5">
+                    IMG
+                </mat-grid-tile>
+               
+                 <mat-grid-tile [colspan]="1" [rowspan]="1">
+                    <button mat-raised-button style="margin-right: 20px;">Volver</button>
+                    <button type="submit" mat-raised-button color="primary">Aceptar</button>
+                 </mat-grid-tile>
+            </mat-grid-list>
+        </form>
+    </mat-card>
+</div>

@@ -33,6 +33,19 @@ export class TransaccionService {
     return this.http.delete<any>(url +idTrimestre);
 }
 
+
+public editarTransaccion(transaccion: Transaccion): Observable<Transaccion> {
+  const url: string = endpoint + '/transaccion/';
+  return this.http.put<Transaccion>(url, transaccion);
+}
+
+public encontrarId(id): any {
+  return this.http.get<any>(endpoint + '/transaccion/' + id).pipe(
+    map(this.extractData),
+    catchError(this.handleError<any>('encontrarId'))
+  );
+
+}
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       console.error(error);

@@ -21,6 +21,10 @@ import { CrearDepartamentoComponent } from './departamento/crear-departamento/cr
 import { CrearFuncionarioComponent } from './funcionario/crear-funcionario/crear-funcionario.component';
 import { CrearTransaccionComponent } from './transaccion/crear-transaccion/crear-transaccion.component';
 import { EditarSexoComponent } from './sexo/editar-sexo/editar-sexo.component';
+import { EditarTrimestreComponent } from './trimestre/editar-trimestre/editar-trimestre.component';
+import { EditarTransaccionComponent } from './transaccion/editar-transaccion/editar-transaccion.component';
+import { EditarFuncionarioComponent } from './funcionario/editar-funcionario/editar-funcionario.component';
+import { EditarDepartamentoComponent } from './departamento/editar-departamento/editar-departamento.component';
 
 
 
@@ -47,6 +51,10 @@ import { EditarSexoComponent } from './sexo/editar-sexo/editar-sexo.component';
     CrearFuncionarioComponent,
     CrearTransaccionComponent,
     EditarSexoComponent,
+    EditarTrimestreComponent,
+    EditarTransaccionComponent,
+    EditarFuncionarioComponent,
+    EditarDepartamentoComponent,
 
 
   ],

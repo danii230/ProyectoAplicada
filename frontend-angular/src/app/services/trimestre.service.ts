@@ -33,6 +33,19 @@ export class TrimestreService {
     return this.http.delete<any>(url +idTrimestre);
 }
 
+public editarTrimestre(trimestre: Trimestre): Observable<Trimestre> {
+  const url: string = endpoint + '/trimestre/';
+  return this.http.put<Trimestre>(url, trimestre);
+}
+
+public encontrarId(id): any {
+  return this.http.get<any>(endpoint + '/trimestre/' + id).pipe(
+    map(this.extractData),
+    catchError(this.handleError<any>('encontrarId'))
+  );
+
+}
+
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       console.error(error);

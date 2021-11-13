@@ -4,6 +4,7 @@ import { DepartamentoService } from 'src/app/services/departamento.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-departamento',
@@ -12,7 +13,7 @@ import { MatPaginator } from '@angular/material/paginator';
 })
 export class DepartamentoComponent implements OnInit {
 
-  constructor(private departamentoService: DepartamentoService) { }
+  constructor(private departamentoService: DepartamentoService, private router: Router) { }
 
   ngOnInit(): void {
     this.cargarDepartamento();
@@ -49,5 +50,11 @@ export class DepartamentoComponent implements OnInit {
     this.departamentoService.delete(idDepartamento).subscribe(data=>
     console.log(data));
   }
+
+  manageDepartamento(idDepartamento: number){
+    console.log(idDepartamento);
+      this.router.navigate(['/dashboard/editar-departamento/' + idDepartamento]);
+  }
+
 
 }

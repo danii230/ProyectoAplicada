@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Departamento } from 'src/app/interfaces/departamento';
 import { Funcionario } from 'src/app/interfaces/funcionario';
+import { DepartamentoService } from 'src/app/services/departamento.service';
 import { FuncionarioService } from 'src/app/services/funcionario.service';
 
 @Component({
@@ -16,8 +18,13 @@ export class CrearFuncionarioComponent implements OnInit {
   constructor(private fb: FormBuilder, private funcionarioService: FuncionarioService,
     private router: Router) {
     this.form = this.fb.group({
-      idSexo: [''],
-      descripcion: ['', Validators.required]
+      idFuncionario: [''],
+      nombre: ['', Validators.required],
+      apellidos: ['', Validators.required],
+      idSexo: ['', Validators.required],
+      loginName: ['', Validators.required],
+      password: ['', Validators.required],
+      idDepartamento: ['', Validators.required]
     })
   }
   ngOnInit(): void {
@@ -27,15 +34,12 @@ export class CrearFuncionarioComponent implements OnInit {
     let funcionario = new Funcionario();
     funcionario.nombre = this.form.value.nombre;
     funcionario.apellidos = this.form.value.apellidos;
-    funcionario.fechaNacimiento = this.form.value.fechaNacional;
     funcionario.idSexo = this.form.value.idSexo;
     funcionario.loginName = this.form.value.loginName;
     funcionario.password = this.form.value.password;
-    funcionario.idFoto = this.form.value.idFoto;
     funcionario.idDepartamento = this.form.value.idDepartamento;
     this.funcionarioService.ingresarFuncionario(funcionario).subscribe(data=>
     console.log(data));
     this.router.navigate(['/dashboard/funcionario'])
   }
-
 }
