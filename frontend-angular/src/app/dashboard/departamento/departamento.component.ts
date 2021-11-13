@@ -32,11 +32,12 @@ export class DepartamentoComponent implements OnInit {
     console.log(data);
     this.listDepartamento = data;
     this.dataSource = new MatTableDataSource(this.listDepartamento)
+    this.dataSource.paginator = this.paginator;
   })
   }
 
   ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
+  
   }
 
   applyFilter(event: Event) {

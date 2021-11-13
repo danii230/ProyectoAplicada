@@ -1,5 +1,7 @@
+import { Route } from '@angular/compiler/src/core';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Trimestre } from 'src/app/interfaces/trimestre';
 import { TrimestreService } from 'src/app/services/trimestre.service';
 
@@ -11,7 +13,8 @@ import { TrimestreService } from 'src/app/services/trimestre.service';
 export class CrearTrimestreComponent implements OnInit {
   form: FormGroup;
   // sexo: Sexo;
-  constructor(private fb: FormBuilder, private trimestreService: TrimestreService) {
+  constructor(private fb: FormBuilder, private trimestreService: TrimestreService, 
+    private router: Router) {
     this.form = this.fb.group({
       idSexo: [''],
       descripcion: ['', Validators.required]
@@ -25,5 +28,6 @@ export class CrearTrimestreComponent implements OnInit {
     trimestre.descripcion = this.form.value.descripcion;
     this.trimestreService.ingresarTrimestre(trimestre).subscribe(data=>
     console.log(data));
+    this.router.navigate(['/dashboard/trimestre'])
   }
 }

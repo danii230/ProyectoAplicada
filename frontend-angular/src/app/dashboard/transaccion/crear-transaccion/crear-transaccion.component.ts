@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Transaccion } from 'src/app/interfaces/transaccion';
 import { TransaccionService } from 'src/app/services/transaccion.service';
 
@@ -12,7 +13,8 @@ export class CrearTransaccionComponent implements OnInit {
 
   form: FormGroup;
   // sexo: Sexo;
-  constructor(private fb: FormBuilder, private transaccionService: TransaccionService) {
+  constructor(private fb: FormBuilder, private transaccionService: TransaccionService,
+    private router: Router) {
     this.form = this.fb.group({
       idSexo: [''],
       descripcion: ['', Validators.required]
@@ -26,6 +28,7 @@ export class CrearTransaccionComponent implements OnInit {
     transaccion.descripcion = this.form.value.descripcion;
     this.transaccionService.ingresarTransaccion(transaccion).subscribe(data=>
     console.log(data));
+    this.router.navigate(['/dashboard/transaccion'])
   }
 
 }

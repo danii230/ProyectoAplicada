@@ -16,6 +16,7 @@ import { CrearTrimestreComponent } from './trimestre/crear-trimestre/crear-trime
 import { CrearDepartamentoComponent } from './departamento/crear-departamento/crear-departamento.component';
 import { CrearFuncionarioComponent } from './funcionario/crear-funcionario/crear-funcionario.component';
 import { CrearTransaccionComponent } from './transaccion/crear-transaccion/crear-transaccion.component';
+import { EditarSexoComponent } from './sexo/editar-sexo/editar-sexo.component';
 
 const routes: Routes = [
   {path: '', component: DashboardComponent,children: [
@@ -32,6 +33,7 @@ const routes: Routes = [
     { path: 'crear-departamento', component: CrearDepartamentoComponent },
     { path: 'crear-funcionario', component: CrearFuncionarioComponent },
     { path: 'crear-transaccion', component: CrearTransaccionComponent },
+    { path: 'editar-sexo', component: EditarSexoComponent },
     { path: 'avances', component: AvancesComponent },
     { path: 'reportes', component: ReportesComponent},
   ]}

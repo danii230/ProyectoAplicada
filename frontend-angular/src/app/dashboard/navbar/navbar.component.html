@@ -1,7 +1,15 @@
 <mat-toolbar color="primary">
   <span>AppGestión</span>
   <span class="example-spacer"></span>
-  <button mat-button *ngFor="let item of menu"[routerLink]="item.redirect">{{item.nombre}}</button>
+  <button mat-button *ngFor="let item of menu" [routerLink]="item.redirect">{{item.nombre}}</button>
+  <mat-form-field class="tamano" appearance="fill">
+    <mat-label>Mantenimiento</mat-label>
+    <mat-select>
+      <mat-option *ngFor="let mantenimiento of mantenimientos" [value]="mantenimiento.value" [routerLink]="mantenimiento.Link">
+        {{mantenimiento.viewValue}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
   <span class="example-spacer"></span>
   <!-- <button mat-button routerLink="/dashboard">LogOut</button> -->
   <button mat-icon-button class="example-icon" routerLink="/" aria-label="Example icon-button with menu icon">

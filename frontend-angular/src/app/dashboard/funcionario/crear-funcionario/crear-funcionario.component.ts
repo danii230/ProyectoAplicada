@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Funcionario } from 'src/app/interfaces/funcionario';
 import { FuncionarioService } from 'src/app/services/funcionario.service';
 
@@ -12,7 +13,8 @@ export class CrearFuncionarioComponent implements OnInit {
 
   form: FormGroup;
   // sexo: Sexo;
-  constructor(private fb: FormBuilder, private funcionarioService: FuncionarioService) {
+  constructor(private fb: FormBuilder, private funcionarioService: FuncionarioService,
+    private router: Router) {
     this.form = this.fb.group({
       idSexo: [''],
       descripcion: ['', Validators.required]
@@ -33,6 +35,7 @@ export class CrearFuncionarioComponent implements OnInit {
     funcionario.idDepartamento = this.form.value.idDepartamento;
     this.funcionarioService.ingresarFuncionario(funcionario).subscribe(data=>
     console.log(data));
+    this.router.navigate(['/dashboard/funcionario'])
   }
 
 }

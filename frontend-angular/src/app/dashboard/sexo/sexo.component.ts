@@ -28,18 +28,17 @@ export class SexoComponent implements OnInit {
     this.cargarMantenimientos();
   }
 
-  public cargarMantenimientos() {
-    this.sexoService.getSexo().subscribe(data => {
-      console.log(data);
-      this.listSexo = data;
-      this.dataSource = new MatTableDataSource(this.listSexo)
-      this.dataSource.paginator = this.paginator;
-    })
-
+  public cargarMantenimientos(){
+    this.sexoService.getSexo().subscribe(data =>{
+    console.log(data);
+    this.listSexo = data;
+    this.dataSource = new MatTableDataSource(this.listSexo)
+    this.dataSource.paginator = this.paginator;
+  })
   }
 
   ngAfterViewInit() {
-    
+ 
   }
 
   applyFilter(event: Event) {
