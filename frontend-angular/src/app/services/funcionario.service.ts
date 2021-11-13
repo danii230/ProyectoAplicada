@@ -33,6 +33,18 @@ export class FuncionarioService {
     return this.http.delete<any>(url +idFuncionario);
 }
 
+public editarFuncionario(funcionario: Funcionario): Observable<Funcionario> {
+  const url: string = endpoint + '/funcionario/';
+  return this.http.put<Funcionario>(url, funcionario);
+}
+
+public encontrarId(id): any {
+  return this.http.get<any>(endpoint + '/funcionario/' + id).pipe(
+    map(this.extractData),
+    catchError(this.handleError<any>('encontrarId'))
+  );
+
+}
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       console.error(error);

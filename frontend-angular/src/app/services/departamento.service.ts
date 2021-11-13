@@ -33,6 +33,19 @@ export class DepartamentoService {
     return this.http.delete<any>(url +idDepartamento);
 }
 
+public editarDepartamento(departamento: Departamento): Observable<Departamento> {
+  const url: string = endpoint + '/departamento/';
+  return this.http.put<Departamento>(url, departamento);
+}
+
+public encontrarId(id): any {
+  return this.http.get<any>(endpoint + '/departamento/' + id).pipe(
+    map(this.extractData),
+    catchError(this.handleError<any>('encontrarId'))
+  );
+
+}
+
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       console.error(error);

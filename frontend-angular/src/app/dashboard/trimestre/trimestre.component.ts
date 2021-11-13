@@ -4,6 +4,7 @@ import { ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { TrimestreService } from 'src/app/services/trimestre.service';
 import { Trimestre } from 'src/app/interfaces/trimestre';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-trimestre',
@@ -12,7 +13,7 @@ import { Trimestre } from 'src/app/interfaces/trimestre';
 })
 export class TrimestreComponent implements OnInit {
 
-  constructor(private trimestreService: TrimestreService) { }
+  constructor(private trimestreService: TrimestreService, private router: Router) { }
 
   ngOnInit(): void {
     this.cargarTrimestre();
@@ -49,6 +50,11 @@ export class TrimestreComponent implements OnInit {
   eliminarTrimestre(idTrimestre: any){
     this.trimestreService.delete(idTrimestre).subscribe(data=>
     console.log(data));
+  }
+
+  manageTrimestre(idTrimestre: number){
+    console.log(idTrimestre);
+      this.router.navigate(['/dashboard/editar-trimestre/' + idTrimestre]);
   }
 
 

@@ -45,8 +45,4 @@ export class EditarSexoComponent implements OnInit {
       console.log(data));
     this.router.navigate(['/dashboard/sexo'])
   }
-
-
-
-
 }

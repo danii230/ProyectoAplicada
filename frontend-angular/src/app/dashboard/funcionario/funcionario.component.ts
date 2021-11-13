@@ -3,6 +3,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { FuncionarioService } from 'src/app/services/funcionario.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-funcionario',
@@ -11,7 +12,7 @@ import { FuncionarioService } from 'src/app/services/funcionario.service';
 })
 export class FuncionarioComponent implements OnInit {
 
-  constructor(private funcionarioService: FuncionarioService) { }
+  constructor(private funcionarioService: FuncionarioService, private router: Router) { }
 
   ngOnInit(): void {
     this.cargarFuncionario();
@@ -47,6 +48,11 @@ export class FuncionarioComponent implements OnInit {
   eliminarfuncionario(idFuncionario: any){
     this.funcionarioService.delete(idFuncionario).subscribe(data=>
     console.log(data));
+  }
+
+  manageFuncionario(idFuncionario: number){
+    console.log(idFuncionario);
+      this.router.navigate(['/dashboard/editar-funcionario/' + idFuncionario]);
   }
 
 
