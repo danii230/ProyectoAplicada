@@ -6,6 +6,6 @@ export class Funcionario {
     idSexo: number;
     loginName: string;
     password: string;
-    idFoto: number;
+    foto: string;
     idDepartamento: number
   }

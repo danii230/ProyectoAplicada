@@ -30,7 +30,7 @@ exports.getFuncionario = (req, res) => {
 //Insert
 exports.ingresarFuncionario = (req, res) => {
 
-    const { nombre, apellidos, fechaNacimiento, idSexo, loginName, password, foto, idDepartamento } = req.body
+    const { nombre, apellidos,idSexo, loginName, password,idDepartamento } = req.body
     db_conection.sql.connect(db_conection.config, function (err) {
 
         if (err) {
@@ -40,7 +40,7 @@ exports.ingresarFuncionario = (req, res) => {
             db_conection.sql.query(
 
 
-                "exec [dbo].[ingresarFuncionario] '" + nombre + "','" + apellidos + "','" + fechaNacimiento + "','" + idSexo + "','" + loginName + "','" + password + "','" + idDepartamento + "','" + foto + "'");
+                "exec [dbo].[ingresarFuncionario] '" + nombre + "','" + apellidos + "','" + idSexo + "','" + loginName + "','" + password + "','" + idDepartamento +"'");
         }
 
     });
