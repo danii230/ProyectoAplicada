@@ -1,4 +1,4 @@
-export class Sexo {
-    idSexo: number;
-    descripcion: string
+export class Bitacora {
+    nombre: string;
+    idTransaccion :number
 }

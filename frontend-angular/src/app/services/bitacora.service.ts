@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { map, catchError, tap } from 'rxjs/operators';
-import { Departamento } from '../interfaces/departamento';
+import { Bitacora } from '../interfaces/bitacora';
 
 
 const endpoint = 'http://localhost:3000';
@@ -17,8 +17,8 @@ export class BitacoraService {
 
 
   public ingresarBitacora(bitacora: Bitacora): Observable<any> {
-    const url: string = endpoint + '/departamento';
-    return this.http.post<any>(url, departamento);
+    const url: string = endpoint + '/bitacora';
+    return this.http.post<any>(url, bitacora);
 
   }
   private handleError<T>(operation = 'operation', result?: T) {
