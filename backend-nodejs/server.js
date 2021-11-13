@@ -22,12 +22,15 @@ app.use(express.urlencoded({
 
 
 //Routes
-
 const funcionarioRouters = require('./app/routes/funcionario')
 const sexoRouters = require('./app/routes/sexo')
 const trimestreRouters = require('./app/routes/trimestre')
 const departamentoRouters = require('./app/routes/departamento')
 const transaccionRouters = require('./app/routes/transaccion')
+const solicitudRouters = require('./app/routes/solicitud')
+const avanceRouters = require('./app/routes/avance')
+const bitacoraAuditoriaRouters = require('./app/routes/bitacoraAuditoria')
+const bitacoraRouters = require('./app/routes/bitacora')
 
 app.get("/", (req, res) => {
     res.json({ message: "Inicio del BackEnd" });
@@ -38,7 +41,10 @@ app.use(sexoRouters)
 app.use(trimestreRouters)
 app.use(departamentoRouters)
 app.use(transaccionRouters)
-
+app.use(solicitudRouters)
+app.use(avanceRouters)
+app.use(bitacoraAuditoriaRouters)
+app.use(bitacoraRouters)
 
 
 

@@ -1,0 +1,35 @@
+@api=http://localhost:3000/solicitud
+
+GET {{api}}
+
+POST {{api}}
+Content-Type: application/json
+
+{ "idUsuarioAplicativo": "", 
+"idResponsableTI": "", 
+"fechaInicio": "", 
+"fechaFin": "", 
+"idResponsableUsuarioFinal": "", 
+"documentoActaConstitutiva": ""
+}
+
+DELETE  {{api}}
+Content-Type: application/json
+
+{"idSolicitud" : "1"}
+
+
+PUT   {{api}}
+Content-Type: application/json
+
+{ "idUsuarioAplicativo": "", 
+"idResponsableTI": "", 
+"fechaInicio": "", 
+"fechaFin": "", 
+"idResponsableUsuarioFinal": "", 
+"documentoActaConstitutiva": ""
+}
+
+
+GET  {{api}}/1
+

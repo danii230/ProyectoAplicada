@@ -1,0 +1,33 @@
+@api=http://localhost:3000/avance
+
+GET {{api}}
+
+POST {{api}}
+Content-Type: application/json
+
+{"idTrimestre": "", 
+"documento": "", 
+"fechaHora": "", 
+"idUsuarioAplicativo": "", 
+"idSolcitud": ""
+}
+
+DELETE  {{api}}
+Content-Type: application/json
+
+{"idSolicitud" : "1"}
+
+
+PUT   {{api}}
+Content-Type: application/json
+
+{"idTrimestre": "", 
+"documento": "", 
+"fechaHora": "", 
+"idUsuarioAplicativo": "", 
+"idSolcitud": ""
+}
+
+
+GET  {{api}}/1
+
