@@ -36,13 +36,17 @@ export class SexoService {
 }
 
 
-  public editarSexo(sexo: Sexo, id: number): Observable<Sexo> {
-    const url: string = endpoint + '/sexo/' + id;
+  public editarSexo(sexo: Sexo): Observable<Sexo> {
+    const url: string = endpoint + '/sexo/';
     return this.http.put<Sexo>(url, sexo);
   }
 
   public encontrarId(id): any {
-    return this.http.get<any>(endpoint + '/sexo/' + id);
+    return this.http.get<any>(endpoint + '/sexo/' + id).pipe(
+      map(this.extractData),
+      catchError(this.handleError<any>('encontrarId'))
+    );
+ 
   }
 
 

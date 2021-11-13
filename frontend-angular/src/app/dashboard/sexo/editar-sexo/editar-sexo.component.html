@@ -4,12 +4,12 @@
     </mat-toolbar>
 
     <mat-card style="margin-top: 10px;">
-        <form [formGroup]="form">
+        <form [formGroup]="form" (ngSubmit)="modificarSexo()">
             <mat-grid-list cols="4" rowHeight="70px">
                 <mat-grid-tile [colspan]="1" [rowspan]="1">
                     <mat-form-field clas="ancho">
                         <mat-label>Descripción</mat-label>
-                        <input matInput autocomplete="off" formControlName="345" [value]="descripcion">
+                        <input matInput autocomplete="off" formControlName="descripcion" [value]="descripcion">
                       </mat-form-field>
                 </mat-grid-tile>
                 <mat-grid-tile [colspan]="3" [rowspan]="5">

@@ -51,9 +51,11 @@ export class SexoComponent implements OnInit {
   eliminarSexo(idSexo: any){
     this.sexoService.delete(idSexo).subscribe(data=>
     console.log(data));
+    this.cargarMantenimientos();
   }
 
-  manageSexo(idSexo: any){
-      this.router.navigate(['dashboard/editar-sexo/' + idSexo]);
+  manageSexo(idSexo: number){
+    console.log(idSexo);
+      this.router.navigate(['/dashboard/editar-sexo/' + idSexo]);
   }
 }

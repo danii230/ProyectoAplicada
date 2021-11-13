@@ -33,9 +33,10 @@ const routes: Routes = [
     { path: 'crear-departamento', component: CrearDepartamentoComponent },
     { path: 'crear-funcionario', component: CrearFuncionarioComponent },
     { path: 'crear-transaccion', component: CrearTransaccionComponent },
-    { path: 'editar-sexo', component: EditarSexoComponent },
+    { path: 'editar-sexo/:idSexo', component: EditarSexoComponent },
     { path: 'avances', component: AvancesComponent },
     { path: 'reportes', component: ReportesComponent},
+
   ]}
 ];
 
