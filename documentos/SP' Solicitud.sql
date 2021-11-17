@@ -47,9 +47,6 @@ AS
 BEGIN
 SELECT  s.idSolicitud, s.fechaHora, s.idUsuarioAplicativo, s.idResponsableTI, s.fechaInicio, s.fechaFin, s.idResponsableUsuarioFinal
 FROM  Solicitud s
-/*JOIN Funcionario fUA ON s.idUsuarioAplicativo= fUA.idFuncionario
-JOIN Funcionario fTI ON s.idResponsableTI= fTI.idFuncionario
-JOIN Funcionario fRU ON s.idResponsableUsuarioFinal= fRU.idFuncionario*/
 end
 GO
 /****** Object:  StoredProcedure [dbo].[ingresarSolicitud]    Script Date: 11/11/2021 18:37:47 ******/
