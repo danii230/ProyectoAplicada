@@ -19,6 +19,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { ReactiveFormsModule } from '@angular/forms';
 import {MatSelectModule} from '@angular/material/select';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 
 
@@ -43,7 +45,9 @@ import {MatSelectModule} from '@angular/material/select';
     MatPaginatorModule,
     MatGridListModule,
     ReactiveFormsModule,
-    MatSelectModule
+    MatSelectModule,
+    MatDatepickerModule,
+    MatNativeDateModule
     
 
     
@@ -66,7 +70,9 @@ import {MatSelectModule} from '@angular/material/select';
     MatPaginatorModule,
     MatGridListModule,
     ReactiveFormsModule,
-    MatSelectModule
+    MatSelectModule,
+    MatDatepickerModule,
+    MatNativeDateModule
    
   ],
   
