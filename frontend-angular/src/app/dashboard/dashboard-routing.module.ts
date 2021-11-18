@@ -21,6 +21,7 @@ import { EditarTrimestreComponent } from './trimestre/editar-trimestre/editar-tr
 import { EditarTransaccionComponent } from './transaccion/editar-transaccion/editar-transaccion.component';
 import { EditarFuncionarioComponent } from './funcionario/editar-funcionario/editar-funcionario.component';
 import { EditarDepartamentoComponent } from './departamento/editar-departamento/editar-departamento.component';
+import { DialogoConfirmacionComponent } from '../dialogo-confirmacion/dialogo-confirmacion.component';
 
 const routes: Routes = [
   {path: '', component: DashboardComponent,children: [
@@ -42,6 +43,7 @@ const routes: Routes = [
     { path: 'editar-transaccion/:idTransaccion', component: EditarTransaccionComponent },
     { path: 'editar-funcionario/:idFuncionario', component: EditarFuncionarioComponent },
     { path: 'editar-departamento/:idDepartamento', component: EditarDepartamentoComponent },
+ 
     { path: 'avances', component: AvancesComponent },
     { path: 'reportes', component: ReportesComponent},
 

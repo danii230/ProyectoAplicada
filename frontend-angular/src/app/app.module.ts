@@ -53,7 +53,7 @@ const appRoutes: Routes = [
     HttpClientModule,
     SharedModule,
     MatToolbarModule,
-    DialogoConfirmacionComponent
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
