@@ -59,15 +59,5 @@ export class CrearFuncionarioComponent implements OnInit {
     {name: 'Cow', sound: 'Moo!'},
     {name: 'Fox', sound: 'Wa-pa-pa-pa-pa-pa-pow!'},
   ];
-  dateClass: MatCalendarCellClassFunction<Date> = (cellDate, view) => {
-    // Only highligh dates inside the month view.
-    if (view === 'month') {
-      const date = cellDate.getDate();
 
-      // Highlight the 1st and 20th day of each month.
-      return date === 1 || date === 20 ? 'example-custom-date-class' : '';
-    }
-
-    return '';
-  };
 }
