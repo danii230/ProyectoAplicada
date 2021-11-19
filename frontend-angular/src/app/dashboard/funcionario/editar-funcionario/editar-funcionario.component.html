@@ -1,6 +1,6 @@
 <div class="container">
     <mat-toolbar>
-        <span>Agregar Funcionario</span>
+        <span>Editar Funcionario</span>
     </mat-toolbar>
 
     <mat-card style="margin-top: 10px;">
@@ -50,7 +50,7 @@
                         <mat-label>Sexo</mat-label>
                         <mat-select [formControlName]="idSexo" required>
                             <mat-option>--</mat-option>
-                            <mat-option *ngFor="let sexo of sexos" [value]="sexo.idSexo" [selected]="idS == sexo.idSexo">
+                            <mat-option *ngFor="let sexo of sexos" [value]="sexo.idSexo" [selected]="sexos == sexo.idSexo">
                                 {{sexo.descripcion}}
                             </mat-option>
                           

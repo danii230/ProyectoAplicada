@@ -14,8 +14,10 @@ import { TransaccionService } from 'src/app/services/transaccion.service';
   templateUrl: './editar-funcionario.component.html',
   styleUrls: ['./editar-funcionario.component.css']
 })
-export class EditarFuncionarioComponent implements OnInit {
 
+
+
+export class EditarFuncionarioComponent implements OnInit {
 
   form: FormGroup;
   id: number;
@@ -27,6 +29,7 @@ export class EditarFuncionarioComponent implements OnInit {
   loginName: any;
   password: any;
   idS: any;
+  idD: any;
   idSexo = new FormControl('', Validators.required);
   idDepartamento = new FormControl('', Validators.required);
   constructor(private funcionarioService: FuncionarioService, private route: ActivatedRoute,
@@ -62,6 +65,7 @@ export class EditarFuncionarioComponent implements OnInit {
       this.password = data[0].password;
       this.fechaNacimiento = data[0].fechaNacimiento;
       this.idS = data[0].idSexo;
+      this.idD = 'test';
 
     });
   }
