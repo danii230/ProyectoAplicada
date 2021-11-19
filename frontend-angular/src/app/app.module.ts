@@ -15,6 +15,7 @@ import { MainComponent } from './main/main.component';
 import { SharedModule } from './shared/shared.module';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import {Moment} from 'moment';
+import { SolicitudComponent } from './dasboard/solicitud/solicitud.component';
 
 
 const appRoutes: Routes = [
@@ -40,7 +41,8 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     LoginComponent,
-    MainComponent
+    MainComponent,
+    SolicitudComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),

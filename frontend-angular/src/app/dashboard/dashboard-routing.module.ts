@@ -21,6 +21,8 @@ import { EditarTrimestreComponent } from './trimestre/editar-trimestre/editar-tr
 import { EditarTransaccionComponent } from './transaccion/editar-transaccion/editar-transaccion.component';
 import { EditarFuncionarioComponent } from './funcionario/editar-funcionario/editar-funcionario.component';
 import { EditarDepartamentoComponent } from './departamento/editar-departamento/editar-departamento.component';
+import { CrearSolicitudComponent } from './solicitud/crear-solicitud/crear-solicitud.component';
+import { EditarSolicitudComponent } from './solicitud/editar-solicitud/editar-solicitud.component';
 
 const routes: Routes = [
   {path: '', component: DashboardComponent,children: [
@@ -37,9 +39,11 @@ const routes: Routes = [
     { path: 'crear-departamento', component: CrearDepartamentoComponent },
     { path: 'crear-funcionario', component: CrearFuncionarioComponent },
     { path: 'crear-transaccion', component: CrearTransaccionComponent },
+    { path: 'crear-solicitud', component: CrearSolicitudComponent },
     { path: 'editar-sexo/:idSexo', component: EditarSexoComponent },
     { path: 'editar-trimestre/:idTrimestre', component: EditarTrimestreComponent },
     { path: 'editar-transaccion/:idTransaccion', component: EditarTransaccionComponent },
+    { path: 'editar-solicitud/:idSolicitud', component: EditarSolicitudComponent },
     { path: 'editar-funcionario/:idFuncionario', component: EditarFuncionarioComponent },
     { path: 'editar-departamento/:idDepartamento', component: EditarDepartamentoComponent },
  
