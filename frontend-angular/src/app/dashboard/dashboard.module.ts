@@ -25,6 +25,8 @@ import { EditarTrimestreComponent } from './trimestre/editar-trimestre/editar-tr
 import { EditarTransaccionComponent } from './transaccion/editar-transaccion/editar-transaccion.component';
 import { EditarFuncionarioComponent } from './funcionario/editar-funcionario/editar-funcionario.component';
 import { EditarDepartamentoComponent } from './departamento/editar-departamento/editar-departamento.component';
+import { CrearSolicitudComponent } from './solicitud/crear-solicitud/crear-solicitud.component';
+import { EditarSolicitudComponent } from './solicitud/editar-solicitud/editar-solicitud.component';
 
 
 
@@ -55,6 +57,8 @@ import { EditarDepartamentoComponent } from './departamento/editar-departamento/
     EditarTransaccionComponent,
     EditarFuncionarioComponent,
     EditarDepartamentoComponent,
+    CrearSolicitudComponent,
+    EditarSolicitudComponent,
 
 
   ],

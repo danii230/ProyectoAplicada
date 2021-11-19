@@ -1,1 +1,67 @@
-<p>solicitud works!</p>
+<div class="container">
+    <mat-toolbar>
+        <span class="text">Solicitud</span>
+        <div class="example-spacer"></div>
+        <button class="button" mat-raised-button routerLink="/dashboard/crear-solicitud">AGREGAR</button>
+    </mat-toolbar>
+
+    <mat-form-field appearance="standard">
+        <mat-label>Filter</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+    </mat-form-field>
+
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+        <!-- Position Column -->
+        <ng-container matColumnDef="idSolicitud">
+            <th mat-header-cell *matHeaderCellDef> id Solicitud </th>
+            <td mat-cell *matCellDef="let element"> {{element.idSolicitud}} </td>
+        </ng-container>
+
+        <!-- Position Column -->
+        <ng-container matColumnDef="idUsuarioAplicativo">
+            <th mat-header-cell *matHeaderCellDef> UsuarioAplicativp </th>
+            <td mat-cell *matCellDef="let element"> {{element.idUsuarioAplicativo}} </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="idResponsableTI">
+            <th mat-header-cell *matHeaderCellDef> Responsable TI </th>
+            <td mat-cell *matCellDef="let element"> {{element.idResponsableTI}} </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="idResponsableUsuaioFinal">
+            <th mat-header-cell *matHeaderCellDef> Responsable Usuario Final </th>
+            <td mat-cell *matCellDef="let element"> {{element.idResponsableUsuaioFinal}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="fechaInicio">
+            <th mat-header-cell *matHeaderCellDef> Fecha Inicio </th>
+            <td mat-cell *matCellDef="let element"> {{element.fechaInicio}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="fechaFin">
+            <th mat-header-cell *matHeaderCellDef> Fecha Fin </th>
+            <td mat-cell *matCellDef="let element"> {{element.fechaFin}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="acciones">
+            <th mat-header-cell *matHeaderCellDef> </th>
+            <td mat-cell *matCellDef="let element; let i = index">
+                <a class="pointer" (click)="manageSolicitud(element.idFuncionario)" style="color:#1f516f"
+                    matTooltip="Editar funcionario">
+                    <mat-icon>edit</mat-icon>
+                </a>
+                <a class="pointer" (click)="eliminarSolicitud(element.idFuncionario)" style="color:#e15639"
+                    matTooltip="Eliminar funcionario">
+                    <mat-icon>delete</mat-icon>
+                </a>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+</div>
