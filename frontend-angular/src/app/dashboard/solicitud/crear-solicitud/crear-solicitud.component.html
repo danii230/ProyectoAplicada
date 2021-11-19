@@ -7,23 +7,13 @@
         <form [formGroup]="form" (ngSubmit)="agregarSolicitud()">
             <mat-grid-list cols="4" rowHeight="70px">
 
-
-                <mat-grid-tile [colspan]="1" [rowspan]="1">
-                    <mat-form-field clas="ancho">
-                        <mat-label>Fecha y Hora</mat-label>
-                        <input  matInput [matDatepicker]="picker" formControlName="fechaHora">
-                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                        <mat-datepicker #picker></mat-datepicker>
-                    </mat-form-field>
-                </mat-grid-tile>
-
                 <mat-grid-tile [colspan]="1" [rowspan]="1">
                     <mat-form-field appearance="fill">
                         <mat-label>Responsable TI</mat-label>
                         <mat-select [formControl]="idResponsableTI" required>
                             <mat-option>--</mat-option>
-                            <mat-option *ngFor="let responsableTI of responsablesTI" [value]="responsableTI.idResponsableTI">
-                                {{responsableTI.responsableTI}}
+                            <mat-option *ngFor="let responsableTI of responsablesTI" [value]="responsableTI.idFuncionario">
+                                {{responsableTI.nombre + " " + responsableTI.apellidos}}
                             </mat-option>
                         </mat-select>
                         <mat-error *ngIf="idResponsableTI.hasError('required')">Por favor escoja el responsable de TI</mat-error>
@@ -35,8 +25,8 @@
                         <mat-label>Responsable Usuario Final</mat-label>
                         <mat-select [formControl]="idResponsableUsuarioFinal" required>
                             <mat-option>--</mat-option>
-                            <mat-option *ngFor="let responsableUsuarioFinal of responsablesUsuarioFinal" [value]="responsableUsuarioFinal.idResponsableUsuarioFinal">
-                                {{responsableUsuarioFinal.nombre}}
+                            <mat-option *ngFor="let responsableUsuarioFinal of responsablesUsuarioFinal" [value]="responsableUsuarioFinal.idFuncionario">
+                                {{responsableUsuarioFinal.nombre + " " + responsableUsuarioFinal.apellidos}}
                             </mat-option>
                         </mat-select>
                         <mat-error *ngIf="idResponsableUsuarioFinal.hasError('required')">Por favor escoja el responsable de usuario final</mat-error>
@@ -55,9 +45,9 @@
                 <mat-grid-tile [colspan]="1" [rowspan]="1">
                     <mat-form-field clas="ancho">
                         <mat-label>Fecha de Fin</mat-label>
-                        <input  matInput [matDatepicker]="picker" formControlName="fechaFin">
-                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                        <mat-datepicker #picker></mat-datepicker>
+                        <input  matInput [matDatepicker]="picker_" formControlName="fechaFin">
+                        <mat-datepicker-toggle matSuffix [for]="picker_"></mat-datepicker-toggle>
+                        <mat-datepicker #picker_></mat-datepicker>
                     </mat-form-field>
                 </mat-grid-tile>
                

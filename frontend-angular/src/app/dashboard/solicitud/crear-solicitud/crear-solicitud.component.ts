@@ -7,6 +7,8 @@ import { ResponsableTIService } from 'src/app/services/responsableTI.service';
 import { ResponsableUsuarioFinalService } from 'src/app/services/responsableUsuarioFinal.service';
 import { SolicitudService } from 'src/app/services/solicitud.service';
 import * as moment from 'moment';
+import { FuncionarioService } from 'src/app/services/funcionario.service';
+import { GeneralService } from 'src/app/services/general.service';
 
 @Component({
   selector: 'app-crear-solicitud',
@@ -21,13 +23,13 @@ export class CrearSolicitudComponent implements OnInit {
   idResponsableTI = new FormControl('', Validators.required);
   idResponsableUsuarioFinal = new FormControl('', Validators.required);
   constructor(private fb: FormBuilder, private solicitudService: SolicitudService,
-    private router: Router, private responsableTIService: ResponsableTIService, private responsableUsuarioFinalService: ResponsableUsuarioFinalService) {
+    private router: Router, private generalService: GeneralService,private funcionarioService: FuncionarioService) {
     this.form = this.fb.group({
       idSolicitud: [''],
       fechaHora: [''],
       IdUsuarioAplicativo: [''],
       fechaInicio: [''],
-      FechaFin: [''],
+      fechaFin: [''],
       idResponsableTi: ['', Validators.required],
       idResponsableUsuarioFinal: ['', Validators.required],
       idDepartamento: ['', Validators.required],
@@ -41,7 +43,8 @@ export class CrearSolicitudComponent implements OnInit {
 
   agregarSolicitud() {
     let solicitud = new Solicitud();
-    solicitud.fechaHora = moment(this.form.value.fechaHora).format("YYYY-MM-DD");
+    let temp= this.generalService.getCookie("idFuncionario");
+    solicitud.idUsuarioAplicativo = temp;
     solicitud.idResponsableTI = this.idResponsableTI.value;
     solicitud.fechaInicio = moment(this.form.value.fechaInicio).format("YYYY-MM-DD");
     solicitud.fechaFin = moment(this.form.value.fechaFin).format("YYYY-MM-DD");
@@ -64,14 +67,14 @@ export class CrearSolicitudComponent implements OnInit {
 
   getResponsableTI() {
     this.responsablesTI = [];
-    this.responsableTIService.getResponsableTI().subscribe((data: {}) => {
+    this.funcionarioService.getFuncionario().subscribe((data: {}) => {
       console.log(data);
       this.responsablesTI = data;
     })
   }
   getResponsableUsuarioFinal() {
     this.responsablesUsuarioFinal = [];
-    this.responsableUsuarioFinalService.getResponsableusuarioFinal().subscribe((data: {}) => {
+    this.funcionarioService.getFuncionario().subscribe((data: {}) => {
       console.log(data);
       this.responsablesUsuarioFinal = data;
     })

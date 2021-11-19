@@ -15,36 +15,37 @@ export class SolicitudService {
 
   constructor(private http: HttpClient) { }
 
-  public getSolicitud(){
+  public getSolicitud() {
     return this.http.get(endpoint + '/solicitud').pipe(
       map(this.extractData),
       catchError(this.handleError<any>('getSolicitud'))
     );
   }
 
-  public ingresarSolicitud(solicitud:Solicitud): Observable<any> {
+  public ingresarSolicitud(solicitud: Solicitud): Observable<any> {
     const url: string = endpoint + '/solicitud';
-    return this.http.post<any>(url,solicitud);
- 
+    return this.http.post<any>(url, solicitud);
+
   }
 
-  public delete(idSolicitud): Observable<any>{
+
+  public delete(idSolicitud: any, idUsuarioAplicativo: any): Observable<any> {
+    const url: string = endpoint + '/solicitud/' + idSolicitud + '/' + idUsuarioAplicativo;
+    return this.http.delete<any>(url);
+  }
+
+  public editarFuncionario(solicitud: Solicitud): Observable<Solicitud> {
     const url: string = endpoint + '/solicitud/';
-    return this.http.delete<any>(url +idSolicitud);
-}
+    return this.http.put<Solicitud>(url, solicitud);
+  }
 
-public editarFuncionario(solicitud: Solicitud): Observable<Solicitud> {
-  const url: string = endpoint + '/solicitud/';
-  return this.http.put<Solicitud>(url, solicitud);
-}
+  public encontrarId(id): any {
+    return this.http.get<any>(endpoint + '/solicitud/' + id).pipe(
+      map(this.extractData),
+      catchError(this.handleError<any>('encontrarId'))
+    );
 
-public encontrarId(id): any {
-  return this.http.get<any>(endpoint + '/solicitud/' + id).pipe(
-    map(this.extractData),
-    catchError(this.handleError<any>('encontrarId'))
-  );
-
-}
+  }
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       console.error(error);
@@ -55,9 +56,9 @@ public encontrarId(id): any {
     }
   }
 
-  private extractData(res: Response){
+  private extractData(res: Response) {
     let body = res;
     return body || {};
 
   }
-  }
+}

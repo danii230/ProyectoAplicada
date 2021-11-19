@@ -29,7 +29,8 @@ exports.getSolicitud = (req, res) => {
 //Insert
 exports.ingresarSolicitud = (req, res) => {
 
-    const { idResponsableTI, fechaInicio, fechaFin, idResponsableUsuarioFinal, documentoActaConstitutiva } = req.body
+    const { idUsuarioAplicativo, idResponsableTI, fechaInicio, fechaFin, idResponsableUsuarioFinal} = req.body
+    
     db_conection.sql.connect(db_conection.config, function (err) {
 
         if (err) {
@@ -38,7 +39,7 @@ exports.ingresarSolicitud = (req, res) => {
 
             db_conection.sql.query(
 
-                "exec [dbo].[ingresarSolicitud] '" + idResponsableTI + "','" + fechaInicio + "','" + fechaFin + "','" + idResponsableUsuarioFinal + "','" + documentoActaConstitutiva + "'");
+                "exec [dbo].[ingresarSolicitud] '" + idUsuarioAplicativo + "','"+ idResponsableTI + "','" + fechaInicio + "','" + fechaFin + "','" + idResponsableUsuarioFinal + "'");
         }
 
     });
@@ -48,8 +49,11 @@ exports.ingresarSolicitud = (req, res) => {
 //Delete
 exports.eliminarSolicitud = (req, res) => {
 
+    // const { idSolicitud ,idUsuarioAplicativo} = req.params;
+
     const { idSolicitud } = req.params;
 
+    const { idUsuarioAplicativo } = req.params;
 
     db_conection.sql.connect(db_conection.config, function (err) {
 
@@ -59,7 +63,7 @@ exports.eliminarSolicitud = (req, res) => {
 
             db_conection.sql.query(
 
-                "exec [dbo].[eliminarSolicitud] '" + idSolicitud + "'");
+                "exec [dbo].[eliminarSolicitud] '" + idSolicitud + "','"+ idUsuarioAplicativo + "'");
         }
 
     });
@@ -68,7 +72,7 @@ exports.eliminarSolicitud = (req, res) => {
 //Modificar
 exports.modificarSolicitud = (req, res) => {
 
-    const { idSolicitud,idResponsableTI, fechaInicio, fechaFin, idResponsableUsuarioFinal, documentoActaConstitutiva } = req.body
+    const { idSolicitud,idUsuarioAplicativo, idResponsableTI, fechaInicio, fechaFin, idResponsableUsuarioFinal, idUsuarioAplicativo_temp} = req.body
     db_conection.sql.connect(db_conection.config, function (err) {
 
         if (err) {
@@ -77,7 +81,7 @@ exports.modificarSolicitud = (req, res) => {
 
             db_conection.sql.query(
 
-                "exec [dbo].[modificarSolicitud] '" + idSolicitud + "','" + idResponsableTI + "','" + fechaInicio + "','" + idResponsableUsuarioFinal + "','" + documentoActaConstitutiva + "'");
+                "exec [dbo].[modificarSolicitud] '" + idSolicitud + "','" + idUsuarioAplicativo + "','"+ idResponsableTI + "','" + fechaInicio + "','" + fechaFin + "','" + + idResponsableUsuarioFinal + "','" +idUsuarioAplicativo_temp + "'");
         }
     });
 }

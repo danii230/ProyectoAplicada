@@ -5,31 +5,34 @@ GET {{api}}
 POST {{api}}
 Content-Type: application/json
 
-{ "idUsuarioAplicativo": "", 
-"idResponsableTI": "", 
-"fechaInicio": "", 
-"fechaFin": "", 
-"idResponsableUsuarioFinal": "", 
-"documentoActaConstitutiva": ""
+{"idUsuarioAplicativo": "1", 
+"idResponsableTI": "2", 
+"fechaInicio": "2022-05-30", 
+"fechaFin":  "2022-05-31",  
+"idResponsableUsuarioFinal": "2"
 }
+    
 
-DELETE  {{api}}
+PUT   {{api}}
 Content-Type: application/json
 
-{"idSolicitud" : "1"}
+{"idSolicitud" : "6",
+"idUsuarioAplicativo": "1"
+}
 
 
 PUT   {{api}}
 Content-Type: application/json
 
-{ "idUsuarioAplicativo": "", 
-"idResponsableTI": "", 
-"fechaInicio": "", 
-"fechaFin": "", 
-"idResponsableUsuarioFinal": "", 
-"documentoActaConstitutiva": ""
+{"idSolicitud": "9",
+"idUsuarioAplicativo": "1", 
+"idResponsableTI": "2", 
+"fechaInicio": "2022-05-31", 
+"fechaFin":  "2022-05-31",  
+"idResponsableUsuarioFinal": "7",
+"idUsuarioAplicativo_temp" :"1"
 }
 
 
-GET  {{api}}/1
+GET  {{api}}/9
 
