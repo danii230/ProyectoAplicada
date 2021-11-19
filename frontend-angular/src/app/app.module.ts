@@ -14,7 +14,6 @@ import { LoginComponent } from './login/login.component';
 import { MainComponent } from './main/main.component';
 import { SharedModule } from './shared/shared.module';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { DialogoConfirmacionComponent } from './dialogo-confirmacion/dialogo-confirmacion.component';
 
 
 const appRoutes: Routes = [
@@ -40,8 +39,7 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     LoginComponent,
-    MainComponent,
-    DialogoConfirmacionComponent
+    MainComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
@@ -52,8 +50,7 @@ const appRoutes: Routes = [
     AppRoutingModule,
     HttpClientModule,
     SharedModule,
-    MatToolbarModule,
-    DialogoConfirmacionComponent
+    MatToolbarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

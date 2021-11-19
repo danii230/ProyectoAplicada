@@ -5,9 +5,6 @@ import { ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { SexoService } from 'src/app/services/sexo.service';
 import { Router } from '@angular/router';
-import { MatDialog } from '@angular/material/dialog';
-import { DialogoConfirmacionComponent } from 'src/app/dialogo-confirmacion/dialogo-confirmacion.component';
-
 
 
 @Component({
@@ -27,7 +24,7 @@ export class SexoComponent implements OnInit {
 
 
   constructor(private sexoService: SexoService,
-    private router: Router, public dialogo: MatDialog) { }
+    private router: Router) { }
 
   ngOnInit(): void {
     this.cargarMantenimientos();
@@ -60,20 +57,5 @@ export class SexoComponent implements OnInit {
   manageSexo(idSexo: number){
     console.log(idSexo);
       this.router.navigate(['/dashboard/editar-sexo/' + idSexo]);
-  }
-
-  mostrarDialogo(idSexo: any): void {
-    this.dialogo
-      .open(DialogoConfirmacionComponent, {
-        data: `¿Está seguro que desea eliminar este sexo?`
-      })
-      .afterClosed()
-      .subscribe((confirmado: Boolean) => {
-        if (confirmado) {
-          this.eliminarSexo(idSexo);
-        } else {
-          alert("no se eliminó");
-        }
-      });
   }
 }
