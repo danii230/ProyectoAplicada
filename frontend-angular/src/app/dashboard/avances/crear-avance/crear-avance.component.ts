@@ -17,9 +17,9 @@ import { TrimestreService } from 'src/app/services/trimestre.service';
 export class CrearAvanceComponent implements OnInit {
 
   form: FormGroup;
-  trimestre: any = [];
-  usuarioAplicativo: any = [];
-  solicitud: any = [];
+  trimestres: any = [];
+  usuariosAplicativos: any = [];
+  solicitudes: any = [];
   idUsuarioAplicativo = new FormControl('', Validators.required);
   idTrimestre = new FormControl('', Validators.required);
   idSolicitud = new FormControl('', Validators.required);
@@ -62,24 +62,24 @@ export class CrearAvanceComponent implements OnInit {
   };
 
   getUsuarioAplicativo() {
-    this.usuarioAplicativo = [];
+    this.usuariosAplicativos = [];
     this.funcionarioService.getFuncionario().subscribe((data: {}) => {
       console.log(data);
-      this.usuarioAplicativo = data;
+      this.usuariosAplicativos = data;
     })
   }
   getTrimestre() {
-    this.trimestre = [];
+    this.trimestres = [];
     this.trimestreService.getTrimestre().subscribe((data: {}) => {
       console.log(data);
-      this.trimestre = data;
+      this.trimestres = data;
     })
   }
   getSolicitud() {
-    this.solicitud = [];
+    this.solicitudes = [];
     this.solicitudService.getSolicitud().subscribe((data: {}) => {
       console.log(data);
-      this.solicitud = data;
+      this.solicitudes = data;
     })
   }
 }

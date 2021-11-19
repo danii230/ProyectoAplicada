@@ -23,6 +23,8 @@ import { EditarFuncionarioComponent } from './funcionario/editar-funcionario/edi
 import { EditarDepartamentoComponent } from './departamento/editar-departamento/editar-departamento.component';
 import { CrearSolicitudComponent } from './solicitud/crear-solicitud/crear-solicitud.component';
 import { EditarSolicitudComponent } from './solicitud/editar-solicitud/editar-solicitud.component';
+import { CrearAvanceComponent } from './avances/crear-avance/crear-avance.component';
+import { EditarAvanceComponent } from './avances/editar-avance/editar-avance.component';
 
 const routes: Routes = [
   {path: '', component: DashboardComponent,children: [
@@ -33,9 +35,11 @@ const routes: Routes = [
     { path: 'departamento', component: DepartamentoComponent },
     { path: 'funcionario', component: FuncionarioComponent },
     { path: 'transaccion', component: TransaccionComponent },
+    { path: 'avance', component: AvancesComponent },
     { path: 'solicitud', component: SolicitudComponent },
     { path: 'cambios', component: CambiosComponent },
     { path: 'crear-trimestre', component: CrearTrimestreComponent },
+    { path: 'crear-avance', component: CrearAvanceComponent },
     { path: 'crear-departamento', component: CrearDepartamentoComponent },
     { path: 'crear-funcionario', component: CrearFuncionarioComponent },
     { path: 'crear-transaccion', component: CrearTransaccionComponent },
@@ -43,6 +47,7 @@ const routes: Routes = [
     { path: 'editar-sexo/:idSexo', component: EditarSexoComponent },
     { path: 'editar-trimestre/:idTrimestre', component: EditarTrimestreComponent },
     { path: 'editar-transaccion/:idTransaccion', component: EditarTransaccionComponent },
+    { path: 'editar-avance/:idAvance', component: EditarAvanceComponent },
     { path: 'editar-solicitud/:idSolicitud', component: EditarSolicitudComponent },
     { path: 'editar-funcionario/:idFuncionario', component: EditarFuncionarioComponent },
     { path: 'editar-departamento/:idDepartamento', component: EditarDepartamentoComponent },
