@@ -9,6 +9,7 @@ import { SexoService } from 'src/app/services/sexo.service';
 import { FormControl } from '@angular/forms';
 import { MatCalendarCellClassFunction } from '@angular/material/datepicker';
 import { Sexo } from 'src/app/interfaces/sexo';
+import * as moment from 'moment';
 
 
 interface Animal {
@@ -54,12 +55,11 @@ export class CrearFuncionarioComponent implements OnInit {
     funcionario.loginName = this.form.value.loginName;
     funcionario.password = this.form.value.password;
     funcionario.idDepartamento = this.idDepartamento.value;
-    funcionario.fechaNacimiento =this.form.value.fechaNacimiento;
-
-    console.log(this.convertToDate(this.form.value.fechaNacimiento));
-    // this.funcionarioService.ingresarFuncionario(funcionario).subscribe(data =>
-    //   console.log(data));
-    // this.router.navigate(['/dashboard/funcionario'])
+    funcionario.fechaNacimiento = moment(this.form.value.fechaNacimiento).format("YYYY-MM-DD");
+    console.log(funcionario);
+    this.funcionarioService.ingresarFuncionario(funcionario).subscribe(data =>
+    console.log(data));
+    this.router.navigate(['/dashboard/funcionario'])
   }
   dateClass: MatCalendarCellClassFunction<Date> = (cellDate, view) => {
     // Only highligh dates inside the month view.
@@ -87,24 +87,5 @@ export class CrearFuncionarioComponent implements OnInit {
       this.departamentos = data;
     })
   }
-  convertToDate(dateString) {
-    //  Convert a "dd/MM/yyyy" string into a Date object
-    let d = dateString.split("/");
-    let dat = new Date(d[2] + '/' + d[1] + '/' + d[0]);
-    return dat;     
-}
 
-}
-
-function newUYDate(pDate) {
-  let dd = pDate.split("/")[0].padStart(2, "0");
-  let mm = pDate.split("/")[1].padStart(2, "0");
-  let yyyy = pDate.split("/")[2].split(" ")[0];
-  let hh = pDate.split("/")[2].split(" ")[1].split(":")[0].padStart(2, "0");
-  let mi = pDate.split("/")[2].split(" ")[1].split(":")[1].padStart(2, "0");
-  let secs = pDate.split("/")[2].split(" ")[1].split(":")[2].padStart(2, "0");
-
-  mm = (parseInt(mm) - 1).toString(); // January is 0
-
-  return new Date(yyyy, mm, dd, hh, mi, secs);
 }

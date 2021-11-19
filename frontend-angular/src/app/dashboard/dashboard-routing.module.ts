@@ -21,7 +21,6 @@ import { EditarTrimestreComponent } from './trimestre/editar-trimestre/editar-tr
 import { EditarTransaccionComponent } from './transaccion/editar-transaccion/editar-transaccion.component';
 import { EditarFuncionarioComponent } from './funcionario/editar-funcionario/editar-funcionario.component';
 import { EditarDepartamentoComponent } from './departamento/editar-departamento/editar-departamento.component';
-import { DialogoConfirmacionComponent } from '../dialogo-confirmacion/dialogo-confirmacion.component';
 
 const routes: Routes = [
   {path: '', component: DashboardComponent,children: [

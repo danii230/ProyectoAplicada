@@ -2,7 +2,7 @@ export class Funcionario {
     idFuncionario: number;
     nombre: string;
     apellidos: string;
-    fechaNacimiento: Date;
+    fechaNacimiento: string;
     idSexo: number;
     loginName: string;
     password: string;
