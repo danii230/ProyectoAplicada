@@ -4,6 +4,8 @@ import { ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { FuncionarioService } from 'src/app/services/funcionario.service';
 import { Router } from '@angular/router';
+import { CrearFuncionarioComponent } from './crear-funcionario/crear-funcionario.component';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-funcionario',
@@ -54,6 +56,5 @@ export class FuncionarioComponent implements OnInit {
     console.log(idFuncionario);
       this.router.navigate(['/dashboard/editar-funcionario/' + idFuncionario]);
   }
-
 
 }

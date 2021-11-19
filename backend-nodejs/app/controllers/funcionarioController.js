@@ -30,7 +30,7 @@ exports.getFuncionario = (req, res) => {
 //Insert
 exports.ingresarFuncionario = (req, res) => {
 
-    const { nombre, apellidos,idSexo, fechaNacimiento, loginName, password,idDepartamento } = req.body
+    const { nombre, apellidos, fechaNacimiento, idSexo, loginName, password, idDepartamento } = req.body
     db_conection.sql.connect(db_conection.config, function (err) {
 
         if (err) {
@@ -40,7 +40,7 @@ exports.ingresarFuncionario = (req, res) => {
             db_conection.sql.query(
 
 
-                "exec [dbo].[ingresarFuncionario] '" + nombre + "','" + apellidos + "','" + fechaNacimiento + "','" +  idSexo + "','" + loginName + "','" + password + "','" + idDepartamento +"'");
+                "exec [dbo].[ingresarFuncionario] '" + nombre + "','" + apellidos + "','" + fechaNacimiento + "','" + idSexo + "','" + loginName + "','" + password + "','" + idDepartamento + "'");
         }
 
     });
@@ -69,7 +69,8 @@ exports.eliminarFuncionario = (req, res) => {
 //Delete
 exports.modificarFuncionario = (req, res) => {
 
-    const { idFuncionario, nombre, apellidos, fechaNacimiento, idSexo, loginName, password, foto, idDepartamento } = req.body
+
+    const { idFuncionario, nombre, apellidos, fechaNacimiento, idSexo, loginName, password, idDepartamento } = req.body
     db_conection.sql.connect(db_conection.config, function (err) {
 
         if (err) {
@@ -78,7 +79,7 @@ exports.modificarFuncionario = (req, res) => {
 
             db_conection.sql.query(
 
-                "exec [dbo].[modificarFuncionario] '" + idFuncionario + nombre + "','" + apellidos + "','" + fechaNacimiento + "','" + idSexo + "','" + loginName + "','" + password + "','" + idDepartamento + "','" + foto + "'");
+                "exec [dbo].[modificarFuncionario] '" + idFuncionario + "','" + nombre + "','" + apellidos + "','" + fechaNacimiento + "','" + idSexo + "','" + loginName + "','" + password + "','" + idDepartamento + "'");
         }
     });
 }

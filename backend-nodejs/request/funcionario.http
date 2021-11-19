@@ -6,15 +6,13 @@ POST {{api}}
 Content-Type: application/json
 
 
-{ "nombre": "Test", 
+{"nombre": "Test", 
 "apellidos": "Test", 
-"fechaNacimiento": "", 
-"idSexo": "", 
-"loginName": "", 
-"password": "",  
-"foto": "", 
-"idDepartamento": "", 
-}
+"fechaNacimiento": "2019-05-30", 
+"idSexo": "28", 
+"loginName": "vale@gestion.org", 
+"password": "123", 
+"idDepartamento": "1"}
 
 DELETE  {{api}}
 Content-Type: application/json
@@ -25,15 +23,14 @@ Content-Type: application/json
 PUT   {{api}}
 Content-Type: application/json
 
-{"idFuncionario" : "9",
-"nombre": "", 
-"apellidos": "", 
-"fechaNacimiento": "", 
-"idSexo": "", 
-"loginName": "", 
-"password": "",  
-"foto": "", 
-"idDepartamento": "",
+{"idFuncionario" : "1",
+"nombre": "Test", 
+"apellidos": "Test", 
+"fechaNacimiento": "2019-05-30", 
+"idSexo": "28", 
+"loginName": "vale@gestion.org", 
+"password": "124", 
+"idDepartamento": "1"
 }
 
 
