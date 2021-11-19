@@ -11,11 +11,6 @@
     },
 
     {
-        "nombre": "Cambios",  
-        "redirect": "/dashboard/cambios"
-    },
-
-    {
         "nombre": "Avances",  
         "redirect": "/dashboard/avances"
     },

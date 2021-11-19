@@ -1,9 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Funcionario } from 'src/app/interfaces/funcionario';
+import { DepartamentoService } from 'src/app/services/departamento.service';
 import { FuncionarioService } from 'src/app/services/funcionario.service';
+import { SexoService } from 'src/app/services/sexo.service';
 import { TransaccionService } from 'src/app/services/transaccion.service';
+
+
 
 @Component({
   selector: 'app-editar-funcionario',
@@ -12,13 +16,30 @@ import { TransaccionService } from 'src/app/services/transaccion.service';
 })
 export class EditarFuncionarioComponent implements OnInit {
 
-  descripcion: any;
+
   form: FormGroup;
   id: number;
+  sexos: any = [];
+  departamentos: any = [];
+  nombre: any;
+  fechaNacimiento: any;
+  apellidos: any;
+  loginName: any;
+  password: any;
+  idS: any;
+  idSexo = new FormControl('', Validators.required);
+  idDepartamento = new FormControl('', Validators.required);
   constructor(private funcionarioService: FuncionarioService, private route: ActivatedRoute,
-    private router: Router, private fb: FormBuilder,) {
+    private router: Router, private fb: FormBuilder, private sexoService: SexoService, private departamentoService: DepartamentoService,) {
     this.form = this.fb.group({
-      descripcion: ['', Validators.required]
+      idFuncionario: [''],
+      nombre: ['', Validators.required],
+      apellidos: ['', Validators.required],
+      loginName: ['', Validators.required],
+      password: ['', Validators.required],
+      idSexo: ['', Validators.required],
+      idDepartamento: ['', Validators.required],
+      fechaNacimiento: ['']
     })
 
   }
@@ -28,21 +49,44 @@ export class EditarFuncionarioComponent implements OnInit {
     this.id = Number(this.route.snapshot.paramMap.get('idFuncionario'));
 
     this.loadFuncionario(this.id);
+    this.getSexo();
+    this.getDepartamento();
 
   }
 
   loadFuncionario(id: any): void {
     this.funcionarioService.encontrarId(id).subscribe(data => {
-      this.descripcion = data[0].descripcion;
+      this.nombre = data[0].nombre;
+      this.apellidos = data[0].apellidos;
+      this.loginName = data[0].loginName;
+      this.password = data[0].password;
+      this.fechaNacimiento = data[0].fechaNacimiento;
+      this.idS = data[0].idSexo;
+
     });
   }
 
   modificarFuncionario() {
     let funcionario = new Funcionario();
-    funcionario.idFuncionario =this.id;
+    funcionario.idFuncionario = this.id;
     funcionario.nombre = this.form.value.nombre;
     this.funcionarioService.editarFuncionario(funcionario).subscribe(data =>
       console.log(data));
     this.router.navigate(['/dashboard/funcionario'])
+  }
+
+  getSexo() {
+    this.sexos = [];
+    this.sexoService.getSexo().subscribe((data: {}) => {
+      console.log(data);
+      this.sexos = data;
+    })
+  }
+  getDepartamento() {
+    this.departamentos = [];
+    this.departamentoService.getDepartamento().subscribe((data: {}) => {
+      console.log(data);
+      this.departamentos = data;
+    })
   }
 }
