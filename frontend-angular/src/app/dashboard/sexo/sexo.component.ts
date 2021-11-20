@@ -66,7 +66,7 @@ export class SexoComponent implements OnInit {
   mostrarDialogo(idSexo: any): void {
     this.dialogo
       .open(DialogoConfirmacionComponent, {
-        data: `¿Te gusta programar en TypeScript?`
+        data: `¿Desea eliminar?`
       })
       .afterClosed()
       .subscribe((confirmado: Boolean) => {
