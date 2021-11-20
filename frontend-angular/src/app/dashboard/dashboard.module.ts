@@ -27,6 +27,8 @@ import { EditarFuncionarioComponent } from './funcionario/editar-funcionario/edi
 import { EditarDepartamentoComponent } from './departamento/editar-departamento/editar-departamento.component';
 import { CrearSolicitudComponent } from './solicitud/crear-solicitud/crear-solicitud.component';
 import { EditarSolicitudComponent } from './solicitud/editar-solicitud/editar-solicitud.component';
+import { CrearAvanceComponent } from './avances/crear-avance/crear-avance.component';
+import { EditarAvanceComponent } from './avances/editar-avance/editar-avance.component';
 
 
 
@@ -59,6 +61,8 @@ import { EditarSolicitudComponent } from './solicitud/editar-solicitud/editar-so
     EditarDepartamentoComponent,
     CrearSolicitudComponent,
     EditarSolicitudComponent,
+    CrearAvanceComponent,
+    EditarAvanceComponent,
 
 
   ],
