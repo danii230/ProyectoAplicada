@@ -1,8 +1,8 @@
 <div class="container">
   <mat-toolbar>
-    <span>Trimestre</span>
+    <span class="text">Trimestre</span>
     <div class="example-spacer"></div>
-      <button mat-raised-button color="primary" routerLink="/dashboard/crear-trimestre">AGREGAR</button>
+      <button mat-raised-button class="button" routerLink="/dashboard/crear-trimestre">AGREGAR</button>
   </mat-toolbar>
   
     <mat-form-field appearance="standard">
@@ -11,10 +11,6 @@
     </mat-form-field>
   
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-  
-      <!--- Note that these columns can be defined in any order.
-            The actual rendered columns are set as a property on the row definition" -->
-    
       <!-- Position Column -->
       <ng-container matColumnDef="idTrimestre">
         <th mat-header-cell *matHeaderCellDef> Id </th>

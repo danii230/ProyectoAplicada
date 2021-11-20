@@ -5,11 +5,10 @@ GET {{api}}
 POST {{api}}
 Content-Type: application/json
 
-{"idTrimestre": "", 
-"documento": "", 
-"fechaHora": "", 
-"idUsuarioAplicativo": "", 
-"idSolcitud": ""
+{"idTrimestre": "28", 
+"idUsuarioAplicativo": "3", 
+"idSolicitud": "17",
+"finalizado": "1"
 }
 
 DELETE  {{api}}
@@ -21,13 +20,13 @@ Content-Type: application/json
 PUT   {{api}}
 Content-Type: application/json
 
-{"idTrimestre": "", 
-"documento": "", 
-"fechaHora": "", 
-"idUsuarioAplicativo": "", 
-"idSolcitud": ""
+{"idAvance": "7",
+"idTrimestre": "28", 
+"idUsuarioAplicativo": "3", 
+"idSolicitud": "17",
+"finalizado": "0",
+"idUsuarioAplicativo_temp" :"1"
 }
 
-
-GET  {{api}}/1
+GET  {{api}}/4
 

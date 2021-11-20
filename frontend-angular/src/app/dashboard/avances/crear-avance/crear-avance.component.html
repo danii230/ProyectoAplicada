@@ -1,6 +1,6 @@
 <div class="container">
     <mat-toolbar>
-        <span>Agregar Avance</span>
+        <span class="text">Agregar Avance</span>
     </mat-toolbar>
 
     <mat-card style="margin-top: 10px;">
@@ -26,7 +26,7 @@
                         <mat-select [formControl]="idTrimestre" required>
                             <mat-option>--</mat-option>
                             <mat-option *ngFor="let trimestre of trimestres" [value]="trimestre.idTrimestre">
-                                {{trimestre.nombre}}
+                                {{trimestre.descripcion}}
                             </mat-option>
                         </mat-select>
                         <mat-error *ngIf="idTrimestre.hasError('required')">Por favor escoja el trimestre</mat-error>
@@ -39,7 +39,7 @@
                         <mat-select [formControl]="idSolicitud" required>
                             <mat-option>--</mat-option>
                             <mat-option *ngFor="let solicitud of solicitudes" [value]="solicitud.idSolicitud">
-                                {{solicitud.descripcion}}
+                                {{solicitud.idSolicitud}}
                             </mat-option>
                         </mat-select>
                         <mat-error *ngIf="idTrimestre.hasError('required')">Por favor escoja el trimestre</mat-error>
@@ -48,7 +48,7 @@
                
                 <mat-grid-tile [colspan]="1" [rowspan]="1">
                     <button mat-raised-button style="margin-right: 20px;">Volver</button>
-                    <button type="submit" mat-raised-button color="primary">Aceptar</button>
+                    <button type="submit" mat-raised-button class="button">Aceptar</button>
                 </mat-grid-tile>
             </mat-grid-list>
         </form>

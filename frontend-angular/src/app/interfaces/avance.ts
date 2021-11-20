@@ -4,4 +4,5 @@ export class Avance {
     fecha: Date;
     idUsuarioAplicativo: string;
     idSolicitud: number;
+    finalizado: boolean;
   }

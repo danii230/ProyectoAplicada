@@ -58,7 +58,7 @@ export class CrearFuncionarioComponent implements OnInit {
     funcionario.fechaNacimiento = moment(this.form.value.fechaNacimiento).format("YYYY-MM-DD");
     console.log(funcionario);
     this.funcionarioService.ingresarFuncionario(funcionario).subscribe(data =>
-    console.log(data));
+      console.log(data));
     this.router.navigate(['/dashboard/funcionario'])
   }
   dateClass: MatCalendarCellClassFunction<Date> = (cellDate, view) => {
