@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogoConfirmacionComponent } from "src/app/dialogo-confirmacion/dialogo-confirmacion.component";
 import { CrearSexoComponent } from './crear-sexo/crear-sexo.component';
+import { EditarSexoComponent } from './editar-sexo/editar-sexo.component';
 
 
 
@@ -80,7 +81,12 @@ export class SexoComponent implements OnInit {
   }
 
   openDialog() {
-    const dialogRef = this.dialogo.open(CrearSexoComponent);
+    const dialogRef = this.dialogo.open(CrearSexoComponent);  
+  }
+
+  editarModal(idSexo: number) {
+    const dialogRef = this.dialogo.open(EditarSexoComponent);  
+    this.manageSexo(idSexo);
   }
 }
 
