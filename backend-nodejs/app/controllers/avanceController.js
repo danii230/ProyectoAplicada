@@ -29,7 +29,7 @@ exports.getAvance = (req, res) => {
 //Insert
 exports.ingresarAvance = (req, res) => {
 
-    const { idTrimestre,documento,fechaHora,idUsuarioAplicativo,idSolicitud } = req.body
+    const { idTrimestre, idUsuarioAplicativo, idSolicitud, finalizado } = req.body
     db_conection.sql.connect(db_conection.config, function (err) {
 
         if (err) {
@@ -38,7 +38,7 @@ exports.ingresarAvance = (req, res) => {
 
             db_conection.sql.query(
 
-                "exec [dbo].[ingresarAvance] '"+ idTrimestre + "','"+ documento + "','" +fechaHora + "','" +  idUsuarioAplicativo + "','" + idSolicitud + "'");
+                "exec [dbo].[ingresarAvance] '" + idTrimestre + "','" + idUsuarioAplicativo + "','" + idSolicitud + "','" +finalizado + "'");
         }
 
     });
@@ -49,8 +49,8 @@ exports.ingresarAvance = (req, res) => {
 exports.eliminarAvance = (req, res) => {
 
     const { idAvance } = req.params;
-    
-  
+    const { idUsuarioAplicativo } = req.params;
+
     db_conection.sql.connect(db_conection.config, function (err) {
 
         if (err) {
@@ -59,7 +59,7 @@ exports.eliminarAvance = (req, res) => {
 
             db_conection.sql.query(
 
-                "exec [dbo].[eliminarAvance] '" + idAvance + "'");
+                "exec [dbo].[eliminarAvance] '" + idAvance + "','"+ idUsuarioAplicativo + "'");
         }
 
     });
@@ -68,8 +68,8 @@ exports.eliminarAvance = (req, res) => {
 //Modificar
 exports.modificarAvance = (req, res) => {
 
-    const { idAvance,idTrimestre,documento,fechaHora,idUsuarioAplicativo,idSolicitud } = req.body
-    db_conection.sql.connect(db_conection.config, function (err) {
+    const { idAvance,idTrimestre, idUsuarioAplicativo, idSolicitud, finalizado, idUsuarioAplicativo_temp } = req.body
+      db_conection.sql.connect(db_conection.config, function (err) {
 
         if (err) {
             console.log(err);
@@ -77,7 +77,7 @@ exports.modificarAvance = (req, res) => {
 
             db_conection.sql.query(
 
-                "exec [dbo].[modificarAvance] '" + idAvance+ "','" +idTrimestre + "','"+ documento + "','" +fechaHora + "','" +  idUsuarioAplicativo + "','" + idSolicitud + "'");
+                "exec [dbo].[modificarAvance] '" + idAvance + "','" + idTrimestre + "','" + idUsuarioAplicativo + "','" + idSolicitud + "','" +finalizado + "','" + idUsuarioAplicativo_temp + "'");
         }
     });
 }

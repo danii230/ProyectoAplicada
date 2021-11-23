@@ -45,6 +45,7 @@ export class CrearAvanceComponent implements OnInit {
     avance.idUsuarioAplicativo = temp;
     avance.idSolicitud = this.idSolicitud.value;
     avance.idTrimestre = this.idTrimestre.value;
+    avance.finalizado = true; 
     this.avanceService.ingresarAvance(avance).subscribe(data =>
     console.log(data));
     this.router.navigate(['/dashboard/avance'])

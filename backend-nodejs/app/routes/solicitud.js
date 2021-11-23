@@ -17,11 +17,6 @@ router.post(
     controller.ingresarSolicitud
 )
 
-// router.put(
-//     `/${path}`,
-//     controller.eliminarSolicitud
-// )
-
 router.delete('/solicitud/:idSolicitud/:idUsuarioAplicativo/', controller.eliminarSolicitud);
 
 router.put(

@@ -5,3 +5,14 @@ table {
     font-size: 14px;
     width: 100%;
   }
+  .button{
+    color: #EDE7E3;
+    background: rgb(246,145,145);
+    background: linear-gradient(90deg, rgba(246,145,145,0.7959558823529411) 0%, rgba(196,171,227,1) 37%, rgba(124,0,255,0.7203256302521008) 100%);
+  
+    }
+    .text{
+      color: rgb(246,145,145);
+      color: linear-gradient(90deg, rgba(246,145,145,0.7959558823529411) 0%, rgba(196,171,227,1) 37%, rgba(124,0,255,0.7203256302521008) 100%);
+    }
+   

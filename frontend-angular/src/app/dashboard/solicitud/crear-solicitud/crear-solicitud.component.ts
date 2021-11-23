@@ -3,8 +3,6 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { MatCalendarCellClassFunction } from '@angular/material/datepicker';
 import { Router } from '@angular/router';
 import { Solicitud } from 'src/app/interfaces/solicitud';
-import { ResponsableTIService } from 'src/app/services/responsableTI.service';
-import { ResponsableUsuarioFinalService } from 'src/app/services/responsableUsuarioFinal.service';
 import { SolicitudService } from 'src/app/services/solicitud.service';
 import * as moment from 'moment';
 import { FuncionarioService } from 'src/app/services/funcionario.service';

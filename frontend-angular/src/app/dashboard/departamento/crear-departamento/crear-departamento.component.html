@@ -1,6 +1,6 @@
 <div class="container">
     <mat-toolbar>
-        <span>Agregar Departamento</span>
+        <span class="text">Agregar Departamento</span>
     </mat-toolbar>
 
     <mat-card style="margin-top: 10px;">
@@ -11,14 +11,10 @@
                         <mat-label>Descripción</mat-label>
                         <input matInput autocomplete="off" formControlName="descripcion">
                       </mat-form-field>
-                </mat-grid-tile>
-                <mat-grid-tile [colspan]="3" [rowspan]="5">
-                    IMG
-                </mat-grid-tile>
-               
+                </mat-grid-tile>              
                  <mat-grid-tile [colspan]="1" [rowspan]="1">
                     <button mat-raised-button style="margin-right: 20px;">Volver</button>
-                    <button type="submit" mat-raised-button color="primary">Aceptar</button>
+                    <button class="button" type="submit" mat-raised-button >Aceptar</button>
                  </mat-grid-tile>
             </mat-grid-list>
         </form>

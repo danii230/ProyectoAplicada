@@ -18,7 +18,7 @@ router.post(
 )
 
 
-router.delete('/avance/:idAvance/', controller.eliminarAvance);
+router.delete('/avance/:idAvance/:idUsuarioAplicativo/', controller.eliminarAvance);
 
 router.put(
     `/${path}`,

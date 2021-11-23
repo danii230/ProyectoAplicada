@@ -19,6 +19,7 @@ import { SolicitudComponent } from './dasboard/solicitud/solicitud.component';
 import { DialogoConfirmacionComponent } from './dialogo-confirmacion/dialogo-confirmacion.component';
 
 
+
 const appRoutes: Routes = [
   {
     path: 'main',
@@ -35,7 +36,7 @@ const appRoutes: Routes = [
     redirectTo: '/login',
     pathMatch: 'full'
   },  
-
+   
 ];
 
 @NgModule({
