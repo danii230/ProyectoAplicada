@@ -25,18 +25,12 @@
         </ng-container>
 
         <!-- Name Column -->
-        <ng-container matColumnDef="fecha">
-            <th mat-header-cell *matHeaderCellDef> Fecha </th>
-            <td mat-cell *matCellDef="let element"> {{element.fecha}} </td>
-        </ng-container>
-
-        <!-- Name Column -->
         <ng-container matColumnDef="idUsuarioAplicativo">
             <th mat-header-cell *matHeaderCellDef> Usuario Aplicativo </th>
             <td mat-cell *matCellDef="let element"> {{element.nombreUA + " " + element.apellidosUA}} </td>
         </ng-container>
 
-        <ng-container matColumnDef="IdSolicitud">
+        <ng-container matColumnDef="idSolicitud">
             <th mat-header-cell *matHeaderCellDef>Solicitud </th>
             <td mat-cell *matCellDef="let element"> {{element.solicitud}} </td>
         </ng-container>
