@@ -91,8 +91,12 @@ export class SexoComponent implements OnInit {
 
 
   editarModal(idSexo: number) {
-    const dialogRef = this.dialogo.open(EditarSexoComponent);  
-    this.manageSexo(idSexo);
+    this.dialogo.open(EditarSexoComponent,
+      {
+        height: '400px',
+        width: '600px',
+      });
+   
   }
 }
 
