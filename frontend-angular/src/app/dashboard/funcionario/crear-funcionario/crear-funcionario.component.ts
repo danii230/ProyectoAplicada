@@ -40,12 +40,13 @@ export class CrearFuncionarioComponent implements OnInit {
       password: ['', Validators.required],
       idSexo: ['', Validators.required],
       idDepartamento: ['', Validators.required],
-      fechaNacimiento: ['']
+      fechaNacimiento: [''],
     })
   }
   public previsualizacion: string;
   public archivos: any = [];
   public loading: boolean;
+  image: any = "../"
   ngOnInit(): void {
     this.getSexo();
     this.getDepartamento();
@@ -61,8 +62,18 @@ export class CrearFuncionarioComponent implements OnInit {
       funcionario.password = this.form.value.password;
       funcionario.idDepartamento = this.idDepartamento.value;
       funcionario.fechaNacimiento = moment(this.form.value.fechaNacimiento).format("YYYY-MM-DD");
-      funcionario.foto = (this.archivos[0]);
-      console.log(funcionario);
+      const formularioDeDatos = new FormData();
+      this.archivos.forEach(archivo => {
+        formularioDeDatos.append('files', archivo)
+      })
+       funcionario.foto = this.archivos[0];
+
+       
+
+     
+      // Foto
+      // funcionario.foto = (this.archivos[0]);
+      console.log(formularioDeDatos);
       // this.funcionarioService.ingresarFuncionario(funcionario).subscribe(data =>
       //   console.log(data));
       // this.router.navigate(['/dashboard/funcionario'])
@@ -104,9 +115,13 @@ export class CrearFuncionarioComponent implements OnInit {
     this.generalService.extraerBase64(archivoCapturado).then((imagen: any) => {
       this.previsualizacion = imagen.base;
       console.log(imagen);
+      let decodificado = atob(this.image);
+      console.log(decodificado);
 
     })
     this.archivos.push(archivoCapturado)
+
+   
     // 
     // console.log(event.target.files);
 
@@ -115,6 +130,6 @@ export class CrearFuncionarioComponent implements OnInit {
     this.previsualizacion = '';
     this.archivos = [];
   }
-
+  
 
 }
