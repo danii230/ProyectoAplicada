@@ -14,6 +14,7 @@ import { GeneralService } from 'src/app/services/general.service';
 import { DomSanitizer } from '@angular/platform-browser';
 
 
+
 interface Animal {
   name: string;
   sound: string;
@@ -158,17 +159,22 @@ export class CrearFuncionarioComponent implements OnInit {
   //     reader.onerror = reject;
   //     reader.readAsDataURL(myBlob);
   //   })
-  return this.sanitizer.bypassSecurityTrustUrl(myBlob);
-   }
+  // return this.sanitizer.bypassSecurityTrustUrl(myBlob);
+  
+  }
 
   convertUrlToImageData = async (myImageUrl) => {
     try {
       let myBlob = await this.getBlobFromUrl(myImageUrl);
-      console.log(myBlob)
-      // let myImageData = await this.getDataFromBlob(myBlob);
-      // console.log(myImageData)
-      // this.previsualizacion= myImageData.toString();
+      console.log(this.archivos[0])
+      let myImageData = await this.getDataFromBlob(myBlob);
+       console.log(myImageData)
       // return myImageData;
+
+     
+ 
+   
+
     } catch (err) {
       console.log(err);
       return null;
