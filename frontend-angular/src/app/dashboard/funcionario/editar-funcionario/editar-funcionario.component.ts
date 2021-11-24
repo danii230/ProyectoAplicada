@@ -28,8 +28,7 @@ export class EditarFuncionarioComponent implements OnInit {
   apellidos: any;
   loginName: any;
   password: any;
-  idS: any;
-  idD: any;
+  selectedProfile : any;
   idSexo = new FormControl('', Validators.required);
   idDepartamento = new FormControl('', Validators.required);
   constructor(private funcionarioService: FuncionarioService, private route: ActivatedRoute,
@@ -50,10 +49,10 @@ export class EditarFuncionarioComponent implements OnInit {
   ngOnInit(): void {
 
     this.id = Number(this.route.snapshot.paramMap.get('idFuncionario'));
-
-    this.loadFuncionario(this.id);
     this.getSexo();
     this.getDepartamento();
+    this.loadFuncionario(this.id);
+  
 
   }
 
@@ -64,8 +63,10 @@ export class EditarFuncionarioComponent implements OnInit {
       this.loginName = data[0].loginName;
       this.password = data[0].password;
       this.fechaNacimiento = data[0].fechaNacimiento;
-      this.idS = data[0].idSexo;
-      this.idD = 'test';
+      this.selectedProfile = data[0].idSexo;
+      console.log(data);
+      console.log(this.selectedProfile);
+  
 
     });
   }

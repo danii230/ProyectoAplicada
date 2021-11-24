@@ -42,9 +42,9 @@
                 <mat-grid-tile [colspan]="1" [rowspan]="1">
                     <mat-form-field appearance="fill">
                         <mat-label>Sexo</mat-label>
-                        <mat-select [formControlName]="idSexo" required>
+                        <mat-select [formControlName]="idSexo"  [value]="selectedProfile" required>
                             <mat-option>--</mat-option>
-                            <mat-option *ngFor="let sexo of sexos" [value]="sexo.idSexo" [selected]="sexos == sexo.idSexo">
+                            <mat-option *ngFor="let sexo of sexos" [value]="sexo.idSexo" >
                                 {{sexo.descripcion}}
                             </mat-option>
                           
@@ -58,7 +58,7 @@
                         <mat-label>Departamento</mat-label>
                         <mat-select [formControl]="idDepartamento" required>
                             <mat-option>--</mat-option>
-                            <mat-option *ngFor="let departamento of departamentos" [value]="departamento.idDepartamento">
+                            <mat-option *ngFor="let departamento of departamentos" [value]="departamento.idDepartamento" >
                                 {{departamento.descripcion}}
                             </mat-option>
                         </mat-select>
