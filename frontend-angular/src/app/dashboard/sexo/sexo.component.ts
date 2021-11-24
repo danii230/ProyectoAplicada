@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Sexo } from 'src/app/interfaces/sexo';
 import { MatTableDataSource } from '@angular/material/table';
 import { ViewChild } from '@angular/core';
@@ -9,6 +9,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { DialogoConfirmacionComponent } from "src/app/dialogo-confirmacion/dialogo-confirmacion.component";
 import { CrearSexoComponent } from './crear-sexo/crear-sexo.component';
 import { EditarSexoComponent } from './editar-sexo/editar-sexo.component';
+import {Location} from '@angular/common'; 
 
 
 
@@ -20,7 +21,7 @@ import { EditarSexoComponent } from './editar-sexo/editar-sexo.component';
 export class SexoComponent implements OnInit {
 
   listSexo: Sexo[] = [];
-
+  @Input() idSexo: number;
   displayedColumns: string[] = ['idSexo', 'descripcion', 'acciones'];
   dataSource: MatTableDataSource<any>;
 
@@ -29,7 +30,7 @@ export class SexoComponent implements OnInit {
 
 
   constructor(private sexoService: SexoService,
-    private router: Router, public dialogo: MatDialog) { }
+    private router: Router, public dialogo: MatDialog, private location: Location) { }
 
   ngOnInit(): void {
     this.cargarMantenimientos();
@@ -57,11 +58,13 @@ export class SexoComponent implements OnInit {
     this.sexoService.delete(idSexo).subscribe(data=>
     console.log(data));
     this.cargarMantenimientos();
+    
   }
 
-  manageSexo(idSexo: number){
+  manageSexo(idSexo: any){
     console.log(idSexo);
-      this.router.navigate(['/dashboard/editar-sexo/' + idSexo]);
+    this.location.replaceState('/dashboard/editar-sexo/' + idSexo);
+    
   }
 
 
@@ -89,13 +92,13 @@ export class SexoComponent implements OnInit {
    
   }
 
-
-  editarModal(idSexo: number) {
+  editarModal(idSexo: any) {
     this.dialogo.open(EditarSexoComponent,
       {
         height: '400px',
         width: '600px',
       });
+      this.location.replaceState('/dashboard/editar-sexo/' + idSexo);
    
   }
 }

@@ -5,6 +5,7 @@ import { Sexo } from 'src/app/interfaces/sexo';
 import { SexoService } from 'src/app/services/sexo.service';
 import { Bitacora } from 'src/app/interfaces/bitacora';
 
+
 @Component({
   selector: 'app-crear-sexo',
   templateUrl: './crear-sexo.component.html',
