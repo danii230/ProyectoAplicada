@@ -11,6 +11,7 @@ import { MatCalendarCellClassFunction } from '@angular/material/datepicker';
 import { Sexo } from 'src/app/interfaces/sexo';
 import * as moment from 'moment';
 import { GeneralService } from 'src/app/services/general.service';
+import { DomSanitizer } from '@angular/platform-browser';
 
 
 interface Animal {
@@ -31,7 +32,7 @@ export class CrearFuncionarioComponent implements OnInit {
   idSexo = new FormControl('', Validators.required);
   idDepartamento = new FormControl('', Validators.required);
   constructor(private fb: FormBuilder, private funcionarioService: FuncionarioService,
-    private router: Router, private sexoService: SexoService, private departamentoService: DepartamentoService, private generalService: GeneralService) {
+    private router: Router,  private sanitizer: DomSanitizer, private sexoService: SexoService, private departamentoService: DepartamentoService, private generalService: GeneralService) {
     this.form = this.fb.group({
       idFuncionario: [''],
       nombre: ['', Validators.required],
@@ -62,18 +63,18 @@ export class CrearFuncionarioComponent implements OnInit {
       funcionario.password = this.form.value.password;
       funcionario.idDepartamento = this.idDepartamento.value;
       funcionario.fechaNacimiento = moment(this.form.value.fechaNacimiento).format("YYYY-MM-DD");
-      const formularioDeDatos = new FormData();
-      this.archivos.forEach(archivo => {
-        formularioDeDatos.append('files', archivo)
-      })
-       funcionario.foto = this.archivos[0];
+      // const formularioDeDatos = new FormData();
+      // this.archivos.forEach(archivo => {
+      //   formularioDeDatos.append('files', archivo)
+      // })
+      //  funcionario.foto = this.archivos[0];
 
-       
 
-     
-      // Foto
-      // funcionario.foto = (this.archivos[0]);
-      console.log(formularioDeDatos);
+
+
+      // // Foto
+      // // funcionario.foto = (this.archivos[0]);
+      // console.log(formularioDeDatos);
       // this.funcionarioService.ingresarFuncionario(funcionario).subscribe(data =>
       //   console.log(data));
       // this.router.navigate(['/dashboard/funcionario'])
@@ -113,15 +114,13 @@ export class CrearFuncionarioComponent implements OnInit {
   capturarFile(event): any {
     const archivoCapturado = event.target.files[0]
     this.generalService.extraerBase64(archivoCapturado).then((imagen: any) => {
-      this.previsualizacion = imagen.base;
+      // this.previsualizacion = imagen.base;
       console.log(imagen);
-      let decodificado = atob(this.image);
-      console.log(decodificado);
 
     })
     this.archivos.push(archivoCapturado)
+    this.convertUrlToImageData(archivoCapturado);
 
-   
     // 
     // console.log(event.target.files);
 
@@ -130,6 +129,51 @@ export class CrearFuncionarioComponent implements OnInit {
     this.previsualizacion = '';
     this.archivos = [];
   }
-  
+
+  getBlobFromUrl = (myImageUrl) => {
+    // return new Promise((resolve, reject) => {
+    //   let request = new XMLHttpRequest();
+    //   request.open('GET', myImageUrl, true);
+    //   request.responseType = 'blob';
+    //   request.onload = () => {
+    //     resolve(request.response);
+    //   };
+    //   request.onerror = reject;
+    //   request.send();
+    // })
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(myImageUrl);
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = error => reject(error);
+    });
+  }
+
+  getDataFromBlob = (myBlob) => {
+  //   return new Promise((resolve, reject) => {
+  //     let reader = new FileReader();
+  //     reader.onload = () => {
+  //       resolve(reader.result);
+  //     };
+  //     reader.onerror = reject;
+  //     reader.readAsDataURL(myBlob);
+  //   })
+  return this.sanitizer.bypassSecurityTrustUrl(myBlob);
+   }
+
+  convertUrlToImageData = async (myImageUrl) => {
+    try {
+      let myBlob = await this.getBlobFromUrl(myImageUrl);
+      console.log(myBlob)
+      // let myImageData = await this.getDataFromBlob(myBlob);
+      // console.log(myImageData)
+      // this.previsualizacion= myImageData.toString();
+      // return myImageData;
+    } catch (err) {
+      console.log(err);
+      return null;
+    }
+  }
+
 
 }
