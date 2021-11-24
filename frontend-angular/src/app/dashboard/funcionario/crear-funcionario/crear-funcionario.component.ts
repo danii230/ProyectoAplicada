@@ -120,7 +120,7 @@ export class CrearFuncionarioComponent implements OnInit {
 
     })
     this.archivos.push(archivoCapturado)
-    this.convertUrlToImageData(archivoCapturado);
+   
 
     // 
     // console.log(event.target.files);
@@ -163,23 +163,23 @@ export class CrearFuncionarioComponent implements OnInit {
   
   }
 
-  convertUrlToImageData = async (myImageUrl) => {
-    try {
-      let myBlob = await this.getBlobFromUrl(myImageUrl);
-      console.log(this.archivos[0])
-      let myImageData = await this.getDataFromBlob(myBlob);
-       console.log(myImageData)
-      // return myImageData;
+  // convertUrlToImageData = async (myImageUrl) => {
+  //   try {
+  //     let myBlob = await this.getBlobFromUrl(myImageUrl);
+  //     console.log(this.archivos[0])
+  //     let myImageData = await this.getDataFromBlob(myBlob);
+  //      console.log(myImageData)
+  //     // return myImageData;
 
      
  
    
 
-    } catch (err) {
-      console.log(err);
-      return null;
-    }
-  }
+  //   } catch (err) {
+  //     console.log(err);
+  //     return null;
+  //   }
+  // }
 
 
 }

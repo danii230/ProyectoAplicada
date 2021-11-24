@@ -93,12 +93,16 @@ export class SexoComponent implements OnInit {
   }
 
   editarModal(idSexo: any) {
-    this.dialogo.open(EditarSexoComponent,
-      {
+     this.dialogo.open(EditarSexoComponent,
+       {
         height: '400px',
         width: '600px',
-      });
-      this.location.replaceState('/dashboard/editar-sexo/' + idSexo);
+        data: {
+           idSexo:idSexo
+        }
+        
+       });
+      console.log(idSexo);
    
   }
 }

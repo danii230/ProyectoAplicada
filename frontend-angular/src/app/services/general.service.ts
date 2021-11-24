@@ -13,7 +13,7 @@ const endpoint = 'http://localhost:3000';
 export class GeneralService {
 
   constructor(private sanitizer: DomSanitizer) { }
-  
+
   getCookie(cname) {
     let name = cname + "=";
     let decodedCookie = decodeURIComponent(document.cookie);
@@ -51,7 +51,6 @@ export class GeneralService {
     }
   })
 
-  
 }
 
 
