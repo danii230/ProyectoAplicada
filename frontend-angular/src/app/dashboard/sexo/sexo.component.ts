@@ -7,6 +7,7 @@ import { SexoService } from 'src/app/services/sexo.service';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogoConfirmacionComponent } from "src/app/dialogo-confirmacion/dialogo-confirmacion.component";
+import { CrearSexoComponent } from './crear-sexo/crear-sexo.component';
 
 
 
@@ -77,4 +78,9 @@ export class SexoComponent implements OnInit {
         }
       });
   }
+
+  openDialog() {
+    const dialogRef = this.dialogo.open(CrearSexoComponent);
+  }
 }
+
