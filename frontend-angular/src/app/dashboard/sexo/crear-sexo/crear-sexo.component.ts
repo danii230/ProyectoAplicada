@@ -30,7 +30,7 @@ export class CrearSexoComponent implements OnInit {
     sexo.descripcion = this.form.value.descripcion;
     this.sexoService.ingresarSexo(sexo).subscribe(data =>
       console.log(data));
-    this.router.navigate(['/dashboard/sexo'])
+    window.location.reload();
   }
 
 }
