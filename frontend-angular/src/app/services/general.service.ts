@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { map, catchError, tap } from 'rxjs/operators';
 import { Bitacora } from '../interfaces/bitacora';
-
+import { DomSanitizer } from '@angular/platform-browser';
 
 const endpoint = 'http://localhost:3000';
 
@@ -12,6 +12,8 @@ const endpoint = 'http://localhost:3000';
 })
 export class GeneralService {
 
+  constructor(private sanitizer: DomSanitizer) { }
+  
   getCookie(cname) {
     let name = cname + "=";
     let decodedCookie = decodeURIComponent(document.cookie);
@@ -27,6 +29,28 @@ export class GeneralService {
     }
     return "";
   }
+  extraerBase64 = async ($event: any) => new Promise((resolve, reject) => {
+    try {
+      const unsafeImg = window.URL.createObjectURL($event);
+      const image = this.sanitizer.bypassSecurityTrustUrl(unsafeImg);
+      const reader = new FileReader();
+      reader.readAsDataURL($event);
+      reader.onload = () => {
+        resolve({
+          base: reader.result
+        });
+      };
+      reader.onerror = error => {
+        resolve({
+          base: null
+        });
+      };
+
+    } catch (e) {
+      return null;
+    }
+  })
+
   
 }
 

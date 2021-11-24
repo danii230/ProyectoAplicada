@@ -10,6 +10,7 @@ import { FormControl } from '@angular/forms';
 import { MatCalendarCellClassFunction } from '@angular/material/datepicker';
 import { Sexo } from 'src/app/interfaces/sexo';
 import * as moment from 'moment';
+import { GeneralService } from 'src/app/services/general.service';
 
 
 interface Animal {
@@ -30,7 +31,7 @@ export class CrearFuncionarioComponent implements OnInit {
   idSexo = new FormControl('', Validators.required);
   idDepartamento = new FormControl('', Validators.required);
   constructor(private fb: FormBuilder, private funcionarioService: FuncionarioService,
-    private router: Router, private sexoService: SexoService, private departamentoService: DepartamentoService) {
+    private router: Router, private sexoService: SexoService, private departamentoService: DepartamentoService, private generalService: GeneralService) {
     this.form = this.fb.group({
       idFuncionario: [''],
       nombre: ['', Validators.required],
@@ -42,24 +43,34 @@ export class CrearFuncionarioComponent implements OnInit {
       fechaNacimiento: ['']
     })
   }
+  public previsualizacion: string;
+  public archivos: any = [];
+  public loading: boolean;
   ngOnInit(): void {
     this.getSexo();
     this.getDepartamento();
   }
 
   agregarFuncionario() {
-    let funcionario = new Funcionario();
-    funcionario.nombre = this.form.value.nombre;
-    funcionario.apellidos = this.form.value.apellidos;
-    funcionario.idSexo = this.idSexo.value;
-    funcionario.loginName = this.form.value.loginName;
-    funcionario.password = this.form.value.password;
-    funcionario.idDepartamento = this.idDepartamento.value;
-    funcionario.fechaNacimiento = moment(this.form.value.fechaNacimiento).format("YYYY-MM-DD");
-    console.log(funcionario);
-    this.funcionarioService.ingresarFuncionario(funcionario).subscribe(data =>
-      console.log(data));
-    this.router.navigate(['/dashboard/funcionario'])
+    try {
+      let funcionario = new Funcionario();
+      funcionario.nombre = this.form.value.nombre;
+      funcionario.apellidos = this.form.value.apellidos;
+      funcionario.idSexo = this.idSexo.value;
+      funcionario.loginName = this.form.value.loginName;
+      funcionario.password = this.form.value.password;
+      funcionario.idDepartamento = this.idDepartamento.value;
+      funcionario.fechaNacimiento = moment(this.form.value.fechaNacimiento).format("YYYY-MM-DD");
+      funcionario.foto = (this.archivos[0]);
+      console.log(funcionario);
+      // this.funcionarioService.ingresarFuncionario(funcionario).subscribe(data =>
+      //   console.log(data));
+      // this.router.navigate(['/dashboard/funcionario'])
+    } catch (e) {
+      this.loading = false;
+      console.log('ERROR', e);
+
+    }
   }
   dateClass: MatCalendarCellClassFunction<Date> = (cellDate, view) => {
     // Only highligh dates inside the month view.
@@ -87,5 +98,23 @@ export class CrearFuncionarioComponent implements OnInit {
       this.departamentos = data;
     })
   }
+
+  capturarFile(event): any {
+    const archivoCapturado = event.target.files[0]
+    this.generalService.extraerBase64(archivoCapturado).then((imagen: any) => {
+      this.previsualizacion = imagen.base;
+      console.log(imagen);
+
+    })
+    this.archivos.push(archivoCapturado)
+    // 
+    // console.log(event.target.files);
+
+  }
+  clearImage(): any {
+    this.previsualizacion = '';
+    this.archivos = [];
+  }
+
 
 }
