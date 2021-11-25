@@ -1,18 +1,18 @@
-<div class="container">
+<div class="containerModal">
     <mat-toolbar>
         <span class="text">Editar Funcionario</span>
     </mat-toolbar>
 
     <mat-card style="margin-top: 10px;">
         <form [formGroup]="form" (ngSubmit)="modificarFuncionario()">
-            <mat-grid-list cols="4" rowHeight="70px">
+            <mat-grid-list cols="2" rowHeight="70px">
                 <mat-grid-tile [colspan]="1" [rowspan]="1">
                     <mat-form-field clas="ancho">
                         <mat-label>Nombre</mat-label>
                         <input matInput autocomplete="off" formControlName="nombre">
                     </mat-form-field>
                 </mat-grid-tile>
-                <mat-grid-tile [colspan]="3" [rowspan]="5">
+                <mat-grid-tile [colspan]="1" [rowspan]="1">
                     <mat-form-field clas="ancho">
                         <mat-label>Fecha de Nacimiento</mat-label>
                         <input  matInput [matDatepicker]="picker" formControlName="fechaNacimiento">

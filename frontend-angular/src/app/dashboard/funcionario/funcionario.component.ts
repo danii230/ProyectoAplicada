@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { CrearFuncionarioComponent } from './crear-funcionario/crear-funcionario.component';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DialogoConfirmacionComponent } from 'src/app/dialogo-confirmacion/dialogo-confirmacion.component';
+import { EditarFuncionarioComponent } from './editar-funcionario/editar-funcionario.component';
 
 @Component({
   selector: 'app-funcionario',
@@ -73,5 +74,18 @@ export class FuncionarioComponent implements OnInit {
         }
       });
   }
+
+  editarModal(idFuncionario: any) {
+    this.dialogo.open(EditarFuncionarioComponent,
+      {
+       height: '400px',
+       width: '600px',
+       data: {
+          idFuncionario:idFuncionario
+       }
+       
+      });
+  
+ }
 
 }
