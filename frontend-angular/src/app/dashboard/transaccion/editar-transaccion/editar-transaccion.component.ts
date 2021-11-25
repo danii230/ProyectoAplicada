@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Transaccion } from 'src/app/interfaces/transaccion';
 import { TransaccionService } from 'src/app/services/transaccion.service';
@@ -15,7 +16,7 @@ export class EditarTransaccionComponent implements OnInit {
   transaccion = new Transaccion();
   id: number;
   constructor(private transaccionService: TransaccionService, private route: ActivatedRoute,
-    private router: Router, private fb: FormBuilder,) {
+    private router: Router, private fb: FormBuilder, @Inject(MAT_DIALOG_DATA) public data: any) {
     this.form = this.fb.group({
       idTransaccion: [''],
       descripcion: ['', Validators.required]
@@ -25,9 +26,7 @@ export class EditarTransaccionComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.id = Number(this.route.snapshot.paramMap.get('idTransaccion'));
-
-    this.loadTransaccion(this.id);
+    this.loadTransaccion(this.data.idTransaccion);
 
   }
 
