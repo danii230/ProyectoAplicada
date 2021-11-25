@@ -28,7 +28,7 @@ export class CrearTransaccionComponent implements OnInit {
     transaccion.descripcion = this.form.value.descripcion;
     this.transaccionService.ingresarTransaccion(transaccion).subscribe(data=>
     console.log(data));
-    this.router.navigate(['/dashboard/transaccion'])
+    window.location.reload();
   }
 
 }

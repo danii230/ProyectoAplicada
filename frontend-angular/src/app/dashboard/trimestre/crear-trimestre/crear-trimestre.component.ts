@@ -28,6 +28,6 @@ export class CrearTrimestreComponent implements OnInit {
     trimestre.descripcion = this.form.value.descripcion;
     this.trimestreService.ingresarTrimestre(trimestre).subscribe(data=>
     console.log(data));
-    this.router.navigate(['/dashboard/trimestre'])
+    window.location.reload();
   }
 }

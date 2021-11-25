@@ -1,9 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
+import { DialogoConfirmacionComponent } from 'src/app/dialogo-confirmacion/dialogo-confirmacion.component';
 import { GeneralService } from 'src/app/services/general.service';
 import { SolicitudService } from 'src/app/services/solicitud.service';
+import { CrearSolicitudComponent } from './crear-solicitud/crear-solicitud.component';
 
 @Component({
   selector: 'app-solicitud',
@@ -12,7 +15,8 @@ import { SolicitudService } from 'src/app/services/solicitud.service';
 })
 export class SolicitudComponent implements OnInit {
 
-  constructor(private solicitudService: SolicitudService, private generalService: GeneralService, private router: Router) { }
+  constructor(private solicitudService: SolicitudService, private generalService: GeneralService, 
+    private router: Router,  public dialogo: MatDialog) { }
 
   ngOnInit(): void {
     this.cargarFuncionario();
@@ -54,6 +58,30 @@ export class SolicitudComponent implements OnInit {
   manageSolicitud(idSolicitud: number) {
     console.log(idSolicitud);
     this.router.navigate(['/dashboard/editar-solicitud/' + idSolicitud]);
+  }
+
+  openDialog() {
+    this.dialogo.open(CrearSolicitudComponent,
+      {
+        height: '400px',
+        width: '600px',
+      });
+   
+  }
+
+  mostrarDialogo(idSolicitud: any): void {
+    this.dialogo
+      .open(DialogoConfirmacionComponent, {
+        data: `¿Desea eliminar?`
+      })
+      .afterClosed()
+      .subscribe((confirmado: Boolean) => {
+        if (confirmado) {
+          this.eliminarSolicitud(idSolicitud);
+        } else {
+          alert("");
+        }
+      });
   }
 
 }

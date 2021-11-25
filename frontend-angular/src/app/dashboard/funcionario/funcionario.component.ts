@@ -6,6 +6,7 @@ import { FuncionarioService } from 'src/app/services/funcionario.service';
 import { Router } from '@angular/router';
 import { CrearFuncionarioComponent } from './crear-funcionario/crear-funcionario.component';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { DialogoConfirmacionComponent } from 'src/app/dialogo-confirmacion/dialogo-confirmacion.component';
 
 @Component({
   selector: 'app-funcionario',
@@ -14,7 +15,8 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
 })
 export class FuncionarioComponent implements OnInit {
 
-  constructor(private funcionarioService: FuncionarioService, private router: Router) { }
+  constructor(private funcionarioService: FuncionarioService, private router: Router,
+    public dialogo: MatDialog) { }
 
   ngOnInit(): void {
     this.cargarFuncionario();
@@ -55,6 +57,21 @@ export class FuncionarioComponent implements OnInit {
   manageFuncionario(idFuncionario: number){
     console.log(idFuncionario);
       this.router.navigate(['/dashboard/editar-funcionario/' + idFuncionario]);
+  }
+
+  mostrarDialogo(idFuncionario: any): void {
+    this.dialogo
+      .open(DialogoConfirmacionComponent, {
+        data: `¿Desea eliminar?`
+      })
+      .afterClosed()
+      .subscribe((confirmado: Boolean) => {
+        if (confirmado) {
+          this.eliminarfuncionario(idFuncionario);
+        } else {
+          alert("");
+        }
+      });
   }
 
 }

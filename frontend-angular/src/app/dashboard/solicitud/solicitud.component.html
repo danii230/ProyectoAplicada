@@ -2,7 +2,7 @@
     <mat-toolbar>
         <span class="text">Solicitud</span>
         <div class="example-spacer"></div>
-        <button class="button" mat-raised-button routerLink="/dashboard/crear-solicitud">AGREGAR</button>
+        <button class="button" mat-raised-button (click)="openDialog()">AGREGAR</button>
     </mat-toolbar>
 
     <mat-form-field appearance="standard">
@@ -53,7 +53,7 @@
                     matTooltip="Editar Solicitud">
                     <mat-icon>edit</mat-icon>
                 </a>
-                <a class="pointer" (click)="eliminarSolicitud(element.idSolicitud)" style="color:#e15639"
+                <a class="pointer" (click)="mostrarDialogo(element.idSolicitud)" style="color:#e15639"
                     matTooltip="Eliminar Solicitud">
                     <mat-icon>delete</mat-icon>
                 </a>

@@ -48,7 +48,7 @@ export class CrearAvanceComponent implements OnInit {
     avance.finalizado = true; 
     this.avanceService.ingresarAvance(avance).subscribe(data =>
     console.log(data));
-    this.router.navigate(['/dashboard/avance'])
+    window.location.reload();
   }
   dateClass: MatCalendarCellClassFunction<Date> = (cellDate, view) => {
     // Only highligh dates inside the month view.

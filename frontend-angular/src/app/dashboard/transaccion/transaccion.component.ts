@@ -6,6 +6,9 @@ import { TransaccionService } from 'src/app/services/transaccion.service';
 import { Transaccion } from 'src/app/interfaces/transaccion';
 import { isDataSource } from '@angular/cdk/collections';
 import { Router } from '@angular/router';
+import { CrearTransaccionComponent } from './crear-transaccion/crear-transaccion.component';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogoConfirmacionComponent } from 'src/app/dialogo-confirmacion/dialogo-confirmacion.component';
 
 @Component({
   selector: 'app-transaccion',
@@ -14,7 +17,8 @@ import { Router } from '@angular/router';
 })
 export class TransaccionComponent implements OnInit {
 
-  constructor(private transaccionService: TransaccionService, private router: Router) { }
+  constructor(private transaccionService: TransaccionService, private router: Router,
+    public dialogo: MatDialog) { }
 
   ngOnInit(): void {
     this.cargarTransaccion();
@@ -56,5 +60,29 @@ export class TransaccionComponent implements OnInit {
   manageTransaccion(idTransaccion: number){
     console.log(idTransaccion);
       this.router.navigate(['/dashboard/editar-transaccion/' + idTransaccion]);
+  }
+
+  openDialog() {
+    this.dialogo.open(CrearTransaccionComponent,
+      {
+        height: '400px',
+        width: '600px',
+      });
+   
+  }
+
+  mostrarDialogo(idTransaccion: any): void {
+    this.dialogo
+      .open(DialogoConfirmacionComponent, {
+        data: `¿Desea eliminar?`
+      })
+      .afterClosed()
+      .subscribe((confirmado: Boolean) => {
+        if (confirmado) {
+          this.eliminarTransaccion(idTransaccion);
+        } else {
+          alert("");
+        }
+      });
   }
 }

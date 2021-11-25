@@ -1,9 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
+import { DialogoConfirmacionComponent } from 'src/app/dialogo-confirmacion/dialogo-confirmacion.component';
 import { AvanceService } from 'src/app/services/avance.service';
 import { GeneralService } from 'src/app/services/general.service';
+import { CrearAvanceComponent } from './crear-avance/crear-avance.component';
 
 @Component({
   selector: 'app-avances',
@@ -12,7 +15,8 @@ import { GeneralService } from 'src/app/services/general.service';
 })
 export class AvancesComponent implements OnInit {
 
-  constructor(private avanceService: AvanceService, private generalService: GeneralService, private router: Router) { }
+  constructor(private avanceService: AvanceService, private generalService: GeneralService, 
+    private router: Router,  public dialogo: MatDialog) { }
 
   ngOnInit(): void {
     this.cargarAvance();
@@ -56,4 +60,27 @@ export class AvancesComponent implements OnInit {
     this.router.navigate(['/dashboard/editar-avance/' + idAvance]);
   }
 
+  openDialog() {
+    this.dialogo.open(CrearAvanceComponent,
+      {
+        height: '400px',
+        width: '600px',
+      });
+   
+  }
+
+  mostrarDialogo(idSexo: any): void {
+    this.dialogo
+      .open(DialogoConfirmacionComponent, {
+        data: `¿Desea eliminar?`
+      })
+      .afterClosed()
+      .subscribe((confirmado: Boolean) => {
+        if (confirmado) {
+          this.eliminarAvance(idSexo);
+        } else {
+          alert("");
+        }
+      });
+  }
 }

@@ -1,11 +1,11 @@
-<div class="container">
+<div class="containerModal">
     <mat-toolbar>
-        <span>Agregar Solicitud</span>
+        <span class="text">Agregar Solicitud</span>
     </mat-toolbar>
 
     <mat-card style="margin-top: 10px;">
         <form [formGroup]="form" (ngSubmit)="agregarSolicitud()">
-            <mat-grid-list cols="4" rowHeight="70px">
+            <mat-grid-list cols="2" rowHeight="70px">
 
                 <mat-grid-tile [colspan]="1" [rowspan]="1">
                     <mat-form-field appearance="fill">
@@ -52,7 +52,7 @@
                 </mat-grid-tile>
                
                 <mat-grid-tile [colspan]="1" [rowspan]="1">
-                    <button mat-raised-button style="margin-right: 20px;">Volver</button>
+                    <button mat-raised-button mat-dialog-close style="margin-right: 20px;">Cancelar</button>
                     <button type="submit" mat-raised-button color="primary">Aceptar</button>
                 </mat-grid-tile>
             </mat-grid-list>
