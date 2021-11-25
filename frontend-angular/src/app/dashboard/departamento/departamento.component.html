@@ -30,7 +30,7 @@
       <ng-container matColumnDef="acciones">
         <th mat-header-cell *matHeaderCellDef>  </th>
         <td mat-cell *matCellDef="let element; let i = index"> 
-          <a class="pointer"  (click)="manageDepartamento(element.idDepartamento)" style="color:#1f516f" matTooltip="Editar departamento">
+          <a class="pointer"  (click)="editarModal(element.idDepartamento)" style="color:#1f516f" matTooltip="Editar departamento">
             <mat-icon>edit</mat-icon>
           </a>
           <a class= "pointer" (click)="mostrarDialogo(element.idDepartamento)" style="color:#e15639" matTooltip="Eliminar departamento">

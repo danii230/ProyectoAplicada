@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Trimestre } from 'src/app/interfaces/trimestre';
 import { TrimestreService } from 'src/app/services/trimestre.service';
@@ -16,7 +17,7 @@ export class EditarTrimestreComponent implements OnInit {
   trimestre = new Trimestre();
   id: number;
   constructor(private trimestreService: TrimestreService, private route: ActivatedRoute,
-    private router: Router, private fb: FormBuilder,) {
+    private router: Router, private fb: FormBuilder,  @Inject(MAT_DIALOG_DATA) public data: any) {
     this.form = this.fb.group({
       idTrimestre: [''],
       descripcion: ['', Validators.required]
@@ -26,9 +27,8 @@ export class EditarTrimestreComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.id = Number(this.route.snapshot.paramMap.get('idTrimestre'));
+    this.loadTrimestre(this.data.idTrimestre);
 
-    this.loadTrimestre(this.id);
 
   }
 

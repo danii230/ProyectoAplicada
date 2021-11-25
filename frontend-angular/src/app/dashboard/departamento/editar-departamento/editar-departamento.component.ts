@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Departamento } from 'src/app/interfaces/departamento';
 import { DepartamentoService } from 'src/app/services/departamento.service';
@@ -15,7 +16,7 @@ export class EditarDepartamentoComponent implements OnInit {
   departamento = new Departamento();
   id: number;
   constructor(private departamentoService: DepartamentoService, private route: ActivatedRoute,
-    private router: Router, private fb: FormBuilder,) {
+    private router: Router, private fb: FormBuilder, @Inject(MAT_DIALOG_DATA) public data: any) {
     this.form = this.fb.group({
       idDepartamento: [''],
       descripcion: ['', Validators.required]
@@ -25,9 +26,7 @@ export class EditarDepartamentoComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.id = Number(this.route.snapshot.paramMap.get('idDepartamento'));
-
-    this.loadDepartamento(this.id);
+    this.loadDepartamento(this.data.idDepartamento);
 
   }
 

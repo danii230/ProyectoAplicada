@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { CrearTrimestreComponent } from './crear-trimestre/crear-trimestre.component';
 import { DialogoConfirmacionComponent } from 'src/app/dialogo-confirmacion/dialogo-confirmacion.component';
+import { EditarTrimestreComponent } from './editar-trimestre/editar-trimestre.component';
 
 @Component({
   selector: 'app-trimestre',
@@ -82,6 +83,19 @@ export class TrimestreComponent implements OnInit {
         }
       });
   }
+
+  editarModal(idTrimestre: any) {
+    this.dialogo.open(EditarTrimestreComponent,
+      {
+       height: '400px',
+       width: '600px',
+       data: {
+          idTrimestre:idTrimestre
+       }
+       
+      });
+  
+ }
 
 
 }
