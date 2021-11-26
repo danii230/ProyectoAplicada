@@ -70,7 +70,7 @@ export class EditarFuncionarioComponent implements OnInit {
   }
 
   modificarFuncionario() {
-    this.funcionario.idFuncionario = this.id;
+    this.funcionario.idFuncionario = this.form.value.idFuncionario;
     this.funcionario.nombre = this.form.value.nombre;
     this.funcionario.apellidos = this.form.value.apellidos;
     this.funcionario.loginName = this.form.value.loginName;
