@@ -131,55 +131,15 @@ export class CrearFuncionarioComponent implements OnInit {
     this.archivos = [];
   }
 
-  getBlobFromUrl = (myImageUrl) => {
-    // return new Promise((resolve, reject) => {
-    //   let request = new XMLHttpRequest();
-    //   request.open('GET', myImageUrl, true);
-    //   request.responseType = 'blob';
-    //   request.onload = () => {
-    //     resolve(request.response);
-    //   };
-    //   request.onerror = reject;
-    //   request.send();
-    // })
+
+  encodeImageFileAsURL(file) {
+
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
-      reader.readAsDataURL(myImageUrl);
+      reader.readAsDataURL(file);
       reader.onload = () => resolve(reader.result);
       reader.onerror = error => reject(error);
     });
   }
-
-  getDataFromBlob = (myBlob) => {
-  //   return new Promise((resolve, reject) => {
-  //     let reader = new FileReader();
-  //     reader.onload = () => {
-  //       resolve(reader.result);
-  //     };
-  //     reader.onerror = reject;
-  //     reader.readAsDataURL(myBlob);
-  //   })
-  // return this.sanitizer.bypassSecurityTrustUrl(myBlob);
-  
-  }
-
-  // convertUrlToImageData = async (myImageUrl) => {
-  //   try {
-  //     let myBlob = await this.getBlobFromUrl(myImageUrl);
-  //     console.log(this.archivos[0])
-  //     let myImageData = await this.getDataFromBlob(myBlob);
-  //      console.log(myImageData)
-  //     // return myImageData;
-
-     
- 
-   
-
-  //   } catch (err) {
-  //     console.log(err);
-  //     return null;
-  //   }
-  // }
-
 
 }
