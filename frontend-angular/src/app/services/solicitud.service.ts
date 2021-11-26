@@ -34,7 +34,7 @@ export class SolicitudService {
     return this.http.delete<any>(url);
   }
 
-  public editarFuncionario(solicitud: Solicitud): Observable<Solicitud> {
+  public editarSolicitud(solicitud: Solicitud): Observable<Solicitud> {
     const url: string = endpoint + '/solicitud/';
     return this.http.put<Solicitud>(url, solicitud);
   }
