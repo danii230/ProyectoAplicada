@@ -1,11 +1,11 @@
-<div class="container">
+<div class="containerModal">
     <mat-toolbar>
         <span class="text">Editar Transacción</span>
     </mat-toolbar>
 
     <mat-card style="margin-top: 10px;">
         <form [formGroup]="form" (ngSubmit)="modificarTransaccion()">
-            <mat-grid-list cols="4" rowHeight="70px">
+            <mat-grid-list cols="2" rowHeight="70px">
                 <mat-grid-tile [colspan]="1" [rowspan]="1">
                     <mat-form-field clas="ancho">
                         <mat-label>Descripción</mat-label>

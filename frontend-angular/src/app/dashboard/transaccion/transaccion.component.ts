@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 import { CrearTransaccionComponent } from './crear-transaccion/crear-transaccion.component';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogoConfirmacionComponent } from 'src/app/dialogo-confirmacion/dialogo-confirmacion.component';
+import { EditarTransaccionComponent } from './editar-transaccion/editar-transaccion.component';
 
 @Component({
   selector: 'app-transaccion',
@@ -82,4 +83,17 @@ export class TransaccionComponent implements OnInit {
         } 
       });
   }
+
+  editarModal(idTransacción: any) {
+    this.dialogo.open(EditarTransaccionComponent,
+      {
+       height: '400px',
+       width: '600px',
+       data: {
+          idSexo:idTransacción
+       }
+       
+      });
+  
+ }
 }

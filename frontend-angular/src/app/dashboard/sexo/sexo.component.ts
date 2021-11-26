@@ -21,7 +21,6 @@ import {Location} from '@angular/common';
 export class SexoComponent implements OnInit {
 
   listSexo: Sexo[] = [];
-  @Input() idSexo: number;
   displayedColumns: string[] = ['idSexo', 'descripcion', 'acciones'];
   dataSource: MatTableDataSource<any>;
 
