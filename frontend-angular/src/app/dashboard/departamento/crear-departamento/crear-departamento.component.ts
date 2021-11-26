@@ -12,11 +12,9 @@ import { DepartamentoService } from 'src/app/services/departamento.service';
 export class CrearDepartamentoComponent implements OnInit {
 
   form: FormGroup;
-  // sexo: Sexo;
   constructor(private fb: FormBuilder, private departamentoService: DepartamentoService,
     private router: Router) {
     this.form = this.fb.group({
-      idSexo: [''],
       descripcion: ['', Validators.required]
     })
   }

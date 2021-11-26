@@ -12,11 +12,9 @@ import { TrimestreService } from 'src/app/services/trimestre.service';
 })
 export class CrearTrimestreComponent implements OnInit {
   form: FormGroup;
-  // sexo: Sexo;
   constructor(private fb: FormBuilder, private trimestreService: TrimestreService, 
     private router: Router) {
     this.form = this.fb.group({
-      idSexo: [''],
       descripcion: ['', Validators.required]
     })
   }

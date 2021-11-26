@@ -35,7 +35,6 @@ export class TransaccionComponent implements OnInit {
 
   public cargarTransaccion(){
     this.transaccionService.getTransaccion().subscribe(data =>{
-    console.log(data);
     this.listTransaccion = data;
     this.dataSource = new MatTableDataSource(this.listTransaccion)
     this.dataSource.paginator = this.paginator;
@@ -52,8 +51,8 @@ export class TransaccionComponent implements OnInit {
   }
 
 
-  eliminarTransaccion(idTrimestre: any){
-    this.transaccionService.delete(idTrimestre).subscribe(data=>
+  eliminarTransaccion(idTransaccion: any){
+    this.transaccionService.delete(idTransaccion).subscribe(data=>
     console.log(data));
   }
 
@@ -74,15 +73,13 @@ export class TransaccionComponent implements OnInit {
   mostrarDialogo(idTransaccion: any): void {
     this.dialogo
       .open(DialogoConfirmacionComponent, {
-        data: `¿Desea eliminar?`
+        data: `¿Desea eliminar trasaccion?`
       })
       .afterClosed()
       .subscribe((confirmado: Boolean) => {
         if (confirmado) {
           this.eliminarTransaccion(idTransaccion);
-        } else {
-          alert("");
-        }
+        } 
       });
   }
 }

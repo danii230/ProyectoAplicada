@@ -13,10 +13,12 @@ export class EditarTrimestreComponent implements OnInit {
 
   descripcion: any;
   form: FormGroup;
+  trimestre = new Trimestre();
   id: number;
   constructor(private trimestreService: TrimestreService, private route: ActivatedRoute,
     private router: Router, private fb: FormBuilder,) {
     this.form = this.fb.group({
+      idTrimestre: [''],
       descripcion: ['', Validators.required]
     })
 
@@ -32,15 +34,16 @@ export class EditarTrimestreComponent implements OnInit {
 
   loadTrimestre(id: any): void {
     this.trimestreService.encontrarId(id).subscribe(data => {
-      this.descripcion = data[0].descripcion;
+      this.form.controls['idTrimestre'].setValue(data[0].idTrimestre);
+      this.form.controls['descripcion'].setValue(data[0].descripcion);
     });
   }
 
   modificarTrimestre() {
-    let trimestre = new Trimestre();
-    trimestre.idTrimestre =this.id;
-    trimestre.descripcion = this.form.value.descripcion;
-    this.trimestreService.editarTrimestre(trimestre).subscribe(data =>
+   
+    this.trimestre.idTrimestre= this.form.value.idTrimestre;
+    this.trimestre.descripcion = this.form.value.descripcion;
+    this.trimestreService.editarTrimestre(this.trimestre).subscribe(data =>
       console.log(data));
     this.router.navigate(['/dashboard/trimestre'])
   }

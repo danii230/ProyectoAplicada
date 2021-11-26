@@ -11,13 +11,13 @@ import { DepartamentoComponent } from '../departamento.component';
   styleUrls: ['./editar-departamento.component.css']
 })
 export class EditarDepartamentoComponent implements OnInit {
-
-  descripcion: any;
   form: FormGroup;
+  departamento = new Departamento();
   id: number;
   constructor(private departamentoService: DepartamentoService, private route: ActivatedRoute,
     private router: Router, private fb: FormBuilder,) {
     this.form = this.fb.group({
+      idDepartamento: [''],
       descripcion: ['', Validators.required]
     })
 
@@ -33,15 +33,16 @@ export class EditarDepartamentoComponent implements OnInit {
 
   loadDepartamento(id: any): void {
     this.departamentoService.encontrarId(id).subscribe(data => {
-      this.descripcion = data[0].descripcion;
+      this.form.controls['idDepartamento'].setValue(data[0].idDepartamento);
+      this.form.controls['descripcion'].setValue(data[0].descripcion);
+
     });
   }
 
   modificarDepartamento() {
-    let departamento = new Departamento();
-    departamento.idDepartamento =this.id;
-    departamento.descripcion = this.form.value.descripcion;
-    this.departamentoService.editarDepartamento(departamento).subscribe(data =>
+    this.departamento.idDepartamento= this.form.value.idDepartamento;
+    this.departamento.descripcion = this.form.value.descripcion;
+    this.departamentoService.editarDepartamento(this.departamento).subscribe(data =>
       console.log(data));
     this.router.navigate(['/dashboard/departamento'])
   }

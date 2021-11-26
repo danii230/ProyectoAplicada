@@ -12,22 +12,20 @@ import { TransaccionService } from 'src/app/services/transaccion.service';
 export class CrearTransaccionComponent implements OnInit {
 
   form: FormGroup;
-  // sexo: Sexo;
   constructor(private fb: FormBuilder, private transaccionService: TransaccionService,
     private router: Router) {
     this.form = this.fb.group({
-      idSexo: [''],
       descripcion: ['', Validators.required]
     })
   }
   ngOnInit(): void {
   }
- 
+
   agregarTransaccion() {
     let transaccion = new Transaccion();
     transaccion.descripcion = this.form.value.descripcion;
-    this.transaccionService.ingresarTransaccion(transaccion).subscribe(data=>
-    console.log(data));
+    this.transaccionService.ingresarTransaccion(transaccion).subscribe(data =>
+      console.log(data));
     window.location.reload();
   }
 

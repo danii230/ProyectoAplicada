@@ -32,17 +32,16 @@ export class DepartamentoComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
 
-  public cargarDepartamento(){
-    this.departamentoService.getDepartamento().subscribe(data =>{
-    console.log(data);
-    this.listDepartamento = data;
-    this.dataSource = new MatTableDataSource(this.listDepartamento)
-    this.dataSource.paginator = this.paginator;
-  })
+  public cargarDepartamento() {
+    this.departamentoService.getDepartamento().subscribe(data => {
+      this.listDepartamento = data;
+      this.dataSource = new MatTableDataSource(this.listDepartamento)
+      this.dataSource.paginator = this.paginator;
+    })
   }
 
   ngAfterViewInit() {
-  
+
   }
 
   applyFilter(event: Event) {
@@ -50,14 +49,14 @@ export class DepartamentoComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  eliminarDepartamento(idDepartamento: any){
-    this.departamentoService.delete(idDepartamento).subscribe(data=>
-    console.log(data));
+  eliminarDepartamento(idDepartamento: any) {
+    this.departamentoService.delete(idDepartamento).subscribe(data =>
+      console.log(data));
   }
 
-  manageDepartamento(idDepartamento: number){
+  manageDepartamento(idDepartamento: number) {
     console.log(idDepartamento);
-      this.router.navigate(['/dashboard/editar-departamento/' + idDepartamento]);
+    this.router.navigate(['/dashboard/editar-departamento/' + idDepartamento]);
   }
 
   openDialog() {
@@ -66,20 +65,19 @@ export class DepartamentoComponent implements OnInit {
         height: '400px',
         width: '600px',
       });
-   
+
   }
 
   mostrarDialogo(idDepartamento: any): void {
     this.dialogo
       .open(DialogoConfirmacionComponent, {
-        data: `¿Desea eliminar?`
+        data: `¿Desea eliminar departamento?`
       })
       .afterClosed()
       .subscribe((confirmado: Boolean) => {
         if (confirmado) {
           this.eliminarDepartamento(idDepartamento);
         } else {
-          alert("");
         }
       });
   }

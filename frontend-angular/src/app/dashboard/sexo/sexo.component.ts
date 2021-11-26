@@ -38,7 +38,6 @@ export class SexoComponent implements OnInit {
 
   public cargarMantenimientos(){
     this.sexoService.getSexo().subscribe(data =>{
-    console.log(data);
     this.listSexo = data;
     this.dataSource = new MatTableDataSource(this.listSexo)
     this.dataSource.paginator = this.paginator;
@@ -61,24 +60,17 @@ export class SexoComponent implements OnInit {
     
   }
 
-  manageSexo(idSexo: any){
-    console.log(idSexo);
-    this.location.replaceState('/dashboard/editar-sexo/' + idSexo);
-    
-  }
-
 
   mostrarDialogo(idSexo: any): void {
     this.dialogo
       .open(DialogoConfirmacionComponent, {
-        data: `¿Desea eliminar?`
+        data: '¿Desea eliminar el sexo?'
       })
       .afterClosed()
       .subscribe((confirmado: Boolean) => {
         if (confirmado) {
           this.eliminarSexo(idSexo);
         } else {
-          alert("");
         }
       });
   }
@@ -102,7 +94,6 @@ export class SexoComponent implements OnInit {
         }
         
        });
-      console.log(idSexo);
    
   }
 }

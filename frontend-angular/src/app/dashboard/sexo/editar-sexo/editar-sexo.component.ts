@@ -15,21 +15,18 @@ import { Inject } from '@angular/core';
 })
 
 export class EditarSexoComponent implements OnInit {
-  descripcion: any;
   form: FormGroup;
-  id: number;
   sexo = new Sexo();
   constructor( @Inject(MAT_DIALOG_DATA) public data: any,private sexoService: SexoService, private route: ActivatedRoute,
     private router: Router, private fb: FormBuilder,) {
     this.form = this.fb.group({
+      idSexo: [''],
       descripcion: ['', Validators.required]
     })
 
   }
 
   ngOnInit(): void {
-    this.id = Number(this.route.snapshot.paramMap.get('idSexo'));
-    console.log(this.id);
 
     this.loadSexo(this.data.idSexo);
 
@@ -37,23 +34,17 @@ export class EditarSexoComponent implements OnInit {
 
   loadSexo(id: any): void {
     this.sexoService.encontrarId(id).subscribe(data => {
-      this.descripcion = data[0].descripcion;
-
-
-      //Llenar objeto
-      this.sexo.idSexo =data[0].idSexo;
-      this.sexo.descripcion = data[0].descripcion;
-      console.log(this.sexo);
-
+      this.form.controls['idSexo'].setValue(data[0].idSexo);
+      this.form.controls['descripcion'].setValue(data[0].descripcion);
     });
   }
 
   modificarSexo() {
-    if(this.form.value.descripcion){
-    this.sexo.descripcion = this.form.value.descripcion;}
-    console.log(this.sexo);
+    this.sexo.idSexo= this.form.value.idSexo;
+    this.sexo.descripcion = this.form.value.descripcion;
     this.sexoService.editarSexo(this.sexo).subscribe(data =>
-      console.log(data));
+    console.log(data));
     this.router.navigate(['/dashboard/sexo'])
-  }
+  
+}
 }

@@ -29,7 +29,7 @@ export class TransaccionService {
   }
 
   public delete(idTrimestre): Observable<any>{
-    const url: string = endpoint + '/trimestre/';
+    const url: string = endpoint + '/transaccion/';
     return this.http.delete<any>(url +idTrimestre);
 }
 

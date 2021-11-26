@@ -34,7 +34,6 @@ export class TrimestreComponent implements OnInit {
 
   public cargarTrimestre(){
     this.trimestreService.getTrimestre().subscribe(data =>{
-    console.log(data);
     this.listTrimestre = data;
     this.dataSource = new MatTableDataSource(this.listTrimestre)
     this.dataSource.paginator = this.paginator;
@@ -73,14 +72,13 @@ export class TrimestreComponent implements OnInit {
   mostrarDialogo(idTrimestre: any): void {
     this.dialogo
       .open(DialogoConfirmacionComponent, {
-        data: `¿Desea eliminar?`
+        data: '¿Desea eliminar el trimestre?'
       })
       .afterClosed()
       .subscribe((confirmado: Boolean) => {
         if (confirmado) {
           this.eliminarTrimestre(idTrimestre);
         } else {
-          alert("");
         }
       });
   }

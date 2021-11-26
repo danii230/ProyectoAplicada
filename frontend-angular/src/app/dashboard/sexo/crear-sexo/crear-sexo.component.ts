@@ -14,7 +14,6 @@ import { Bitacora } from 'src/app/interfaces/bitacora';
 export class CrearSexoComponent implements OnInit {
 
   form: FormGroup;
-  // sexo: Sexo;
 
   constructor(private fb: FormBuilder, private sexoService: SexoService,
     private router: Router) {
