@@ -84,13 +84,13 @@ export class TransaccionComponent implements OnInit {
       });
   }
 
-  editarModal(idTransacción: any) {
+  editarModal(idTransaccion: any) {
     this.dialogo.open(EditarTransaccionComponent,
       {
        height: '400px',
        width: '600px',
        data: {
-          idSexo:idTransacción
+          idTransaccion:idTransaccion
        }
        
       });

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormControlName, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Funcionario } from 'src/app/interfaces/funcionario';
@@ -7,6 +7,7 @@ import { FuncionarioService } from 'src/app/services/funcionario.service';
 import { SexoService } from 'src/app/services/sexo.service';
 import { TransaccionService } from 'src/app/services/transaccion.service';
 import * as moment from 'moment';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 
 @Component({
@@ -29,7 +30,8 @@ export class EditarFuncionarioComponent implements OnInit {
   idSexo: FormControl;
   idDepartamento: FormControl
   constructor(private funcionarioService: FuncionarioService, private route: ActivatedRoute,
-    private router: Router, private fb: FormBuilder, private sexoService: SexoService, private departamentoService: DepartamentoService,) {
+    private router: Router, private fb: FormBuilder, private sexoService: SexoService, private departamentoService: DepartamentoService,
+    @Inject(MAT_DIALOG_DATA) public data: any) {
     this.form = this.fb.group({
       idFuncionario: [''],
       nombre: ['', Validators.required],
@@ -46,7 +48,7 @@ export class EditarFuncionarioComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.id = Number(this.route.snapshot.paramMap.get('idFuncionario'));
+    this.loadFuncionario(this.data.idFuncionario);
     this.getSexo();
     this.getDepartamento();
     this.loadFuncionario(this.id);

@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { CrearDepartamentoComponent } from './crear-departamento/crear-departamento.component';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogoConfirmacionComponent } from 'src/app/dialogo-confirmacion/dialogo-confirmacion.component';
+import { EditarDepartamentoComponent } from './editar-departamento/editar-departamento.component';
 
 @Component({
   selector: 'app-departamento',
@@ -81,6 +82,19 @@ export class DepartamentoComponent implements OnInit {
         }
       });
   }
+
+  editarModal(idDepartamento: any) {
+    this.dialogo.open(EditarDepartamentoComponent,
+      {
+       height: '400px',
+       width: '600px',
+       data: {
+          idDepartamento:idDepartamento
+       }
+       
+      });
+  
+ }
 
 
 }
