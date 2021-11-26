@@ -2,7 +2,7 @@
   <mat-toolbar>
     <span class="text">Departamento</span>
     <div class="example-spacer"></div>
-      <button mat-raised-button class="button" routerLink="/dashboard/crear-departamento">AGREGAR</button>
+      <button mat-raised-button class="button" (click)="openDialog()">AGREGAR</button>
   </mat-toolbar>
   
     <mat-form-field appearance="standard">
@@ -33,7 +33,7 @@
           <a class="pointer"  (click)="manageDepartamento(element.idDepartamento)" style="color:#1f516f" matTooltip="Editar departamento">
             <mat-icon>edit</mat-icon>
           </a>
-          <a class= "pointer" (click)="eliminarDepartamento(element.idDepartamento)" style="color:#e15639" matTooltip="Eliminar departamento">
+          <a class= "pointer" (click)="mostrarDialogo(element.idDepartamento)" style="color:#e15639" matTooltip="Eliminar departamento">
             <mat-icon>delete</mat-icon>
           </a>
         </td>

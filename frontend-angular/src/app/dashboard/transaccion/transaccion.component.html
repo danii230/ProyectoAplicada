@@ -2,7 +2,7 @@
   <mat-toolbar>
     <span class="text">Transacción</span>
     <div class="example-spacer"></div>
-      <button mat-raised-button class="button" routerLink="/dashboard/crear-transaccion">AGREGAR</button>
+      <button mat-raised-button class="button" (click)="openDialog()">AGREGAR</button>
   </mat-toolbar>
   
     <mat-form-field appearance="standard">
@@ -33,7 +33,7 @@
           <a class="pointer"  (click)="manageTransaccion(element.idTransaccion)" style="color:#1f516f" matTooltip="Editar transaccion">
             <mat-icon>edit</mat-icon>
           </a>
-          <a class= "pointer" (click)="eliminarTransaccion(element.idTransaccion)" style="color:#e15639" matTooltip="Eliminar transacción">
+          <a class= "pointer" (click)="mostrarDialogo(element.idTransaccion)" style="color:#e15639" matTooltip="Eliminar transacción">
             <mat-icon>delete</mat-icon>
           </a>
         </td>

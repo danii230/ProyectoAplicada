@@ -5,6 +5,9 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { Router } from '@angular/router';
+import { CrearDepartamentoComponent } from './crear-departamento/crear-departamento.component';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogoConfirmacionComponent } from 'src/app/dialogo-confirmacion/dialogo-confirmacion.component';
 
 @Component({
   selector: 'app-departamento',
@@ -13,7 +16,8 @@ import { Router } from '@angular/router';
 })
 export class DepartamentoComponent implements OnInit {
 
-  constructor(private departamentoService: DepartamentoService, private router: Router) { }
+  constructor(private departamentoService: DepartamentoService, private router: Router,
+    public dialogo: MatDialog) { }
 
   ngOnInit(): void {
     this.cargarDepartamento();
@@ -54,6 +58,30 @@ export class DepartamentoComponent implements OnInit {
   manageDepartamento(idDepartamento: number){
     console.log(idDepartamento);
       this.router.navigate(['/dashboard/editar-departamento/' + idDepartamento]);
+  }
+
+  openDialog() {
+    this.dialogo.open(CrearDepartamentoComponent,
+      {
+        height: '400px',
+        width: '600px',
+      });
+   
+  }
+
+  mostrarDialogo(idDepartamento: any): void {
+    this.dialogo
+      .open(DialogoConfirmacionComponent, {
+        data: `¿Desea eliminar?`
+      })
+      .afterClosed()
+      .subscribe((confirmado: Boolean) => {
+        if (confirmado) {
+          this.eliminarDepartamento(idDepartamento);
+        } else {
+          alert("");
+        }
+      });
   }
 
 

@@ -5,6 +5,9 @@ import { MatPaginator } from '@angular/material/paginator';
 import { TrimestreService } from 'src/app/services/trimestre.service';
 import { Trimestre } from 'src/app/interfaces/trimestre';
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { CrearTrimestreComponent } from './crear-trimestre/crear-trimestre.component';
+import { DialogoConfirmacionComponent } from 'src/app/dialogo-confirmacion/dialogo-confirmacion.component';
 
 @Component({
   selector: 'app-trimestre',
@@ -13,7 +16,8 @@ import { Router } from '@angular/router';
 })
 export class TrimestreComponent implements OnInit {
 
-  constructor(private trimestreService: TrimestreService, private router: Router) { }
+  constructor(private trimestreService: TrimestreService, private router: Router,
+     public dialogo: MatDialog) { }
 
   ngOnInit(): void {
     this.cargarTrimestre();
@@ -55,6 +59,30 @@ export class TrimestreComponent implements OnInit {
   manageTrimestre(idTrimestre: number){
     console.log(idTrimestre);
       this.router.navigate(['/dashboard/editar-trimestre/' + idTrimestre]);
+  }
+
+  openDialog() {
+    this.dialogo.open(CrearTrimestreComponent,
+      {
+        height: '400px',
+        width: '600px',
+      });
+   
+  }
+
+  mostrarDialogo(idTrimestre: any): void {
+    this.dialogo
+      .open(DialogoConfirmacionComponent, {
+        data: `¿Desea eliminar?`
+      })
+      .afterClosed()
+      .subscribe((confirmado: Boolean) => {
+        if (confirmado) {
+          this.eliminarTrimestre(idTrimestre);
+        } else {
+          alert("");
+        }
+      });
   }
 
 

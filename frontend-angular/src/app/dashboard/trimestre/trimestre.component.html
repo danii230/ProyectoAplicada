@@ -2,7 +2,7 @@
   <mat-toolbar>
     <span class="text">Trimestre</span>
     <div class="example-spacer"></div>
-      <button mat-raised-button class="button" routerLink="/dashboard/crear-trimestre">AGREGAR</button>
+      <button mat-raised-button class="button" (click)="openDialog()">AGREGAR</button>
   </mat-toolbar>
   
     <mat-form-field appearance="standard">
@@ -29,7 +29,7 @@
           <a class="pointer"  (click)="manageTrimestre(element.idTrimestre)" style="color:#1f516f" matTooltip="Editar trimestre">
             <mat-icon>edit</mat-icon>
           </a>
-          <a class= "pointer" (click)="eliminarTrimestre(element.idTrimestre)" style="color:#e15639" matTooltip="Eliminar trimestre">
+          <a class= "pointer" (click)="mostrarDialogo(element.idTrimestre)" style="color:#e15639" matTooltip="Eliminar trimestre">
             <mat-icon>delete</mat-icon>
           </a>
         </td>

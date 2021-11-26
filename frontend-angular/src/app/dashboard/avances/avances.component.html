@@ -2,7 +2,7 @@
     <mat-toolbar>
         <span class="text">Avances</span>
         <div class="example-spacer"></div>
-        <button class="button" mat-raised-button routerLink="/dashboard/crear-avance">AGREGAR</button>
+        <button class="button" mat-raised-button (click)="openDialog()">AGREGAR</button>
     </mat-toolbar>
 
     <mat-form-field appearance="standard">
@@ -43,7 +43,7 @@
                     matTooltip="Editar Solicitud">
                     <mat-icon>edit</mat-icon>
                 </a>
-                <a class="pointer" (click)="eliminarAvance(element.idAvance)" style="color:#e15639"
+                <a class="pointer" (click)="mostrarDialogo(element.idAvance)" style="color:#e15639"
                     matTooltip="Eliminar Solicitud"> 
                     <mat-icon>delete</mat-icon>
                 </a>

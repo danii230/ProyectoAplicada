@@ -28,6 +28,6 @@ export class CrearDepartamentoComponent implements OnInit {
     departamento.descripcion = this.form.value.descripcion;
     this.departamentoService.ingresarDepartamento(departamento).subscribe(data=>
     console.log(data));
-    this.router.navigate(['/dashboard/departamento'])
+    window.location.reload();
   }
 }

@@ -49,7 +49,7 @@ export class CrearSolicitudComponent implements OnInit {
     solicitud.idResponsableUsuarioFinal = this.idResponsableTI.value;
     this.solicitudService.ingresarSolicitud(solicitud).subscribe(data =>
     console.log(data));
-    this.router.navigate(['/dashboard/solicitud'])
+    window.location.reload();
   }
   dateClass: MatCalendarCellClassFunction<Date> = (cellDate, view) => {
     // Only highligh dates inside the month view.
