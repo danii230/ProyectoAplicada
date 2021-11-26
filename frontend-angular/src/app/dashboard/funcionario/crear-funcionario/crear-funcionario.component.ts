@@ -12,6 +12,7 @@ import { Sexo } from 'src/app/interfaces/sexo';
 import * as moment from 'moment';
 import { GeneralService } from 'src/app/services/general.service';
 import { DomSanitizer } from '@angular/platform-browser';
+import { Alert } from 'selenium-webdriver';
 
 
 
@@ -33,7 +34,7 @@ export class CrearFuncionarioComponent implements OnInit {
   idSexo = new FormControl('', Validators.required);
   idDepartamento = new FormControl('', Validators.required);
   constructor(private fb: FormBuilder, private funcionarioService: FuncionarioService,
-    private router: Router,  private sanitizer: DomSanitizer, private sexoService: SexoService, private departamentoService: DepartamentoService, private generalService: GeneralService) {
+    private router: Router, private sanitizer: DomSanitizer, private sexoService: SexoService, private departamentoService: DepartamentoService, private generalService: GeneralService) {
     this.form = this.fb.group({
       idFuncionario: [''],
       nombre: ['', Validators.required],
@@ -64,15 +65,8 @@ export class CrearFuncionarioComponent implements OnInit {
       funcionario.password = this.form.value.password;
       funcionario.idDepartamento = this.idDepartamento.value;
       funcionario.fechaNacimiento = moment(this.form.value.fechaNacimiento).format("YYYY-MM-DD");
-      // const formularioDeDatos = new FormData();
-      // this.archivos.forEach(archivo => {
-      //   formularioDeDatos.append('files', archivo)
-      // })
-      //  funcionario.foto = this.archivos[0];
 
-
-
-
+      this.convertUrlToImageData(this.archivos[0])
       // // Foto
       // // funcionario.foto = (this.archivos[0]);
       // console.log(formularioDeDatos);
@@ -115,12 +109,13 @@ export class CrearFuncionarioComponent implements OnInit {
   capturarFile(event): any {
     const archivoCapturado = event.target.files[0]
     this.generalService.extraerBase64(archivoCapturado).then((imagen: any) => {
-      // this.previsualizacion = imagen.base;
+      this.previsualizacion = imagen.base;
       console.log(imagen);
 
     })
     this.archivos.push(archivoCapturado)
-   
+    
+
 
     // 
     // console.log(event.target.files);
@@ -131,15 +126,42 @@ export class CrearFuncionarioComponent implements OnInit {
     this.archivos = [];
   }
 
-
-  encodeImageFileAsURL(file) {
-
+ 
+  getBlobFromUrl = (myImageUrl) => {
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
-      reader.readAsDataURL(file);
+      reader.readAsDataURL(myImageUrl);
       reader.onload = () => resolve(reader.result);
       reader.onerror = error => reject(error);
     });
   }
+
+  getDataFromBlob = (myBlob) => {
+    //   return new Promise((resolve, reject) => {
+    //     let reader = new FileReader();
+    //     reader.onload = () => {
+    //       resolve(reader.result);
+    //     };
+    //     reader.onerror = reject;
+    //     reader.readAsDataURL(myBlob);
+    //   })
+    // return this.sanitizer.bypassSecurityTrustUrl(myBlob);
+
+  }
+
+  convertUrlToImageData = async (myImageUrl) => {
+    try {
+      let myBlob = await this.getBlobFromUrl(myImageUrl);
+      alert(myBlob);
+      let myImageData = await this.getDataFromBlob(myBlob);
+      //console.log(myImageData)
+      return myImageData;
+
+    } catch (err) {
+      console.log(err);
+      return null;
+    }
+  }
+
 
 }
