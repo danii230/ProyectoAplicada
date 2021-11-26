@@ -27,7 +27,7 @@ Content-Type: application/json
 "nombre": "Test", 
 "apellidos": "Test", 
 "fechaNacimiento": "2019-05-30", 
-"idSexo": "28", 
+"idSexo": "63", 
 "loginName": "vale@gestion.org", 
 "password": "124", 
 "idDepartamento": "1"

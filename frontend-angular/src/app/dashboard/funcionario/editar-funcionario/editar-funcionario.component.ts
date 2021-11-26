@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormControlName, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Funcionario } from 'src/app/interfaces/funcionario';
 import { DepartamentoService } from 'src/app/services/departamento.service';
 import { FuncionarioService } from 'src/app/services/funcionario.service';
 import { SexoService } from 'src/app/services/sexo.service';
 import { TransaccionService } from 'src/app/services/transaccion.service';
-
+import * as moment from 'moment';
 
 
 @Component({
@@ -22,15 +22,12 @@ export class EditarFuncionarioComponent implements OnInit {
   form: FormGroup;
   id: number;
   sexos: any = [];
+  funcionario = new Funcionario();
   departamentos: any = [];
-  nombre: any;
-  fechaNacimiento: any;
-  apellidos: any;
-  loginName: any;
-  password: any;
-  selectedProfile : any;
-  idSexo = new FormControl('', Validators.required);
-  idDepartamento = new FormControl('', Validators.required);
+  selectedSexo: any;
+  selectedDepartamento: any;
+  idSexo: FormControl;
+  idDepartamento: FormControl
   constructor(private funcionarioService: FuncionarioService, private route: ActivatedRoute,
     private router: Router, private fb: FormBuilder, private sexoService: SexoService, private departamentoService: DepartamentoService,) {
     this.form = this.fb.group({
@@ -43,7 +40,8 @@ export class EditarFuncionarioComponent implements OnInit {
       idDepartamento: ['', Validators.required],
       fechaNacimiento: ['']
     })
-
+    this.idSexo = new FormControl('', Validators.required);
+    this.idDepartamento = new FormControl('', Validators.required);
   }
 
   ngOnInit(): void {
@@ -52,30 +50,34 @@ export class EditarFuncionarioComponent implements OnInit {
     this.getSexo();
     this.getDepartamento();
     this.loadFuncionario(this.id);
-  
+
 
   }
 
   loadFuncionario(id: any): void {
     this.funcionarioService.encontrarId(id).subscribe(data => {
-      this.nombre = data[0].nombre;
-      this.apellidos = data[0].apellidos;
-      this.loginName = data[0].loginName;
-      this.password = data[0].password;
-      this.fechaNacimiento = data[0].fechaNacimiento;
-      this.selectedProfile = data[0].idSexo;
-      console.log(data);
-      console.log(this.selectedProfile);
-  
-
+      this.form.controls['idFuncionario'].setValue(data[0].idFuncionario);
+      this.form.controls['nombre'].setValue(data[0].nombre);
+      this.form.controls['apellidos'].setValue(data[0].apellidos);
+      this.form.controls['loginName'].setValue(data[0].loginName);
+      this.form.controls['password'].setValue(data[0].password);
+      this.form.controls['fechaNacimiento'].setValue(data[0].fechaNacimiento);
+      this.idSexo.setValue(data[0].idSexo);
+      this.idDepartamento.setValue(data[0].idDepartamento)
     });
   }
 
   modificarFuncionario() {
-    let funcionario = new Funcionario();
-    funcionario.idFuncionario = this.id;
-    funcionario.nombre = this.form.value.nombre;
-    this.funcionarioService.editarFuncionario(funcionario).subscribe(data =>
+    this.funcionario.idFuncionario = this.id;
+    this.funcionario.nombre = this.form.value.nombre;
+    this.funcionario.apellidos = this.form.value.apellidos;
+    this.funcionario.loginName = this.form.value.loginName;
+    this.funcionario.password = this.form.value.password;
+    this.funcionario.idSexo = this.idSexo.value;
+    this.funcionario.idDepartamento = this.idDepartamento.value;
+    this.funcionario.fechaNacimiento = moment(this.form.value.fechaNacimiento).format("YYYY-MM-DD");
+    console.log(this.funcionario);
+    this.funcionarioService.editarFuncionario(this.funcionario).subscribe(data =>
       console.log(data));
     this.router.navigate(['/dashboard/funcionario'])
   }
