@@ -6,6 +6,6 @@ export class Funcionario {
     idSexo: number;
     loginName: string;
     password: string;
-    foto: string;
     idDepartamento: number
+    foto:TexImageSource
   }

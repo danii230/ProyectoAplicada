@@ -65,14 +65,14 @@ export class CrearFuncionarioComponent implements OnInit {
       funcionario.password = this.form.value.password;
       funcionario.idDepartamento = this.idDepartamento.value;
       funcionario.fechaNacimiento = moment(this.form.value.fechaNacimiento).format("YYYY-MM-DD");
-
-      this.convertUrlToImageData(this.archivos[0])
-      // // Foto
-      // // funcionario.foto = (this.archivos[0]);
-      // console.log(formularioDeDatos);
-      // this.funcionarioService.ingresarFuncionario(funcionario).subscribe(data =>
-      //   console.log(data));
-      // this.router.navigate(['/dashboard/funcionario'])
+      // this.convertUrlToImageData(this.archivos[0]);
+      // let myBlob = this.getBlobFromUrl(this.archivos[0]);
+      // funcionario.foto = (this.generalService.extraerBase64(this.archivos[0]));
+      funcionario.foto = null;
+      console.log(funcionario);
+      this.funcionarioService.ingresarFuncionario(funcionario).subscribe(data =>
+     console.log(data));
+      this.router.navigate(['/dashboard/funcionario'])
     } catch (e) {
       this.loading = false;
       console.log('ERROR', e);
@@ -114,7 +114,7 @@ export class CrearFuncionarioComponent implements OnInit {
 
     })
     this.archivos.push(archivoCapturado)
-    
+
 
 
     // 
@@ -126,7 +126,7 @@ export class CrearFuncionarioComponent implements OnInit {
     this.archivos = [];
   }
 
- 
+
   getBlobFromUrl = (myImageUrl) => {
     return new Promise((resolve, reject) => {
       const reader = new FileReader();

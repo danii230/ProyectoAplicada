@@ -63,14 +63,13 @@ export class FuncionarioComponent implements OnInit {
   mostrarDialogo(idFuncionario: any): void {
     this.dialogo
       .open(DialogoConfirmacionComponent, {
-        data: `¿Desea eliminar?`
+        data: `¿Desea eliminar funcionario?`
       })
       .afterClosed()
       .subscribe((confirmado: Boolean) => {
         if (confirmado) {
           this.eliminarfuncionario(idFuncionario);
         } else {
-          alert("");
         }
       });
   }

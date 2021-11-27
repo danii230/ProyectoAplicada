@@ -34,6 +34,7 @@ export class FuncionarioService {
 }
 
 public editarFuncionario(funcionario: Funcionario): Observable<Funcionario> {
+  console.log(funcionario);
   const url: string = endpoint + '/funcionario/';
   return this.http.put<Funcionario>(url, funcionario);
 }
