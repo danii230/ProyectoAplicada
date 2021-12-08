@@ -1,12 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Router } from '@angular/router';
-import * as moment from 'moment';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Solicitud } from 'src/app/interfaces/solicitud';
 import { FuncionarioService } from 'src/app/services/funcionario.service';
 import { GeneralService } from 'src/app/services/general.service';
 import { SolicitudService } from 'src/app/services/solicitud.service';
+import * as moment from 'moment';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-editar-solicitud',
@@ -17,12 +17,13 @@ export class EditarSolicitudComponent implements OnInit {
 
   form: FormGroup;
   responsablesTI: any = [];
-  solicitud = new Solicitud();
   responsablesUsuarioFinal: any = [];
-  idResponsableTI = FormControl;
-  idResponsableUsuarioFinal = FormControl;
-  constructor(private fb: FormBuilder, private solicitudService: SolicitudService,
-    private router: Router, private generalService: GeneralService, private funcionarioService : FuncionarioService) {
+  solicitud = new Solicitud();
+  idResponsableTI = new FormControl('', Validators.required);
+  idResponsableUsuarioFinal = new FormControl('', Validators.required);
+  constructor(private solicitudService: SolicitudService, private route: ActivatedRoute,
+    private router: Router, private fb: FormBuilder, private funcionarioService: FuncionarioService,
+    @Inject(MAT_DIALOG_DATA) public data: any) {
     this.form = this.fb.group({
       fechaInicio: [''],
       fechaFin: [''],
@@ -33,6 +34,8 @@ export class EditarSolicitudComponent implements OnInit {
   ngOnInit(): void {
     this.getResponsableTI();
     this.getResponsableUsuarioFinal();
+    this.loadSolicitud(this.data.idSolicitud);
+    console.log(this.data.idSolicitud);
   }
 
   loadSolicitud(id: any): void {

@@ -25,8 +25,6 @@ export class EditarFuncionarioComponent implements OnInit {
   sexos: any = [];
   funcionario = new Funcionario();
   departamentos: any = [];
-  selectedSexo: any;
-  selectedDepartamento: any;
   idSexo: FormControl;
   idDepartamento: FormControl
   constructor(private funcionarioService: FuncionarioService, private route: ActivatedRoute,

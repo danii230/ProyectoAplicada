@@ -7,6 +7,7 @@ import { DialogoConfirmacionComponent } from 'src/app/dialogo-confirmacion/dialo
 import { GeneralService } from 'src/app/services/general.service';
 import { SolicitudService } from 'src/app/services/solicitud.service';
 import { CrearSolicitudComponent } from './crear-solicitud/crear-solicitud.component';
+import { EditarSolicitudComponent } from './editar-solicitud/editar-solicitud.component';
 
 @Component({
   selector: 'app-solicitud',
@@ -79,9 +80,22 @@ export class SolicitudComponent implements OnInit {
         if (confirmado) {
           this.eliminarSolicitud(idSolicitud);
         } else {
-          alert("");
         }
       });
   }
+
+  editarModal(idSolicitud: any) {
+    this.dialogo.open(EditarSolicitudComponent,
+      {
+       height: '400px',
+       width: '600px',
+       data: {
+        idSolicitud:idSolicitud
+       }
+       
+      });
+  
+ }
+
 
 }

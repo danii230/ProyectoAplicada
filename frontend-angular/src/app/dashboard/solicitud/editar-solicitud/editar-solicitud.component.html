@@ -1,0 +1,65 @@
+<div class="containerModal">
+    <mat-toolbar>
+        <span class="text">Agregar Solicitud</span>
+    </mat-toolbar>
+
+    <mat-card style="margin-top: 10px;">
+        <form [formGroup]="form" (ngSubmit)="modificarSolicitud()">
+            <mat-grid-list cols="2" rowHeight="70px">
+
+                <mat-grid-tile [colspan]="1" [rowspan]="1">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Responsable TI</mat-label>
+                        <mat-select [formControl]="idResponsableTI" required>
+                            <mat-option>--</mat-option>
+                            <mat-option *ngFor="let responsableTI of responsablesTI"
+                                [value]="responsableTI.idFuncionario">
+                                {{responsableTI.nombre + " " + responsableTI.apellidos}}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="idResponsableTI.hasError('required')">Por favor escoja el responsable de TI
+                        </mat-error>
+                    </mat-form-field>
+                </mat-grid-tile>
+
+                <mat-grid-tile [colspan]="1" [rowspan]="1">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Responsable Usuario Final</mat-label>
+                        <mat-select [formControl]="idResponsableUsuarioFinal" required>
+                            <mat-option>--</mat-option>
+                            <mat-option *ngFor="let responsableUsuarioFinal of responsablesUsuarioFinal"
+                                [value]="responsableUsuarioFinal.idFuncionario">
+                                {{responsableUsuarioFinal.nombre + " " + responsableUsuarioFinal.apellidos}}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="idResponsableUsuarioFinal.hasError('required')">Por favor escoja el
+                            responsable de usuario final</mat-error>
+                    </mat-form-field>
+                </mat-grid-tile>
+
+                <mat-grid-tile [colspan]="1" [rowspan]="1">
+                    <mat-form-field clas="ancho">
+                        <mat-label>Fecha de Inicio</mat-label>
+                        <input matInput [matDatepicker]="picker" formControlName="fechaInicio">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                </mat-grid-tile>
+
+                <mat-grid-tile [colspan]="1" [rowspan]="1">
+                    <mat-form-field clas="ancho">
+                        <mat-label>Fecha de Fin</mat-label>
+                        <input matInput [matDatepicker]="picker_" formControlName="fechaFin">
+                        <mat-datepicker-toggle matSuffix [for]="picker_"></mat-datepicker-toggle>
+                        <mat-datepicker #picker_></mat-datepicker>
+                    </mat-form-field>
+                </mat-grid-tile>
+
+                <mat-grid-tile [colspan]="1" [rowspan]="1">
+                    <button mat-raised-button mat-dialog-close style="margin-right: 20px;">Cancelar</button>
+                    <button type="submit" mat-raised-button color="primary">Editar</button>
+                </mat-grid-tile>
+            </mat-grid-list>
+        </form>
+    </mat-card>
+</div>
