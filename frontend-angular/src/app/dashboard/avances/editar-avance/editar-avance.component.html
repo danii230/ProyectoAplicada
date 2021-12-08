@@ -1,1 +1,56 @@
-<p>editar-avance works!</p>
+<div class="containerModal">
+    <mat-toolbar>
+        <span class="text">Editar Avance</span>
+    </mat-toolbar>
+
+    <mat-card style="margin-top: 10px;">
+        <form [formGroup]="form" (ngSubmit)="modificarAvance()">
+            <mat-grid-list cols="2" rowHeight="70px">
+
+                <mat-grid-tile [colspan]="1" [rowspan]="1">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Usuario Aplicativo</mat-label>
+                        <mat-select [formControl]="idUsuarioAplicativo" required>
+                            <mat-option>--</mat-option>
+                            <mat-option *ngFor="let usuarioAplicativo of usuariosAplicativos" [value]="usuarioAplicativo.idFuncionario">
+                                {{usuarioAplicativo.nombre + " " + usuarioAplicativo.apellidos}}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="idUsuarioAplicativo.hasError('required')">Por favor escoja el usario aplicativo</mat-error>
+                    </mat-form-field>
+                </mat-grid-tile>
+
+                <mat-grid-tile [colspan]="1" [rowspan]="1">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Trimestre</mat-label>
+                        <mat-select [formControl]="idTrimestre" required>
+                            <mat-option>--</mat-option>
+                            <mat-option *ngFor="let trimestre of trimestres" [value]="trimestre.idTrimestre">
+                                {{trimestre.descripcion}}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="idTrimestre.hasError('required')">Por favor escoja el trimestre</mat-error>
+                    </mat-form-field>
+                </mat-grid-tile>
+
+                <mat-grid-tile [colspan]="1" [rowspan]="1">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Solicitud</mat-label>
+                        <mat-select [formControl]="idSolicitud" required>
+                            <mat-option>--</mat-option>
+                            <mat-option *ngFor="let solicitud of solicitudes" [value]="solicitud.idSolicitud">
+                                {{solicitud.idSolicitud}}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="idTrimestre.hasError('required')">Por favor escoja el trimestre</mat-error>
+                    </mat-form-field>
+                </mat-grid-tile>
+               
+                <mat-grid-tile [colspan]="1" [rowspan]="1">
+                    <button mat-raised-button mat-dialog-close style="margin-right: 20px;">Cancelar</button>
+                    <button type="submit" mat-raised-button class="button">Aceptar</button>
+                </mat-grid-tile>
+            </mat-grid-list>
+        </form>
+    </mat-card>
+</div>
