@@ -23,8 +23,11 @@ export class EditarSolicitudComponent implements OnInit {
   idResponsableUsuarioFinal = new FormControl('', Validators.required);
   constructor(private solicitudService: SolicitudService, private route: ActivatedRoute,
     private router: Router, private fb: FormBuilder, private funcionarioService: FuncionarioService,
-    @Inject(MAT_DIALOG_DATA) public data: any) {
+    @Inject(MAT_DIALOG_DATA) public data: any, private generalService: GeneralService) {
     this.form = this.fb.group({
+      idSolicitud: [''],
+      fechaHora: [''],
+      idUsuarioAplicativo: [''],
       fechaInicio: [''],
       fechaFin: [''],
       idResponsableTI: ['', Validators.required],
@@ -40,23 +43,32 @@ export class EditarSolicitudComponent implements OnInit {
 
   loadSolicitud(id: any): void {
     this.solicitudService.encontrarId(id).subscribe(data => {
+      console.log(data);
       this.form.controls['idSolicitud'].setValue(data[0].idSolicitud);
+      this.form.controls['idUsuarioAplicativo'].setValue(data[0].idUsuarioAplicativo);
+      this.form.controls['fechaHora'].setValue(moment(data[0].fechaHora).format('lll'));
       this.form.controls['fechaInicio'].setValue(data[0].fechaInicio);
-      this.form.controls['FechaFin'].setValue(data[0].fechaFin);
+      this.form.controls['fechaFin'].setValue(data[0].fechaFin);
       this.idResponsableTI.setValue(data[0].idResponsableTI);
       this.idResponsableUsuarioFinal.setValue(data[0].idResponsableUsuarioFinal)
     });
   }
 
   modificarSolicitud() {
+    this.solicitud.idSolicitud = this.form.value.idSolicitud;
+    this.solicitud.idUsuarioAplicativo = this.form.value.idUsuarioAplicativo;
+    this.solicitud.fechaHora= this.form.value.fechaHora;
     this.solicitud.fechaInicio = moment(this.form.value.fechaInicio).format("YYYY-MM-DD");
     this.solicitud.fechaFin = moment(this.form.value.fechaFin).format("YYYY-MM-DD");
-    this.solicitud.idResponsableTI = this.form.value.idResponsableTI;
-    this.solicitud.idResponsableUsuarioFinal = this.form.value.idResponsableUsuarioFinal;
+    this.solicitud.idResponsableTI = this.idResponsableTI.value;
+    this.solicitud.idResponsableUsuarioFinal = this.idResponsableUsuarioFinal.value;
+    this.solicitud.idUsuarioAplicativo_temp= this.generalService.getCookie("idFuncionario");
+
+   
     console.log(this.solicitud);
     this.solicitudService.editarSolicitud(this.solicitud).subscribe(data =>
-      console.log(data));
-    this.router.navigate(['/dashboard/funcionario'])
+    console.log(data));
+    this.router.navigate(['/dashboard/solicitud'])
   }
 
   getResponsableTI() {

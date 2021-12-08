@@ -46,7 +46,7 @@ export class CrearSolicitudComponent implements OnInit {
     solicitud.idResponsableTI = this.idResponsableTI.value;
     solicitud.fechaInicio = moment(this.form.value.fechaInicio).format("YYYY-MM-DD");
     solicitud.fechaFin = moment(this.form.value.fechaFin).format("YYYY-MM-DD");
-    solicitud.idResponsableUsuarioFinal = this.idResponsableTI.value;
+    solicitud.idResponsableUsuarioFinal = this.idResponsableUsuarioFinal.value;
     this.solicitudService.ingresarSolicitud(solicitud).subscribe(data =>
     console.log(data));
     window.location.reload();

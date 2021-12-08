@@ -1,9 +1,10 @@
 export class Solicitud {
-    idSolicitud: number;
+    idSolicitud: string;
     fechaHora: string;
     idUsuarioAplicativo: string;
     idResponsableTI: number;
     fechaInicio: string;
     fechaFin: string;
-    idResponsableUsuarioFinal: number
+    idResponsableUsuarioFinal: number;
+    idUsuarioAplicativo_temp: string
   }
