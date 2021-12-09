@@ -7,6 +7,7 @@ import { DialogoConfirmacionComponent } from 'src/app/dialogo-confirmacion/dialo
 import { AvanceService } from 'src/app/services/avance.service';
 import { GeneralService } from 'src/app/services/general.service';
 import { CrearAvanceComponent } from './crear-avance/crear-avance.component';
+import { EditarAvanceComponent } from './editar-avance/editar-avance.component';
 
 @Component({
   selector: 'app-avances',
@@ -83,4 +84,17 @@ export class AvancesComponent implements OnInit {
         }
       });
   }
+
+  editarModal(idAvance: any) {
+    this.dialogo.open(EditarAvanceComponent,
+      {
+       height: '400px',
+       width: '600px',
+       data: {
+        idAvances:idAvance
+       }
+       
+      });
+  
+ }
 }
