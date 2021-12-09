@@ -67,6 +67,14 @@
                 </mat-grid-tile>
 
                 <mat-grid-tile [colspan]="1" [rowspan]="1">
+                    <input class="input-file" (change)="capturarFile($event)" formControlName="file" type="file">
+                    <div class="preview-img" *ngIf="previsualizacion">
+                        <button class="clear-image" type="button" (click)="clearImage()">Clear</button>
+                        <img [src]="previsualizacion" alt="">
+                    </div>
+                </mat-grid-tile>
+
+                <mat-grid-tile [colspan]="1" [rowspan]="1">
                     <button mat-raised-button style="margin-right: 20px;">Volver</button>
                     <button type="submit" mat-raised-button class="button">Editar</button>
                 </mat-grid-tile>

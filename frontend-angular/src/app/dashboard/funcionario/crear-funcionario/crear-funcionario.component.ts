@@ -27,7 +27,7 @@ interface Animal {
   styleUrls: ['./crear-funcionario.component.css']
 })
 export class CrearFuncionarioComponent implements OnInit {
-
+  funcionario = new Funcionario();
   form: FormGroup;
   sexos: any = [];
   departamentos: any = [];
@@ -57,22 +57,26 @@ export class CrearFuncionarioComponent implements OnInit {
 
   agregarFuncionario() {
     try {
-      let funcionario = new Funcionario();
-      funcionario.nombre = this.form.value.nombre;
-      funcionario.apellidos = this.form.value.apellidos;
-      funcionario.idSexo = this.idSexo.value;
-      funcionario.loginName = this.form.value.loginName;
-      funcionario.password = this.form.value.password;
-      funcionario.idDepartamento = this.idDepartamento.value;
-      funcionario.fechaNacimiento = moment(this.form.value.fechaNacimiento).format("YYYY-MM-DD");
-      // this.convertUrlToImageData(this.archivos[0]);
-      // let myBlob = this.getBlobFromUrl(this.archivos[0]);
-      // funcionario.foto = (this.generalService.extraerBase64(this.archivos[0]));
-      funcionario.foto = null;
-      console.log(funcionario);
-      this.funcionarioService.ingresarFuncionario(funcionario).subscribe(data =>
-     console.log(data));
-      this.router.navigate(['/dashboard/funcionario'])
+
+      this.funcionario.nombre = this.form.value.nombre;
+      this.funcionario.apellidos = this.form.value.apellidos;
+      this.funcionario.idSexo = this.idSexo.value;
+      this.funcionario.loginName = this.form.value.loginName;
+      this.funcionario.password = this.form.value.password;
+      this.funcionario.idDepartamento = this.idDepartamento.value;
+      this.funcionario.fechaNacimiento = moment(this.form.value.fechaNacimiento).format("YYYY-MM-DD");
+      this.encodeImageFileAsURL(this.archivos[0]).then(
+        data => {
+          console.log(data);
+          this.funcionario.foto = data;
+          console.log(this.funcionario)
+          this.funcionarioService.ingresarFuncionario(this.funcionario).subscribe(data =>
+            console.log(data));
+          this.router.navigate(['/dashboard/funcionario'])
+        }
+
+      );
+
     } catch (e) {
       this.loading = false;
       console.log('ERROR', e);
@@ -126,42 +130,27 @@ export class CrearFuncionarioComponent implements OnInit {
     this.archivos = [];
   }
 
+  encodeImageFileAsURL(file) {
 
-  getBlobFromUrl = (myImageUrl) => {
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
-      reader.readAsDataURL(myImageUrl);
+      reader.readAsDataURL(file);
       reader.onload = () => resolve(reader.result);
       reader.onerror = error => reject(error);
     });
   }
 
-  getDataFromBlob = (myBlob) => {
-    //   return new Promise((resolve, reject) => {
-    //     let reader = new FileReader();
-    //     reader.onload = () => {
-    //       resolve(reader.result);
-    //     };
-    //     reader.onerror = reject;
-    //     reader.readAsDataURL(myBlob);
-    //   })
-    // return this.sanitizer.bypassSecurityTrustUrl(myBlob);
+
+getDataFromBlob = (myBlob) => {
+  //   return new Promise((resolve, reject) => {
+  //     let reader = new FileReader();
+  //     reader.onload = () => {
+  //       resolve(reader.result);
+  //     };
+  //     reader.onerror = reject;
+  //     reader.readAsDataURL(myBlob);
+  //   })
+  return this.sanitizer.bypassSecurityTrustUrl(myBlob);
+   }
 
   }
-
-  convertUrlToImageData = async (myImageUrl) => {
-    try {
-      let myBlob = await this.getBlobFromUrl(myImageUrl);
-      alert(myBlob);
-      let myImageData = await this.getDataFromBlob(myBlob);
-      //console.log(myImageData)
-      return myImageData;
-
-    } catch (err) {
-      console.log(err);
-      return null;
-    }
-  }
-
-
-}

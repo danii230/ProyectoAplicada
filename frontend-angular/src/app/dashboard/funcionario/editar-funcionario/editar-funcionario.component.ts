@@ -8,6 +8,9 @@ import { SexoService } from 'src/app/services/sexo.service';
 import { TransaccionService } from 'src/app/services/transaccion.service';
 import * as moment from 'moment';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { GeneralService } from 'src/app/services/general.service';
+import { DomSanitizer } from '@angular/platform-browser';
+
 
 
 @Component({
@@ -27,9 +30,10 @@ export class EditarFuncionarioComponent implements OnInit {
   departamentos: any = [];
   idSexo: FormControl;
   idDepartamento: FormControl
+
   constructor(private funcionarioService: FuncionarioService, private route: ActivatedRoute,
     private router: Router, private fb: FormBuilder, private sexoService: SexoService, private departamentoService: DepartamentoService,
-    @Inject(MAT_DIALOG_DATA) public data: any) {
+    @Inject(MAT_DIALOG_DATA) public data: any, private generalService: GeneralService, private sanitizer: DomSanitizer) {
     this.form = this.fb.group({
       idFuncionario: [''],
       nombre: ['', Validators.required],
@@ -42,7 +46,10 @@ export class EditarFuncionarioComponent implements OnInit {
     })
     this.idSexo = new FormControl('', Validators.required);
     this.idDepartamento = new FormControl('', Validators.required);
+
   }
+  public previsualizacion: any;
+  public archivos: any = [];
 
   ngOnInit(): void {
 
@@ -63,10 +70,29 @@ export class EditarFuncionarioComponent implements OnInit {
       this.form.controls['password'].setValue(data[0].password);
       this.form.controls['fechaNacimiento'].setValue(data[0].fechaNacimiento);
       this.idSexo.setValue(data[0].idSexo);
-      this.idDepartamento.setValue(data[0].idDepartamento)
+      this.idDepartamento.setValue(data[0].idDepartamento);
+      console.log(data[0].foto.data);
+
+      let buff = Buffer.from(data[0].foto);
+      let base64data = buff.toString('base64');
+      var hex = Buffer.from(data[0].foto, 'base64').toString('hex');
+      let x = hex.replace(/^(.{8})(.{4})(.{4})(.{4})(.{12})$/, function () {
+        return arguments[1] + "-" + arguments[2] + "-" + arguments[3] + "-" + arguments[4] + "-" + arguments[5];
+      });
+
+      let objectURL = 'data:image/jpeg;base64,' + x;
+
+      this.previsualizacion = this.sanitizer.bypassSecurityTrustUrl(objectURL);
+
+    
+
+      // console.log('"' + data + '" converted to Base64 is "' + base64data + '"');
+      // var base64Policy = Buffer.alloc(data[0].foto, 'utf-8').toString('base64');
+      // this.previsualizacion=base64Policy;
+
+
     });
   }
-
   modificarFuncionario() {
     this.funcionario.idFuncionario = this.form.value.idFuncionario;
     this.funcionario.nombre = this.form.value.nombre;
@@ -80,6 +106,21 @@ export class EditarFuncionarioComponent implements OnInit {
     this.funcionarioService.editarFuncionario(this.funcionario).subscribe(data =>
       console.log(data));
     this.router.navigate(['/dashboard/funcionario'])
+  }
+  capturarFile(event): any {
+    const archivoCapturado = event.target.files[0]
+    this.generalService.extraerBase64(archivoCapturado).then((imagen: any) => {
+      this.previsualizacion = imagen.base;
+      console.log(imagen);
+
+    })
+    this.archivos.push(archivoCapturado)
+
+
+
+    // 
+    // console.log(event.target.files);
+
   }
 
   getSexo() {
