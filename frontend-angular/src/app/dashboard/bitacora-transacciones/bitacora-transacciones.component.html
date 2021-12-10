@@ -1,33 +1,42 @@
 <div class="container">
-    <mat-toolbar>
-      <span class="text">Bitacora de Transacciones</span>
-      <div class="example-spacer"></div>
-    </mat-toolbar>
-    
-    
-    
-      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-    
-        <!--- Note that these columns can be defined in any order.
+  <mat-toolbar>
+    <span class="text">Bitacora de Transacciones</span>
+    <div class="example-spacer"></div>
+  </mat-toolbar>
+
+
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+    <!--- Note that these columns can be defined in any order.
               The actual rendered columns are set as a property on the row definition" -->
-      
-        <!-- Position Column -->
-        <ng-container matColumnDef="idTransaccion">
-          <th mat-header-cell *matHeaderCellDef> Id </th>
-          <td mat-cell *matCellDef="let element"> {{element.idTransaccion}} </td>
-        </ng-container>
-      
-        <!-- Name Column -->
-        <ng-container matColumnDef="descripcion">
-          <th mat-header-cell *matHeaderCellDef> Descripción </th>
-          <td mat-cell *matCellDef="let element"> {{element.descripcion}} </td>
-        </ng-container>
-    
-      
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-      </table>
-      <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
-    </div>
-  
-  
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="idBitacoraAuditoria">
+      <th mat-header-cell *matHeaderCellDef> Id </th>
+      <td mat-cell *matCellDef="let element"> {{element.idBitacoraAuditoria}} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="descripcion">
+      <th mat-header-cell *matHeaderCellDef> Descripción </th>
+      <td mat-cell *matCellDef="let element"> {{element.descripcion}} </td>
+    </ng-container>
+    <ng-container matColumnDef="idUsuarioAplicativo">
+      <th mat-header-cell *matHeaderCellDef> Usuario Aplicativo </th>
+      <td mat-cell *matCellDef="let element"> {{element.nombre + " " + element.apellidos}} </td>
+    </ng-container>
+    <ng-container matColumnDef="fechaHora">
+      <th mat-header-cell *matHeaderCellDef> Fecha creación </th>
+      <td mat-cell *matCellDef="let element"> {{element.fechaHora | date:'mediumDate'}} </td>
+    </ng-container>
+    <ng-container matColumnDef="idSolicitud">
+      <th mat-header-cell *matHeaderCellDef> idSolicitud </th>
+      <td mat-cell *matCellDef="let element"> {{element.idSolicitud}} </td>
+    </ng-container>
+
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+</div>

@@ -1,3 +1,4 @@
+const { MAX } = require('mssql');
 const db_conection = require('../../config/db.js');
 
 // Get
@@ -35,10 +36,18 @@ exports.ingresarAvance = (req, res) => {
         if (err) {
             console.log(err);
         } else {
+            var request = new db_conection.sql.Request();
+            request.input('idTrimestre', db_conection.sql.TinyInt, req.body.idTrimestre)
+                .input('idUsuarioAplicativo', db_conection.sql.SmallInt, req.body.idUsuarioAplicativo)
+                .input('idSolicitud', db_conection.sql.SmallInt, req.body.idSolicitud)
+                .input('finalizado', db_conection.sql.Bit, req.body.finalizado)
+                .input('documento', db_conection.sql.VarBinary(MAX),  Buffer.from(req.body.documento))
+                .query("exec [dbo].[ingresarAvance] @idTrimestre, @idUsuarioAplicativo, @idSolicitud, @finalizado, @documento");
+     
 
-            db_conection.sql.query(
+            // db_conection.sql.query(
 
-                "exec [dbo].[ingresarAvance] '" + idTrimestre + "','" + idUsuarioAplicativo + "','" + idSolicitud + "','" +finalizado + "'");
+            //     "exec [dbo].[ingresarAvance] '" + idTrimestre + "','" + idUsuarioAplicativo + "','" + idSolicitud + "','" +finalizado + "'");
         }
 
     });

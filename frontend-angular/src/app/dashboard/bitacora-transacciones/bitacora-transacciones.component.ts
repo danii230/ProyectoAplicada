@@ -2,8 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
-import { Transaccion } from 'src/app/interfaces/transaccion';
-import { TransaccionService } from 'src/app/services/transaccion.service';
+import { Bitacora } from 'src/app/interfaces/bitacoraAuditoria';
+import { BitacoraAuditoriaService } from 'src/app/services/bitacoraAuditoria';
 
 @Component({
   selector: 'app-bitacora-transacciones',
@@ -12,15 +12,15 @@ import { TransaccionService } from 'src/app/services/transaccion.service';
 })
 export class BitacoraTransaccionesComponent implements OnInit {
 
-  constructor(private transaccionService: TransaccionService, private router: Router) { }
+  constructor(private bitacora: BitacoraAuditoriaService, private router: Router) { }
 
   ngOnInit(): void {
     this.cargarTransaccion();
   }
 
-  listTransaccion: Transaccion[] = [];
+  listTransaccion: Bitacora[] = [];
 
-  displayedColumns: string[] = ['idTransaccion', 'descripcion'];
+  displayedColumns: string[] = ['idBitacoraAuditoria', 'descripcion', 'idUsuarioAplicativo', 'fechaHora', 'idSolicitud'];
   dataSource: MatTableDataSource<any>;
 
 
@@ -28,7 +28,7 @@ export class BitacoraTransaccionesComponent implements OnInit {
 
 
   public cargarTransaccion(){
-    this.transaccionService.getTransaccion().subscribe(data =>{
+    this.bitacora.getBitacora().subscribe(data =>{
     this.listTransaccion = data;
     this.dataSource = new MatTableDataSource(this.listTransaccion)
     this.dataSource.paginator = this.paginator;
