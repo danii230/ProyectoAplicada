@@ -6,6 +6,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { GeneralService } from 'src/app/services/general.service';
 import { SolicitudService } from 'src/app/services/solicitud.service';
+import * as moment from 'moment';
 
 
 @Component({
@@ -15,13 +16,16 @@ import { SolicitudService } from 'src/app/services/solicitud.service';
 })
 export class SolicitudesFechasComponent implements OnInit {
 
-  dateRange = new FormGroup({
-    start: new FormControl(),
-    end: new FormControl()
+  filterForm = new FormGroup({
+    fromDate: new FormControl(),
+    toDate: new FormControl(),
   });
 
-  constructor(private solicitudService: SolicitudService, private generalService: GeneralService, 
-    private router: Router,  public dialogo: MatDialog) { }
+  get fromDate() { return this.filterForm.get('fromDate').value; }
+  get toDate() { return this.filterForm.get('toDate').value; }
+
+  constructor(private solicitudService: SolicitudService, private generalService: GeneralService,
+    private router: Router, public dialogo: MatDialog) { }
 
   ngOnInit(): void {
     this.cargarFuncionario();
@@ -31,6 +35,7 @@ export class SolicitudesFechasComponent implements OnInit {
 
   displayedColumns: string[] = ['idSolicitud', 'idUsuarioAplicativo', 'idResponsableTI', 'idResponsableUsuaioFinal', 'fechaHora'];
   dataSource: MatTableDataSource<any>;
+
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -47,7 +52,7 @@ export class SolicitudesFechasComponent implements OnInit {
 
   }
 
-  public comprobarFechas(){
+  public comprobarFechas() {
     this.solicitudService.getSolicitud().subscribe(data => {
       console.log(data);
       this.listsolicitud = data;
@@ -55,5 +60,17 @@ export class SolicitudesFechasComponent implements OnInit {
       this.dataSource.paginator = this.paginator;
     })
   }
+  applyFilter() {
 
+    this.solicitudService.getSolicitud().subscribe(data => {
+      this.listsolicitud = data;
+      this.dataSource.data = this.listsolicitud;
+      console.log(this.filterForm.value.fromDate);
+      this.dataSource.data = this.dataSource.data.filter(e => new Date(e.fechaHora) >= new Date(this.filterForm.value.fromDate) && new Date(e.fechaHora) <= new Date(this.filterForm.value.toDate));
+
+      this.dataSource.paginator = this.paginator;
+    })
+
+
+  }
 }

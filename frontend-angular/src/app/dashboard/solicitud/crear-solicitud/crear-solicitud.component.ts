@@ -57,8 +57,8 @@ export class CrearSolicitudComponent implements OnInit {
         console.log(data);
         this.solicitud.documentoActaConstitutiva = data;
         console.log(this.solicitud)
-         this.solicitudService.ingresarSolicitud(this.solicitud).subscribe(data =>
-        console.log(data));
+        this.solicitudService.ingresarSolicitud(this.solicitud).subscribe(data =>
+          console.log(data));
         window.location.reload();
       }
 

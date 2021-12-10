@@ -4,15 +4,43 @@
         <div class="example-spacer"></div>
     </mat-toolbar>
 
-    <mat-form-field appearance="legacy" class="mat">
+    <!-- <mat-form-field appearance="legacy" class="mat">
         <mat-label>Choose Date Range</mat-label>
-        <mat-date-range-input [rangePicker]="picker" [formGroup]="dateRange">
-            <input matStartDate formControlName="start" placeholder="Start Date">
-            <input matEndDate formControlName="end" placeholder="End Date">
-        </mat-date-range-input>
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-date-range-picker #picker></mat-date-range-picker>
-    </mat-form-field>
+        <form [formGroup]="dateRange">
+            <mat-date-range-input [rangePicker]="picker">
+                <input matStartDate formControlName="start" placeholder="Start Date">
+                <input matEndDate formControlName="end" placeholder="End Date">
+            </mat-date-range-input>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-date-range-picker #picker></mat-date-range-picker>
+        </form>
+    </mat-form-field> -->
+
+
+    <form class="date-block" [formGroup]="filterForm">
+        <div class="date-block__list">
+        <mat-form-field>
+          <input matInput 
+            [matDatepicker]="fromDate" 
+            placeholder="From Date" 
+            formControlName="fromDate">
+          <mat-datepicker-toggle matSuffix [for]="fromDate"></mat-datepicker-toggle>
+          <mat-datepicker #fromDate></mat-datepicker>
+        </mat-form-field>
+      </div>
+          <div class="date-block__list">
+        <mat-form-field>
+          <input matInput 
+            [matDatepicker]="toDate" 
+            placeholder="To Date" 
+            formControlName="toDate">
+          <mat-datepicker-toggle matSuffix [for]="toDate"></mat-datepicker-toggle>
+          <mat-datepicker #toDate></mat-datepicker>
+        </mat-form-field>
+      </div>
+       <button mat-button color="primary" class="primary" (click)="applyFilter()">Submit</button>
+    </form>
+
 
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
