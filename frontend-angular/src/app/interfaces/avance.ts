@@ -5,5 +5,6 @@ export class Avance {
     idUsuarioAplicativo: string;
     idSolicitud: number;
     finalizado: boolean;
-    idUsuarioAplicativo_temp: string
+    idUsuarioAplicativo_temp: string;
+    documento: any
   }

@@ -9,6 +9,7 @@ import { GeneralService } from 'src/app/services/general.service';
 import { SolicitudService } from 'src/app/services/solicitud.service';
 import { TrimestreService } from 'src/app/services/trimestre.service';
 
+
 @Component({
   selector: 'app-crear-avance',
   templateUrl: './crear-avance.component.html',
@@ -23,16 +24,21 @@ export class CrearAvanceComponent implements OnInit {
   idUsuarioAplicativo = new FormControl('', Validators.required);
   idTrimestre = new FormControl('', Validators.required);
   idSolicitud = new FormControl('', Validators.required);
+  avance = new Avance();
   constructor(private fb: FormBuilder, private avanceService: AvanceService,
-    private router: Router, private generalService: GeneralService,private funcionarioService: FuncionarioService, 
+    private router: Router, private generalService: GeneralService, private funcionarioService: FuncionarioService,
     private solicitudService: SolicitudService, private trimestreService: TrimestreService) {
     this.form = this.fb.group({
       idAvance: [''],
       idUsuarioAplicativo: ['', Validators.required],
       idTrimestre: ['', Validators.required],
       idSolicitud: ['', Validators.required],
+      finalizado: ['']
     })
   }
+  public previsualizacion: string;
+  public archivos: any = [];
+  public loading: boolean;
   ngOnInit(): void {
     this.getSolicitud();
     this.getTrimestre();
@@ -40,15 +46,23 @@ export class CrearAvanceComponent implements OnInit {
   }
 
   agregarAvance() {
-    let avance = new Avance();
-    let temp= this.generalService.getCookie("idFuncionario");
-    avance.idUsuarioAplicativo = temp;
-    avance.idSolicitud = this.idSolicitud.value;
-    avance.idTrimestre = this.idTrimestre.value;
-    avance.finalizado = true; 
-    this.avanceService.ingresarAvance(avance).subscribe(data =>
-    console.log(data));
-    window.location.reload();
+    let temp = this.generalService.getCookie("idFuncionario");
+    this.avance.idUsuarioAplicativo = temp;
+    this.avance.idSolicitud = this.idSolicitud.value;
+    this.avance.idTrimestre = this.idTrimestre.value;
+    this.avance.finalizado = true;
+
+    this.encodeImageFileAsURL(this.archivos[0]).then(
+      data => {
+        console.log(data);
+        this.avance.documento = data;
+        console.log(this.avance)
+        this.avanceService.ingresarAvance(this.avance).subscribe(data =>
+          console.log(data));
+        window.location.reload();
+      }
+
+    );
   }
   dateClass: MatCalendarCellClassFunction<Date> = (cellDate, view) => {
     // Only highligh dates inside the month view.
@@ -82,5 +96,27 @@ export class CrearAvanceComponent implements OnInit {
       console.log(data);
       this.solicitudes = data;
     })
+  }
+  capturarFile(event): any {
+    const archivoCapturado = event.target.files[0]
+    this.generalService.extraerBase64(archivoCapturado).then((imagen: any) => {
+
+    })
+    this.archivos.push(archivoCapturado)
+    console.log(event.target.files);
+
+  }
+  clearImage(): any {
+    this.previsualizacion = '';
+    this.archivos = [];
+  }
+  encodeImageFileAsURL(file) {
+
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = error => reject(error);
+    });
   }
 }

@@ -1,4 +1,6 @@
+const { MAX } = require('mssql');
 const db_conection = require('../../config/db.js');
+
 
 // Get
 exports.getSolicitud = (req, res) => {
@@ -29,17 +31,26 @@ exports.getSolicitud = (req, res) => {
 //Insert
 exports.ingresarSolicitud = (req, res) => {
 
-    const { idUsuarioAplicativo, idResponsableTI, fechaInicio, fechaFin, idResponsableUsuarioFinal} = req.body
-    
     db_conection.sql.connect(db_conection.config, function (err) {
 
         if (err) {
             console.log(err);
         } else {
 
-            db_conection.sql.query(
+            // db_conection.sql.query(
 
-                "exec [dbo].[ingresarSolicitud] '" + idUsuarioAplicativo + "','"+ idResponsableTI + "','" + fechaInicio + "','" + fechaFin + "','" + idResponsableUsuarioFinal + "'");
+            //     "exec [dbo].[ingresarSolicitud] '" + idUsuarioAplicativo + "','"+ idResponsableTI + "','" + fechaInicio + "','" + fechaFin + "','" + idResponsableUsuarioFinal + "'");
+       
+
+            var request = new db_conection.sql.Request();
+            request.input('idUsuarioAplicativo', db_conection.sql.SmallInt, req.body.idUsuarioAplicativo)
+                .input('idResponsableTI', db_conection.sql.SmallInt, req.body.idResponsableTI)
+                .input('fechaInicio', db_conection.sql.DateTime, req.body.fechaInicio)
+                .input('fechaFin', db_conection.sql.Date, req.body.fechaFin)
+                .input('idResponsableUsuarioFinal', db_conection.sql.SmallInt, req.body.idResponsableUsuarioFinal)
+                .input('documentoActaConstitutiva', db_conection.sql.VarBinary(MAX),  Buffer.from(req.body.documentoActaConstitutiva))
+                .query("exec [dbo].[ingresarSolicitud] @idUsuarioAplicativo, @idResponsableTI, @fechaInicio, @fechaFin, @idResponsableUsuarioFinal, @documentoActaConstitutiva");
+         
         }
 
     });

@@ -6,5 +6,6 @@ export class Solicitud {
     fechaInicio: string;
     fechaFin: string;
     idResponsableUsuarioFinal: number;
-    idUsuarioAplicativo_temp: string
+    idUsuarioAplicativo_temp: string;
+    documentoActaConstitutiva : any
   }

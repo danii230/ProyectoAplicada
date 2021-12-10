@@ -44,8 +44,10 @@
                         </mat-select>
                         <mat-error *ngIf="idTrimestre.hasError('required')">Por favor escoja el trimestre</mat-error>
                     </mat-form-field>
-                </mat-grid-tile>
-               
+                </mat-grid-tile>    
+                <mat-grid-tile [colspan]="1" [rowspan]="1">
+                    <input class="input-file" (change)="capturarFile($event)" formControlName="file" type="file">
+                </mat-grid-tile>           
                 <mat-grid-tile [colspan]="1" [rowspan]="1">
                     <button mat-raised-button mat-dialog-close style="margin-right: 20px;">Cancelar</button>
                     <button type="submit" mat-raised-button class="button">Aceptar</button>
