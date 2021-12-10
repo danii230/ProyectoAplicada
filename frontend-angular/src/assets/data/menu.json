@@ -13,12 +13,6 @@
     {
         "nombre": "Avances",  
         "redirect": "/dashboard/avances"
-    },
-
-
-    {
-        "nombre": "Reportes",  
-        "redirect": "/dashboard/reportes"
     }
 
 ]

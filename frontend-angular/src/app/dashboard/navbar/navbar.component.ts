@@ -9,6 +9,12 @@ interface Mantenimiento {
   Link: string
 }
 
+interface Reporte {
+  value: string;
+  viewValue: string;
+  Link: string
+}
+
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -29,6 +35,10 @@ export class NavbarComponent implements OnInit {
     {value: '2', viewValue: 'Departamento', Link: '/dashboard/departamento'},
     {value: '3', viewValue: 'Funcionario', Link: '/dashboard/funcionario'},
     {value: '4', viewValue: 'Transacción', Link: '/dashboard/transaccion'},
+  ];
+
+  reportes: Reporte[] = [
+    {value: '0', viewValue: 'Solicitudes', Link: '/dashboard/solicitudes-fechas'},
   ];
 
   cargarMenu(){

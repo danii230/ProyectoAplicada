@@ -56,10 +56,6 @@ export class SolicitudComponent implements OnInit {
     console.log(data));
   }
 
-  manageSolicitud(idSolicitud: number) {
-    console.log(idSolicitud);
-    this.router.navigate(['/dashboard/editar-solicitud/' + idSolicitud]);
-  }
 
   openDialog() {
     this.dialogo.open(CrearSolicitudComponent,

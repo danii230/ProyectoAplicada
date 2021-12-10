@@ -29,6 +29,7 @@ import { CrearSolicitudComponent } from './solicitud/crear-solicitud/crear-solic
 import { EditarSolicitudComponent } from './solicitud/editar-solicitud/editar-solicitud.component';
 import { CrearAvanceComponent } from './avances/crear-avance/crear-avance.component';
 import { EditarAvanceComponent } from './avances/editar-avance/editar-avance.component';
+import { SolicitudesFechasComponent } from './solicitudes-fechas/solicitudes-fechas.component';
 
 
 
@@ -63,6 +64,7 @@ import { EditarAvanceComponent } from './avances/editar-avance/editar-avance.com
     EditarSolicitudComponent,
     CrearAvanceComponent,
     EditarAvanceComponent,
+    SolicitudesFechasComponent,
 
 
   ],
