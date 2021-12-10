@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { GeneralService } from 'src/app/services/general.service';
 import { SolicitudService } from 'src/app/services/solicitud.service';
 
+
 @Component({
   selector: 'app-solicitudes-fechas',
   templateUrl: './solicitudes-fechas.component.html',
@@ -17,7 +18,7 @@ export class SolicitudesFechasComponent implements OnInit {
     private router: Router,  public dialogo: MatDialog) { }
 
   ngOnInit(): void {
-    this.cargarFuncionario();
+    this.comprobarFechas();
   }
 
   listsolicitud: Function[] = [];
@@ -37,6 +38,10 @@ export class SolicitudesFechasComponent implements OnInit {
   }
 
   ngAfterViewInit() {
+
+  }
+
+  public comprobarFechas(){
 
   }
 
