@@ -30,6 +30,7 @@ import { EditarSolicitudComponent } from './solicitud/editar-solicitud/editar-so
 import { CrearAvanceComponent } from './avances/crear-avance/crear-avance.component';
 import { EditarAvanceComponent } from './avances/editar-avance/editar-avance.component';
 import { SolicitudesFechasComponent } from './solicitudes-fechas/solicitudes-fechas.component';
+import { BitacoraTransaccionesComponent } from './bitacora-transacciones/bitacora-transacciones.component';
 
 
 
@@ -65,6 +66,7 @@ import { SolicitudesFechasComponent } from './solicitudes-fechas/solicitudes-fec
     CrearAvanceComponent,
     EditarAvanceComponent,
     SolicitudesFechasComponent,
+    BitacoraTransaccionesComponent,
 
 
   ],
