@@ -57,7 +57,6 @@ export class SolicitudesFechasComponent implements OnInit {
     this.solicitudService.getSolicitud().subscribe(data => {
       this.listsolicitud = data;
       this.dataSource.data = this.listsolicitud;
-      console.log(this.filterForm.value.fromDate);
       this.dataSource.data = this.dataSource.data.filter(e => new Date(e.fechaHora) >= new Date(this.filterForm.value.fromDate) && new Date(e.fechaHora) <= new Date(this.filterForm.value.toDate));
 
       this.dataSource.paginator = this.paginator;
