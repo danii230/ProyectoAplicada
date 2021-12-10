@@ -22,23 +22,27 @@ export class EditarAvanceComponent implements OnInit {
   avance = new Avance();
   usuariosAplicativos: any = [];
   solicitudes: any = [];
-  trimestres: any = []; 
+  trimestres: any = [];
   idUsuarioAplicativo = new FormControl('', Validators.required);
   idSolicitud = new FormControl('', Validators.required);
   idTrimestre = new FormControl('', Validators.required);
-  constructor(private avanceService: AvanceService,private solicitudService: SolicitudService, private route: ActivatedRoute,
+  constructor(private avanceService: AvanceService, private solicitudService: SolicitudService, private route: ActivatedRoute,
     private router: Router, private fb: FormBuilder, private funcionarioService: FuncionarioService,
-    @Inject(MAT_DIALOG_DATA) public data: any, private generalService: GeneralService, private trimestreService: TrimestreService) { 
+    @Inject(MAT_DIALOG_DATA) public data: any, private generalService: GeneralService, private trimestreService: TrimestreService) {
 
 
-      this.form = this.fb.group({
-        idAvance: [''],
-        idTrimestre: ['', Validators.required],
-        idUsuarioAplicativo: ['', Validators.required],
-        idSolicitud: ['', Validators.required],
-      })
-    }
-
+    this.form = this.fb.group({
+      idAvance: [''],
+      idTrimestre: ['', Validators.required],
+      idUsuarioAplicativo: ['', Validators.required],
+      idSolicitud: ['', Validators.required],
+      finalizado: [''],
+      file: ['']
+    })
+  }
+  public previsualizacion: string;
+  public archivos: any = [];
+  public loading: boolean;
   ngOnInit(): void {
 
     this.getTrimestre();
@@ -49,15 +53,16 @@ export class EditarAvanceComponent implements OnInit {
 
   loadAvance(id: any): void {
     console.log(id);
-    
-     this.avanceService.encontrarId(id).subscribe(data => {
-     console.log(data);
-     this.form.controls['idAvance'].setValue(data[0].idAvance);
-     this.idTrimestre.setValue(data[0].idTrimestre);
-     this.idUsuarioAplicativo.setValue(data[0].idUsuarioAplicativo);
-     this.idSolicitud.setValue(data[0].idSolicitud);
 
-     });
+    this.avanceService.encontrarId(id).subscribe(data => {
+      console.log(data);
+      this.form.controls['idAvance'].setValue(data[0].idAvance);
+      this.idTrimestre.setValue(data[0].idTrimestre);
+      this.idUsuarioAplicativo.setValue(data[0].idUsuarioAplicativo);
+      this.idSolicitud.setValue(data[0].idSolicitud);
+      this.form.controls['finalizado'].setValue(data[0].finalizado)
+
+    });
   }
 
   modificarAvance() {
@@ -65,9 +70,10 @@ export class EditarAvanceComponent implements OnInit {
     this.avance.idTrimestre = this.idTrimestre.value;
     this.avance.idUsuarioAplicativo = this.idUsuarioAplicativo.value;
     this.avance.idSolicitud = this.idSolicitud.value;
-    this.avance.idUsuarioAplicativo_temp= this.generalService.getCookie("idFuncionario");
+    this.avance.idUsuarioAplicativo_temp = this.generalService.getCookie("idFuncionario");
+    this.avance.finalizado = this.form.value.finalizado;
     this.avanceService.editarAvance(this.avance).subscribe(data =>
-    console.log(data));
+      console.log(data));
     this.router.navigate(['/dashboard/avance'])
   }
 
@@ -94,5 +100,13 @@ export class EditarAvanceComponent implements OnInit {
       this.solicitudes = data;
     })
   }
+  capturarFile(event): any {
+    const archivoCapturado = event.target.files[0]
+    this.generalService.extraerBase64(archivoCapturado).then((imagen: any) => {
 
+    })
+    this.archivos.push(archivoCapturado)
+    console.log(event.target.files);
+
+  }
 }

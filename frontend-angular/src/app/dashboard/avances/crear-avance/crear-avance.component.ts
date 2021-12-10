@@ -50,8 +50,7 @@ export class CrearAvanceComponent implements OnInit {
     this.avance.idUsuarioAplicativo = temp;
     this.avance.idSolicitud = this.idSolicitud.value;
     this.avance.idTrimestre = this.idTrimestre.value;
-    this.avance.finalizado = true;
-
+    this.avance.finalizado = this.form.value.finalizado;
     this.encodeImageFileAsURL(this.archivos[0]).then(
       data => {
         console.log(data);
