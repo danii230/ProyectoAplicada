@@ -16,10 +16,10 @@ app.use(express.json());
 
 
 
-app.use(express.json({limit: '25mb'}));
+app.use(express.json({ limit: '25mb' }));
 app.use(express.urlencoded({
     limit: '25mb',
- extended: false
+    extended: true
 }));
 
 // app.use(express.json({limit: '600mb'}));
@@ -35,7 +35,6 @@ const transaccionRouters = require('./app/routes/transaccion')
 const solicitudRouters = require('./app/routes/solicitud')
 const avanceRouters = require('./app/routes/avance')
 const bitacoraAuditoriaRouters = require('./app/routes/bitacoraAuditoria')
-const bitacoraRouters = require('./app/routes/bitacora')
 
 app.get("/", (req, res) => {
     res.json({ message: "Inicio del BackEnd" });
@@ -49,7 +48,7 @@ app.use(transaccionRouters)
 app.use(solicitudRouters)
 app.use(avanceRouters)
 app.use(bitacoraAuditoriaRouters)
-app.use(bitacoraRouters)
+
 
 
 

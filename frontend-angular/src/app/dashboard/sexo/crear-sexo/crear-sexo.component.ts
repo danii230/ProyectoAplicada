@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Sexo } from 'src/app/interfaces/sexo';
 import { SexoService } from 'src/app/services/sexo.service';
-import { Bitacora } from 'src/app/interfaces/bitacora';
 
 
 @Component({
