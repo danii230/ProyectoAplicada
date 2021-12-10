@@ -91,7 +91,7 @@ export class AvancesComponent implements OnInit {
        height: '400px',
        width: '600px',
        data: {
-        idAvances:idAvance
+        idAvance:idAvance
        }
        
       });

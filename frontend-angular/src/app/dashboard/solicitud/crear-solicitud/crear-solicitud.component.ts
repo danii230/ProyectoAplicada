@@ -15,13 +15,14 @@ import { GeneralService } from 'src/app/services/general.service';
 })
 export class CrearSolicitudComponent implements OnInit {
 
+  solicitud = new Solicitud();
   form: FormGroup;
   responsablesTI: any = [];
   responsablesUsuarioFinal: any = [];
   idResponsableTI = new FormControl('', Validators.required);
   idResponsableUsuarioFinal = new FormControl('', Validators.required);
   constructor(private fb: FormBuilder, private solicitudService: SolicitudService,
-    private router: Router, private generalService: GeneralService,private funcionarioService: FuncionarioService) {
+    private router: Router, private generalService: GeneralService, private funcionarioService: FuncionarioService) {
     this.form = this.fb.group({
       idSolicitud: [''],
       fechaHora: [''],
@@ -34,22 +35,37 @@ export class CrearSolicitudComponent implements OnInit {
       fechaNacimiento: ['']
     })
   }
+  public previsualizacion: string;
+  public archivos: any = [];
+  public loading: boolean;
   ngOnInit(): void {
     this.getResponsableTI();
     this.getResponsableUsuarioFinal();
   }
 
   agregarSolicitud() {
-    let solicitud = new Solicitud();
-    let temp= this.generalService.getCookie("idFuncionario");
-    solicitud.idUsuarioAplicativo = temp;
-    solicitud.idResponsableTI = this.idResponsableTI.value;
-    solicitud.fechaInicio = moment(this.form.value.fechaInicio).format("YYYY-MM-DD");
-    solicitud.fechaFin = moment(this.form.value.fechaFin).format("YYYY-MM-DD");
-    solicitud.idResponsableUsuarioFinal = this.idResponsableUsuarioFinal.value;
-    this.solicitudService.ingresarSolicitud(solicitud).subscribe(data =>
-    console.log(data));
-    window.location.reload();
+
+    let temp = this.generalService.getCookie("idFuncionario");
+    this.solicitud.idUsuarioAplicativo = temp;
+    this.solicitud.idResponsableTI = this.idResponsableTI.value;
+    this.solicitud.fechaInicio = moment(this.form.value.fechaInicio).format("YYYY-MM-DD");
+    this.solicitud.fechaFin = moment(this.form.value.fechaFin).format("YYYY-MM-DD");
+    this.solicitud.idResponsableUsuarioFinal = this.idResponsableUsuarioFinal.value;
+
+    this.encodeImageFileAsURL(this.archivos[0]).then(
+      data => {
+        console.log(data);
+        this.solicitud.documentoActaConstitutiva = data;
+        console.log(this.solicitud)
+         this.solicitudService.ingresarSolicitud(this.solicitud).subscribe(data =>
+        console.log(data));
+        window.location.reload();
+      }
+
+    );
+
+
+
   }
   dateClass: MatCalendarCellClassFunction<Date> = (cellDate, view) => {
     // Only highligh dates inside the month view.
@@ -76,6 +92,28 @@ export class CrearSolicitudComponent implements OnInit {
       console.log(data);
       this.responsablesUsuarioFinal = data;
     })
+  }
+  capturarFile(event): any {
+    const archivoCapturado = event.target.files[0]
+    this.generalService.extraerBase64(archivoCapturado).then((imagen: any) => {
+
+    })
+    this.archivos.push(archivoCapturado)
+    console.log(event.target.files);
+
+  }
+  clearImage(): any {
+    this.previsualizacion = '';
+    this.archivos = [];
+  }
+  encodeImageFileAsURL(file) {
+
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = error => reject(error);
+    });
   }
 
 }

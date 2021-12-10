@@ -48,13 +48,16 @@ export class EditarAvanceComponent implements OnInit {
   }
 
   loadAvance(id: any): void {
-    this.avanceService.encontrarId(id).subscribe(data => {
-      console.log(data);
-      this.form.controls['idAvance'].setValue(data[0].idAvance);
-      this.idTrimestre.setValue(data[0].idTrimestre);
-      this.idUsuarioAplicativo.setValue(data[0].idUsuarioAplicativo)
-      this.idSolicitud.setValue(data[0].idSolicitud)
-    });
+    console.log(id);
+    
+     this.avanceService.encontrarId(id).subscribe(data => {
+     console.log(data);
+     this.form.controls['idAvance'].setValue(data[0].idAvance);
+     this.idTrimestre.setValue(data[0].idTrimestre);
+     this.idUsuarioAplicativo.setValue(data[0].idUsuarioAplicativo);
+     this.idSolicitud.setValue(data[0].idSolicitud);
+
+     });
   }
 
   modificarAvance() {

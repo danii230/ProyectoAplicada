@@ -24,6 +24,7 @@ export class FuncionarioService {
 
   public ingresarFuncionario(funcionario:Funcionario): Observable<any> {
     const url: string = endpoint + '/funcionario';
+    console.log(funcionario);
     return this.http.post<any>(url,funcionario);
  
   }

@@ -1,3 +1,4 @@
+const { MAX } = require('mssql');
 const db_conection = require('../../config/db.js');
 
 // Get
@@ -29,18 +30,22 @@ exports.getFuncionario = (req, res) => {
 
 //Insert
 exports.ingresarFuncionario = (req, res) => {
-
-    const { nombre, apellidos, fechaNacimiento, idSexo, loginName, password, idDepartamento, foto } = req.body
     db_conection.sql.connect(db_conection.config, function (err) {
 
+        console.log(req.body);
         if (err) {
             console.log(err);
         } else {
-
-            db_conection.sql.query(
-
-
-                "exec [dbo].[ingresarFuncionario] '" + nombre + "','" + apellidos + "','" + fechaNacimiento + "','" + idSexo + "','" + loginName + "','" + password + "','" + idDepartamento +"'");
+            var request = new db_conection.sql.Request();
+            request.input('nombre', db_conection.sql.VarChar, req.body.nombre)
+                .input('apellidos', db_conection.sql.VarChar, req.body.apellidos)
+                .input('fechaNacimiento', db_conection.sql.Date, req.body.fechaNacimiento)
+                .input('idSexo', db_conection.sql.TinyInt, req.body.idSexo)
+                .input('loginName', db_conection.sql.VarChar, req.body.loginName)
+                .input('password', db_conection.sql.VarChar, req.body.password)
+                .input('idDepartamento', db_conection.sql.TinyInt, req.body.idDepartamento)
+                .input('foto', db_conection.sql.VarBinary(MAX),  Buffer.from(req.body.foto))
+                .query("exec [dbo].[ingresarFuncionario] @nombre, @apellidos, @fechaNacimiento, @idSexo, @loginName, @password, @idDepartamento, @foto");
         }
 
     });
@@ -70,7 +75,6 @@ exports.eliminarFuncionario = (req, res) => {
 
 //Delete
 exports.modificarFuncionario = (req, res) => {
-
 
     const { idFuncionario, nombre, apellidos, fechaNacimiento, idSexo, loginName, password, idDepartamento } = req.body
     db_conection.sql.connect(db_conection.config, function (err) {
