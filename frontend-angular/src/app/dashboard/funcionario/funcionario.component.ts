@@ -87,4 +87,14 @@ export class FuncionarioComponent implements OnInit {
   
  }
 
+ openDialog() {
+  this.dialogo.open(CrearFuncionarioComponent,
+    {
+      height: '400px',
+      width: '600px',
+    });
+
+}
+
+
 }

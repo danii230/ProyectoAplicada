@@ -26,6 +26,7 @@ import { EditarSolicitudComponent } from './solicitud/editar-solicitud/editar-so
 import { CrearAvanceComponent } from './avances/crear-avance/crear-avance.component';
 import { EditarAvanceComponent } from './avances/editar-avance/editar-avance.component';
 import { SolicitudesFechasComponent } from './solicitudes-fechas/solicitudes-fechas.component';
+import { BitacoraTransaccionesComponent } from './bitacora-transacciones/bitacora-transacciones.component';
 
 const routes: Routes = [
   {path: '', component: DashboardComponent,children: [
@@ -34,6 +35,7 @@ const routes: Routes = [
     { path: 'crear-sexo', component: CrearSexoComponent },
     { path: 'trimestre', component: TrimestreComponent },
     { path: 'solicitudes-fechas', component: SolicitudesFechasComponent },
+    { path: 'bitacora-transacciones', component: BitacoraTransaccionesComponent },
     { path: 'departamento', component: DepartamentoComponent },
     { path: 'funcionario', component: FuncionarioComponent },
     { path: 'transaccion', component: TransaccionComponent },

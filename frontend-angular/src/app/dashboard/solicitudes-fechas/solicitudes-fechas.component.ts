@@ -1,5 +1,4 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
@@ -7,6 +6,7 @@ import { Router } from '@angular/router';
 import { GeneralService } from 'src/app/services/general.service';
 import { SolicitudService } from 'src/app/services/solicitud.service';
 import * as moment from 'moment';
+import { FormControl, FormGroup } from '@angular/forms';
 
 
 @Component({
@@ -52,14 +52,6 @@ export class SolicitudesFechasComponent implements OnInit {
 
   }
 
-  public comprobarFechas() {
-    this.solicitudService.getSolicitud().subscribe(data => {
-      console.log(data);
-      this.listsolicitud = data;
-      this.dataSource = new MatTableDataSource(this.listsolicitud)
-      this.dataSource.paginator = this.paginator;
-    })
-  }
   applyFilter() {
 
     this.solicitudService.getSolicitud().subscribe(data => {
