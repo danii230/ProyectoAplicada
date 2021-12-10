@@ -31,6 +31,8 @@ import { CrearAvanceComponent } from './avances/crear-avance/crear-avance.compon
 import { EditarAvanceComponent } from './avances/editar-avance/editar-avance.component';
 import { SolicitudesFechasComponent } from './solicitudes-fechas/solicitudes-fechas.component';
 import { BitacoraTransaccionesComponent } from './bitacora-transacciones/bitacora-transacciones.component';
+import { GraficoAvanceComponent } from './grafico-avance/grafico-avance.component';
+import { GraficoEstadoComponent } from './grafico-estado/grafico-estado.component';
 
 
 
@@ -67,6 +69,8 @@ import { BitacoraTransaccionesComponent } from './bitacora-transacciones/bitacor
     EditarAvanceComponent,
     SolicitudesFechasComponent,
     BitacoraTransaccionesComponent,
+    GraficoAvanceComponent,
+    GraficoEstadoComponent,
 
 
   ],

@@ -40,6 +40,8 @@ export class NavbarComponent implements OnInit {
   reportes: Reporte[] = [
     {value: '0', viewValue: 'Solicitudes por fechas', Link: '/dashboard/solicitudes-fechas'},
     {value: '0', viewValue: 'Bitacora de transacciones', Link: '/dashboard/bitacora-transacciones'},
+    {value: '0', viewValue: 'Grafico de avances', Link: '/dashboard/grafico-avance'},
+    {value: '0', viewValue: 'Grafico de estado', Link: '/dashboard/grafico-estado'},
   ];
 
   cargarMenu(){

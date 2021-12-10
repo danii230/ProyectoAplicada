@@ -27,6 +27,8 @@ import { CrearAvanceComponent } from './avances/crear-avance/crear-avance.compon
 import { EditarAvanceComponent } from './avances/editar-avance/editar-avance.component';
 import { SolicitudesFechasComponent } from './solicitudes-fechas/solicitudes-fechas.component';
 import { BitacoraTransaccionesComponent } from './bitacora-transacciones/bitacora-transacciones.component';
+import { GraficoAvanceComponent } from './grafico-avance/grafico-avance.component';
+import { GraficoEstadoComponent } from './grafico-estado/grafico-estado.component';
 
 const routes: Routes = [
   {path: '', component: DashboardComponent,children: [
@@ -35,6 +37,8 @@ const routes: Routes = [
     { path: 'crear-sexo', component: CrearSexoComponent },
     { path: 'trimestre', component: TrimestreComponent },
     { path: 'solicitudes-fechas', component: SolicitudesFechasComponent },
+    { path: 'grafico-avance', component: GraficoAvanceComponent },
+    { path: 'grafico-estado', component: GraficoEstadoComponent},
     { path: 'bitacora-transacciones', component: BitacoraTransaccionesComponent },
     { path: 'departamento', component: DepartamentoComponent },
     { path: 'funcionario', component: FuncionarioComponent },
