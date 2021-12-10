@@ -10,6 +10,15 @@
       </mat-option>
     </mat-select>
   </mat-form-field>
+  <br>
+  <mat-form-field class="tamano" appearance="fill">
+    <mat-label>Reportes</mat-label>
+    <mat-select>
+      <mat-option *ngFor="let reporte of reportes" [value]="reporte.value" [routerLink]="reporte.Link">
+        {{reporte.viewValue}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
   <span class="example-spacer"></span>
   <!-- <button mat-button routerLink="/dashboard">LogOut</button> -->
   <button mat-icon-button class="example-icon" routerLink="/" aria-label="Example icon-button with menu icon">

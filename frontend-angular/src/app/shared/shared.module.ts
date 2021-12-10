@@ -21,7 +21,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
-
+import {MatCheckboxModule} from '@angular/material/checkbox';
 import { MatDialogModule } from '@angular/material/dialog';
 
 
@@ -54,7 +54,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatSelectModule,
     MatDatepickerModule,
     MatNativeDateModule,
-
+    MatCheckboxModule,
     MatDialogModule,
     
 
@@ -83,7 +83,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatSelectModule,
     MatDatepickerModule,
     MatNativeDateModule,
-
+    MatCheckboxModule,
     MatDialogModule
 
 
