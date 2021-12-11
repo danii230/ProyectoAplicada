@@ -44,7 +44,7 @@ export class EditarSexoComponent implements OnInit {
     this.sexo.descripcion = this.form.value.descripcion;
     this.sexoService.editarSexo(this.sexo).subscribe(data =>
     console.log(data));
-    this.router.navigate(['/dashboard/sexo'])
+    window.location.reload();
   
 }
 }

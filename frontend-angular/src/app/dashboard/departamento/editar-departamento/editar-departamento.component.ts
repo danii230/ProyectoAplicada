@@ -43,7 +43,7 @@ export class EditarDepartamentoComponent implements OnInit {
     this.departamento.descripcion = this.form.value.descripcion;
     this.departamentoService.editarDepartamento(this.departamento).subscribe(data =>
       console.log(data));
-    this.router.navigate(['/dashboard/departamento'])
+      window.location.reload();
   }
 
 }

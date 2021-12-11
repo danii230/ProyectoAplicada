@@ -42,6 +42,6 @@ export class EditarTransaccionComponent implements OnInit {
     this.transaccion.descripcion = this.form.value.descripcion;
     this.transaccionService.editarTransaccion(this.transaccion).subscribe(data =>
       console.log(data));
-    this.router.navigate(['/dashboard/transaccion'])
+      window.location.reload();
   }
 }

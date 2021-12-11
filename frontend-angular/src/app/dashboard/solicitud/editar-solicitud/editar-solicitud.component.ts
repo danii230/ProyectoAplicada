@@ -68,7 +68,7 @@ export class EditarSolicitudComponent implements OnInit {
     console.log(this.solicitud);
     this.solicitudService.editarSolicitud(this.solicitud).subscribe(data =>
     console.log(data));
-    this.router.navigate(['/dashboard/solicitud'])
+    window.location.reload();
   }
 
   getResponsableTI() {

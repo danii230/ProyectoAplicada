@@ -7,6 +7,15 @@ import { GeneralService } from 'src/app/services/general.service';
 import { SolicitudService } from 'src/app/services/solicitud.service';
 import * as moment from 'moment';
 import { FormControl, FormGroup } from '@angular/forms';
+import 'jspdf-autotable';
+
+
+declare var jsPDF: any;
+
+
+declare const require: any;
+
+require('jspdf-autotable');
 
 
 @Component({
@@ -16,6 +25,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 })
 export class SolicitudesFechasComponent implements OnInit {
 
+  
   filterForm = new FormGroup({
     fromDate: new FormControl(),
     toDate: new FormControl(),
@@ -64,4 +74,21 @@ export class SolicitudesFechasComponent implements OnInit {
 
 
   }
+
+  downloadPdf() {
+    var prepare=[];
+    this.listsolicitud.forEach(e=>{
+      var tempObj =[];
+
+      prepare.push(tempObj);
+    });
+    const doc = new jsPDF();
+    doc.autoTable({
+        head: [['idSolicitud', 'idUsuarioAplicativo', 'idResponsableTI', 'idResponsableUsuaioFinal', 'fechaHora']],
+        body: prepare
+    });
+    doc.save('listaSolicitud' + '.pdf');
+  }
+
+  
 }

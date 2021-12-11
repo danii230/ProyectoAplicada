@@ -45,7 +45,7 @@ export class EditarTrimestreComponent implements OnInit {
     this.trimestre.descripcion = this.form.value.descripcion;
     this.trimestreService.editarTrimestre(this.trimestre).subscribe(data =>
       console.log(data));
-    this.router.navigate(['/dashboard/trimestre'])
+      window.location.reload();
   }
 
 }
