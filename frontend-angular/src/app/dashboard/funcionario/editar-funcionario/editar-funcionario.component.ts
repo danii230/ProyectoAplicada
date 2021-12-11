@@ -71,25 +71,6 @@ export class EditarFuncionarioComponent implements OnInit {
       this.form.controls['fechaNacimiento'].setValue(data[0].fechaNacimiento);
       this.idSexo.setValue(data[0].idSexo);
       this.idDepartamento.setValue(data[0].idDepartamento);
-      console.log(data[0].foto.data);
-
-      let buff = Buffer.from(data[0].foto);
-      let base64data = buff.toString('base64');
-      var hex = Buffer.from(data[0].foto, 'base64').toString('hex');
-      let x = hex.replace(/^(.{8})(.{4})(.{4})(.{4})(.{12})$/, function () {
-        return arguments[1] + "-" + arguments[2] + "-" + arguments[3] + "-" + arguments[4] + "-" + arguments[5];
-      });
-
-      let objectURL = 'data:image/jpeg;base64,' + x;
-
-      this.previsualizacion = this.sanitizer.bypassSecurityTrustUrl(objectURL);
-
-    
-
-      // console.log('"' + data + '" converted to Base64 is "' + base64data + '"');
-      // var base64Policy = Buffer.alloc(data[0].foto, 'utf-8').toString('base64');
-      // this.previsualizacion=base64Policy;
-
 
     });
   }

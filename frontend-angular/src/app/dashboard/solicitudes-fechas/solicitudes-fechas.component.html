@@ -5,7 +5,7 @@
     </mat-toolbar>
     <form class="date-block" [formGroup]="filterForm">
         <div class="date-block__list">
-        <mat-form-field>
+        <mat-form-field class="mat">
           <input matInput 
             [matDatepicker]="fromDate" 
             placeholder="From Date" 
@@ -15,7 +15,7 @@
         </mat-form-field>
       </div>
           <div class="date-block__list">
-        <mat-form-field>
+        <mat-form-field class="mat">
           <input matInput 
             [matDatepicker]="toDate" 
             placeholder="To Date" 
@@ -24,7 +24,7 @@
           <mat-datepicker #toDate></mat-datepicker>
         </mat-form-field>
       </div>
-       <button mat-button color="primary" class="primary" (click)="applyFilter()">Submit</button>
+       <button mat-button color="primary" class="primary" (click)="applyFilter()">Filtrar</button>
     </form>
 
 
