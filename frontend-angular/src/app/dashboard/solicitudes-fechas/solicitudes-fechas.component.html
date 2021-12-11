@@ -4,29 +4,33 @@
     <div class="example-spacer"></div>
     <button mat-raised-button class="button" (click)="downloadPdf()">PDF</button>
   </mat-toolbar>
- 
 
-    <form class="date-block" [formGroup]="filterForm">
-     
-        <div class="date-block__list">
-          <mat-form-field class="mat">
-            <input matInput [matDatepicker]="fromDate" placeholder="From Date" formControlName="fromDate">
-            <mat-datepicker-toggle matSuffix [for]="fromDate"></mat-datepicker-toggle>
-            <mat-datepicker #fromDate></mat-datepicker>
-          </mat-form-field>
-        </div>
-    
-        <div class="date-block__list">
-          <mat-form-field class="mat">
-            <input matInput [matDatepicker]="toDate" placeholder="To Date" formControlName="toDate">
-            <mat-datepicker-toggle matSuffix [for]="toDate"></mat-datepicker-toggle>
-            <mat-datepicker #toDate></mat-datepicker>
-          </mat-form-field>
-        </div>
-    
-        <button mat-button color="primary" class="primary" (click)="applyFilter()">Submit</button>
-     
-    </form>
+
+  <form class="date-block" [formGroup]="filterForm">
+
+    <div class="date-block__list">
+      <mat-form-field class="mat">
+        <input matInput [matDatepicker]="fromDate" placeholder="From Date" formControlName="fromDate">
+        <mat-datepicker-toggle matSuffix [for]="fromDate"></mat-datepicker-toggle>
+        <mat-datepicker #fromDate></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+    <div class="date-block__list">
+      <mat-form-field class="mat">
+        <input matInput [matDatepicker]="toDate" placeholder="To Date" formControlName="toDate">
+        <mat-datepicker-toggle matSuffix [for]="toDate"></mat-datepicker-toggle>
+        <mat-datepicker #toDate></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+    <div class="mat1">
+      <a class="pointer" (click)="applyFilter()" style="color:#e15639"
+      matTooltip="Buscar">
+      <mat-icon>search</mat-icon>
+  </a>
+    </div>
+  </form>
 
 
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
