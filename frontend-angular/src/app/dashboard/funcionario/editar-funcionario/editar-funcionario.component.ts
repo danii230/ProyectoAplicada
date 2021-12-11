@@ -105,7 +105,7 @@ export class EditarFuncionarioComponent implements OnInit {
     console.log(this.funcionario);
     this.funcionarioService.editarFuncionario(this.funcionario).subscribe(data =>
       console.log(data));
-    this.router.navigate(['/dashboard/funcionario'])
+      window.location.reload();
   }
   capturarFile(event): any {
     const archivoCapturado = event.target.files[0]

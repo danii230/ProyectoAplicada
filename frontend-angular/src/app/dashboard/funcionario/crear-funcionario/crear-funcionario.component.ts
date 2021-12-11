@@ -72,7 +72,7 @@ export class CrearFuncionarioComponent implements OnInit {
           console.log(this.funcionario)
           this.funcionarioService.ingresarFuncionario(this.funcionario).subscribe(data =>
             console.log(data));
-          this.router.navigate(['/dashboard/funcionario'])
+            window.location.reload();
         }
 
       );
